@@ -7,7 +7,7 @@ export const TechnologyExplainer: React.FC = () => {
     <section id="technology" style={{ 
       padding: '6rem 0', 
       position: 'relative',
-      background: "linear-gradient(180deg, rgba(15, 23, 42, 0.86) 0%, rgba(11, 19, 14, 0.94) 100%), url('/assets/sunroom-bg.jpg') center/cover fixed no-repeat",
+      background: "linear-gradient(180deg, rgba(15, 23, 42, 0.86) 0%, rgba(11, 19, 14, 0.94) 100%), url('assets/sunroom-bg.jpg') center/cover fixed no-repeat",
       borderTop: '1px solid rgba(16, 185, 129, 0.15)',
       borderBottom: '1px solid rgba(16, 185, 129, 0.15)'
     }}>
@@ -98,7 +98,7 @@ export const TechnologyExplainer: React.FC = () => {
         <div className="glass-panel" style={{ 
           marginBottom: '3rem', 
           padding: '2.5rem 3rem',
-          background: "linear-gradient(135deg, rgba(15, 23, 42, 0.88) 0%, rgba(30, 41, 59, 0.94) 100%), url('/assets/nasa-lab-bg.jpg') center/cover no-repeat",
+          background: "linear-gradient(135deg, rgba(15, 23, 42, 0.88) 0%, rgba(30, 41, 59, 0.94) 100%), url('assets/nasa-lab-bg.jpg') center/cover no-repeat",
           border: '1px solid rgba(56, 189, 248, 0.35)',
           boxShadow: '0 12px 40px 0 rgba(0, 0, 0, 0.5)'
         }}>
@@ -152,7 +152,7 @@ export const TechnologyExplainer: React.FC = () => {
             </div>
             <div style={{ height: '100%', minHeight: '340px' }}>
               <img
-                src="/assets/harvest-macro.jpg"
+                src="assets/harvest-macro.jpg"
                 alt="Culinary Macro Harvest Photograph of Fresh Basil and Strawberries"
                 style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
               />

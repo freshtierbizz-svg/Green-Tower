@@ -21,12 +21,12 @@ export const SeedlingNursery: React.FC = () => {
 
   // Map Nursery items to local project image assets
   const localImageMap: Record<string, string> = {
-    'mint-spearmint': '/assets/harvest-macro.jpg',
-    'thai-basil': '/assets/real-tower-close.jpg',
-    'salad-crunch': '/assets/balcony-person.jpg',
-    'microgreens-spicy': '/assets/real-tower-lifestyle.png',
-    'edible-viola': '/assets/patio-lifestyle.jpg',
-    'family-starter': '/assets/family-kitchen.jpg',
+    'mint-spearmint': 'assets/harvest-macro.jpg',
+    'thai-basil': 'assets/real-tower-close.jpg',
+    'salad-crunch': 'assets/balcony-person.jpg',
+    'microgreens-spicy': 'assets/real-tower-lifestyle.png',
+    'edible-viola': 'assets/patio-lifestyle.jpg',
+    'family-starter': 'assets/family-kitchen.jpg',
   };
 
   const filteredItems = selectedCategory === 'All'

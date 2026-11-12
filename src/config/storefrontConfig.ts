@@ -26,7 +26,7 @@ export const B2C_TIERS: B2CTierOption[] = [
     completeKitPrice: 399,
     idealFor: '1-2 People / Balconies',
     footprint: '60 × 60 cm (0.22 m²)',
-    image: '/assets/tower-with-lights-lit.jpg',
+    image: 'assets/tower-with-lights-lit.jpg',
   },
   {
     id: '7-tier',
@@ -39,7 +39,7 @@ export const B2C_TIERS: B2CTierOption[] = [
     popular: true,
     idealFor: '2-4 People / Family Favorites',
     footprint: '60 × 60 cm (0.22 m²)',
-    image: '/assets/tier-7-studio.png',
+    image: 'assets/tier-7-studio.png',
   },
   {
     id: '11-tier',
@@ -51,7 +51,7 @@ export const B2C_TIERS: B2CTierOption[] = [
     completeKitPrice: 549,
     idealFor: '4+ People / High-Frequency Harvest',
     footprint: '60 × 60 cm (0.22 m²)',
-    image: '/assets/tier-11-commercial.png',
+    image: 'assets/tier-11-commercial.png',
   },
 ];
 
@@ -61,14 +61,14 @@ export const B2C_ADDONS: B2CPackageAddon[] = [
     name: 'Full-Spectrum 24V DC LED Grow Light System',
     price: 149,
     description: 'Energy-efficient LED bars engineered for indoor growing in low-light apartments & shaded patios.',
-    image: '/assets/addon-led-lights.png',
+    image: 'assets/addon-led-lights.png',
   },
   {
     id: 'trellis-support',
     name: 'Heavy-Duty Vertical Trellis & Plant Support',
     price: 49,
     description: 'Stabilises climbing crops like strawberries, vine tomatoes & heavy herb branches.',
-    image: '/assets/real-tower-hardware.png',
+    image: 'assets/real-tower-hardware.png',
   },
 ];
 

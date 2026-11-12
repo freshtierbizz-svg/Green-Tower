@@ -21,7 +21,7 @@ export const SavingsCalculator: React.FC = () => {
     <section id="savings-calculator" style={{ 
       padding: '6rem 0', 
       position: 'relative',
-      background: "linear-gradient(180deg, rgba(11, 19, 14, 0.9) 0%, rgba(15, 23, 42, 0.95) 100%), url('/assets/kitchen-bg.jpg') center/cover fixed no-repeat"
+      background: "linear-gradient(180deg, rgba(11, 19, 14, 0.9) 0%, rgba(15, 23, 42, 0.95) 100%), url('assets/kitchen-bg.jpg') center/cover fixed no-repeat"
     }}>
       <div className="container">
         
@@ -41,7 +41,7 @@ export const SavingsCalculator: React.FC = () => {
         {/* Calculator Main Panel */}
         <div className="glass-panel" style={{ 
           padding: '3rem', 
-          background: "linear-gradient(135deg, rgba(17, 24, 39, 0.88) 0%, rgba(15, 23, 42, 0.96) 100%), url('/assets/sunroom-bg.jpg') center/cover no-repeat",
+          background: "linear-gradient(135deg, rgba(17, 24, 39, 0.88) 0%, rgba(15, 23, 42, 0.96) 100%), url('assets/sunroom-bg.jpg') center/cover no-repeat",
           border: '1px solid rgba(16, 185, 129, 0.3)',
           boxShadow: '0 20px 50px rgba(0, 0, 0, 0.6)'
         }}>

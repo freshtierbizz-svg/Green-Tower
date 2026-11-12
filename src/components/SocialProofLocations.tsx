@@ -7,7 +7,7 @@ export const SocialProofLocations: React.FC = () => {
     <section style={{ 
       padding: '5.5rem 0', 
       position: 'relative',
-      background: "linear-gradient(180deg, rgba(17, 24, 39, 0.88) 0%, rgba(15, 23, 42, 0.94) 100%), url('/assets/sunroom-bg.jpg') center/cover fixed no-repeat",
+      background: "linear-gradient(180deg, rgba(17, 24, 39, 0.88) 0%, rgba(15, 23, 42, 0.94) 100%), url('assets/sunroom-bg.jpg') center/cover fixed no-repeat",
       borderTop: '1px solid rgba(16, 185, 129, 0.15)',
       borderBottom: '1px solid rgba(16, 185, 129, 0.15)'
     }}>
@@ -161,7 +161,7 @@ export const SocialProofLocations: React.FC = () => {
           <div className="grid-2" style={{ alignItems: 'center' }}>
             <div style={{ height: '100%', minHeight: '340px' }}>
               <img
-                src="/assets/balcony-accurate.jpg"
+                src="assets/balcony-accurate.jpg"
                 alt="Happy Homeowner Harvesting Produce from AeroHarvest Tower on City Balcony"
                 style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
               />

@@ -8,15 +8,15 @@ export const Hero: React.FC = () => {
   const [packageType, setPackageType] = useState<'base' | 'kit'>('base');
   const [hasLedLights, setHasLedLights] = useState<boolean>(false);
   const [hasPlantSupports, setHasPlantSupports] = useState<boolean>(false);
-  const [activeImage, setActiveImage] = useState<string>('/assets/real-tower-studio.png');
+  const [activeImage, setActiveImage] = useState<string>('assets/real-tower-studio.png');
 
   const galleryImages = [
-    { src: '/assets/real-tower-studio.png', title: 'Real Product Studio View — 7-Tier Column & Sage Green Basin' },
-    { src: '/assets/real-tower-hardware.png', title: 'Real Unplanted Hardware View — Funnel Ports & Circular Deck' },
-    { src: '/assets/real-tower-close.jpg', title: 'Real Crop Harvest — Red Oakleaf & Butterhead Lettuce' },
-    { src: '/assets/real-tower-farm.jpg', title: 'Real Commercial Greenhouse Harvest Production' },
-    { src: '/assets/family-kitchen.jpg', title: 'Happy Family Kitchen Harvest' },
-    { src: '/assets/complete-kit.jpg', title: 'Complete Starter Kit Inclusions' },
+    { src: 'assets/real-tower-studio.png', title: 'Real Product Studio View — 7-Tier Column & Sage Green Basin' },
+    { src: 'assets/real-tower-hardware.png', title: 'Real Unplanted Hardware View — Funnel Ports & Circular Deck' },
+    { src: 'assets/real-tower-close.jpg', title: 'Real Crop Harvest — Red Oakleaf & Butterhead Lettuce' },
+    { src: 'assets/real-tower-farm.jpg', title: 'Real Commercial Greenhouse Harvest Production' },
+    { src: 'assets/family-kitchen.jpg', title: 'Happy Family Kitchen Harvest' },
+    { src: 'assets/complete-kit.jpg', title: 'Complete Starter Kit Inclusions' },
   ];
 
   return (
@@ -24,7 +24,7 @@ export const Hero: React.FC = () => {
       padding: '4rem 0 5rem 0', 
       position: 'relative', 
       overflow: 'hidden',
-      background: "linear-gradient(180deg, rgba(11, 19, 14, 0.82) 0%, rgba(11, 19, 14, 0.94) 100%), url('/assets/kitchen-bg.jpg') center/cover no-repeat",
+      background: "linear-gradient(180deg, rgba(11, 19, 14, 0.82) 0%, rgba(11, 19, 14, 0.94) 100%), url('assets/kitchen-bg.jpg') center/cover no-repeat",
       borderBottom: '1px solid rgba(16, 185, 129, 0.15)'
     }}>
       {/* Subtle Background Glow Elements */}

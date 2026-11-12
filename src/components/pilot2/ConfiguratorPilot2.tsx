@@ -25,44 +25,44 @@ export const ConfiguratorPilot2: React.FC<ConfiguratorPilot2Props> = ({
   const [selectedTier, setSelectedTier] = useState<B2CTierOption>(B2C_TIERS[1]); // Default 7-tier
   const [isCompleteKit, setIsCompleteKit] = useState<boolean>(true); // Default recommended complete kit
   const [selectedAddons, setSelectedAddons] = useState<string[]>([]);
-  const [activeVisualizerImg, setActiveVisualizerImg] = useState<string>('/assets/tier-7-studio.png');
+  const [activeVisualizerImg, setActiveVisualizerImg] = useState<string>('assets/tier-7-studio.png');
   const [showHeightScaleModal, setShowHeightScaleModal] = useState<boolean>(false);
 
   // Consistent Product Photography Set (Priority 3: Consistent set showing tower, components, real home scale, and crops)
   const productGallery = [
     {
       id: 'tier-current',
-      src: selectedTier.image || '/assets/tier-7-studio.png',
+      src: selectedTier.image || 'assets/tier-7-studio.png',
       title: `${selectedTier.name} (Height & Structure)`,
       caption: `Real Studio View: ${selectedTier.name} (${selectedTier.heightMeter}m)`
     },
     {
       id: 'scale-all',
-      src: '/assets/tier-comparison-all.jpg',
+      src: 'assets/tier-comparison-all.jpg',
       title: 'Full Height Lineup Comparison',
       caption: 'Side-by-side scale comparison of 5, 7, and 11-section heights'
     },
     {
       id: 'hardware-unboxed',
-      src: '/assets/package-base-hardware.png',
+      src: 'assets/package-base-hardware.png',
       title: 'Unboxed System Hardware Components',
       caption: '38L Reservoir tub, modular tiers, low-voltage DC pump & timer'
     },
     {
       id: 'consumables-pack',
-      src: '/assets/complete-kit.jpg',
+      src: 'assets/complete-kit.jpg',
       title: 'Complete Starter Consumables Kit',
       caption: '1L A+B nutrients, 50 coco plugs, nursery dome tray & pH tester'
     },
     {
       id: 'balcony-lifestyle',
-      src: '/assets/balcony-person.jpg',
+      src: 'assets/balcony-person.jpg',
       title: 'Scale on Australian Balcony',
       caption: 'Real home setup on apartment timber balcony in Melbourne'
     },
     {
       id: 'crop-harvest',
-      src: '/assets/real-tower-close.jpg',
+      src: 'assets/real-tower-close.jpg',
       title: 'Living Crop Maturity in Pods',
       caption: 'Fresh oakleaf lettuce, herbs & strawberries ready to harvest'
     }
@@ -80,20 +80,20 @@ export const ConfiguratorPilot2: React.FC<ConfiguratorPilot2Props> = ({
   const handleSelectTier = (tier: B2CTierOption) => {
     setSelectedTier(tier);
     if (tier.id === '5-tier') {
-      setActiveVisualizerImg('/assets/tier-comparison-all.jpg');
+      setActiveVisualizerImg('assets/tier-comparison-all.jpg');
     } else if (tier.id === '11-tier') {
-      setActiveVisualizerImg('/assets/tier-11-commercial.png');
+      setActiveVisualizerImg('assets/tier-11-commercial.png');
     } else {
-      setActiveVisualizerImg('/assets/tier-7-studio.png');
+      setActiveVisualizerImg('assets/tier-7-studio.png');
     }
   };
 
   const handleSelectPackageType = (complete: boolean) => {
     setIsCompleteKit(complete);
     if (complete) {
-      setActiveVisualizerImg('/assets/complete-kit.jpg');
+      setActiveVisualizerImg('assets/complete-kit.jpg');
     } else {
-      setActiveVisualizerImg('/assets/package-base-hardware.png');
+      setActiveVisualizerImg('assets/package-base-hardware.png');
     }
   };
 
@@ -103,7 +103,7 @@ export const ConfiguratorPilot2: React.FC<ConfiguratorPilot2Props> = ({
     } else {
       setSelectedAddons([...selectedAddons, addonId]);
       if (addonId === 'led-lighting') {
-        setActiveVisualizerImg('/assets/addon-led-lights.png');
+        setActiveVisualizerImg('assets/addon-led-lights.png');
       }
     }
   };
@@ -252,7 +252,7 @@ export const ConfiguratorPilot2: React.FC<ConfiguratorPilot2Props> = ({
                 {/* EXPAND HEIGHT SCALE BUTTON */}
                 <button
                   type="button"
-                  onClick={() => setActiveVisualizerImg('/assets/tier-comparison-all.jpg')}
+                  onClick={() => setActiveVisualizerImg('assets/tier-comparison-all.jpg')}
                   style={{
                     position: 'absolute',
                     bottom: '12px',
@@ -327,7 +327,7 @@ export const ConfiguratorPilot2: React.FC<ConfiguratorPilot2Props> = ({
 
                 <button
                   type="button"
-                  onClick={() => setActiveVisualizerImg('/assets/tier-comparison-all.jpg')}
+                  onClick={() => setActiveVisualizerImg('assets/tier-comparison-all.jpg')}
                   style={{
                     background: '#EEF4EE',
                     border: '1px solid #D4E3D6',

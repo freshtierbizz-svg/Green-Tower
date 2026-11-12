@@ -30,7 +30,7 @@ export const HeroPilot2: React.FC<HeroPilot2Props> = ({
           right: 0,
           width: '100%',
           height: '100%',
-          backgroundImage: 'url(/assets/balcony-person.jpg)',
+          backgroundImage: 'url(assets/balcony-person.jpg)',
           backgroundPosition: 'right 35% center',
           backgroundSize: 'cover',
           backgroundRepeat: 'no-repeat',

@@ -6,7 +6,7 @@ export const CompetitorComparison: React.FC = () => {
     <section id="comparison" style={{ 
       padding: '6rem 0', 
       position: 'relative',
-      background: "linear-gradient(180deg, rgba(15, 23, 42, 0.94) 0%, rgba(11, 19, 14, 0.96) 100%), url('/assets/sunroom-bg.jpg') center/cover fixed no-repeat",
+      background: "linear-gradient(180deg, rgba(15, 23, 42, 0.94) 0%, rgba(11, 19, 14, 0.96) 100%), url('assets/sunroom-bg.jpg') center/cover fixed no-repeat",
       borderTop: '1px solid rgba(16, 185, 129, 0.15)',
       borderBottom: '1px solid rgba(16, 185, 129, 0.15)'
     }}>

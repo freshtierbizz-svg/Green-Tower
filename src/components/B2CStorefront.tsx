@@ -13,7 +13,7 @@ export const B2CStorefront: React.FC<B2CStorefrontProps> = ({ onSelectView }) =>
   const [selectedTier, setSelectedTier] = useState<B2CTierOption>(B2C_TIERS[1]); // 7-tier standard default
   const [isCompleteKit, setIsCompleteKit] = useState<boolean>(true); // Complete kit default
   const [selectedAddons, setSelectedAddons] = useState<string[]>(['led-lighting']);
-  const [activeConfigImg, setActiveConfigImg] = useState<string>(B2C_TIERS[1].image || '/assets/tier-7-studio.png');
+  const [activeConfigImg, setActiveConfigImg] = useState<string>(B2C_TIERS[1].image || 'assets/tier-7-studio.png');
 
   const handleSelectTier = (tier: B2CTierOption) => {
     setSelectedTier(tier);
@@ -25,9 +25,9 @@ export const B2CStorefront: React.FC<B2CStorefrontProps> = ({ onSelectView }) =>
   const handleSelectPackageType = (kit: boolean) => {
     setIsCompleteKit(kit);
     if (kit) {
-      setActiveConfigImg('/assets/complete-kit.jpg');
+      setActiveConfigImg('assets/complete-kit.jpg');
     } else {
-      setActiveConfigImg('/assets/package-base-hardware.png');
+      setActiveConfigImg('assets/package-base-hardware.png');
     }
   };
 
@@ -45,12 +45,12 @@ export const B2CStorefront: React.FC<B2CStorefrontProps> = ({ onSelectView }) =>
   };
 
   const configGallery = [
-    { src: selectedTier.image || '/assets/tier-7-studio.png', title: `${selectedTier.name} (${selectedTier.growSites} Sites)` },
-    { src: isCompleteKit ? '/assets/complete-kit.jpg' : '/assets/package-base-hardware.png', title: isCompleteKit ? 'Complete Growing Kit Inclusions' : 'Standard Base Hardware Package' },
-    { src: '/assets/addon-led-lights.png', title: '360° LED Grow Lights System' },
-    { src: '/assets/tier-comparison-all.jpg', title: '5 vs 7 vs 9/11 Tier Height Chart' },
-    { src: '/assets/real-tower-close.jpg', title: 'Fresh Living Produce Close-Up' },
-    { src: '/assets/package-base-hardware.png', title: 'Base Hardware Components' },
+    { src: selectedTier.image || 'assets/tier-7-studio.png', title: `${selectedTier.name} (${selectedTier.growSites} Sites)` },
+    { src: isCompleteKit ? 'assets/complete-kit.jpg' : 'assets/package-base-hardware.png', title: isCompleteKit ? 'Complete Growing Kit Inclusions' : 'Standard Base Hardware Package' },
+    { src: 'assets/addon-led-lights.png', title: '360° LED Grow Lights System' },
+    { src: 'assets/tier-comparison-all.jpg', title: '5 vs 7 vs 9/11 Tier Height Chart' },
+    { src: 'assets/real-tower-close.jpg', title: 'Fresh Living Produce Close-Up' },
+    { src: 'assets/package-base-hardware.png', title: 'Base Hardware Components' },
   ];
 
   // Calculate current price
@@ -66,7 +66,7 @@ export const B2CStorefront: React.FC<B2CStorefrontProps> = ({ onSelectView }) =>
       {/* B2C HERO HEADER */}
       <section style={{
         padding: '3.5rem 0 2.5rem 0',
-        background: "linear-gradient(180deg, rgba(11, 19, 14, 0.82) 0%, rgba(11, 19, 14, 0.95) 100%), url('/assets/patio-lifestyle.jpg') center/cover no-repeat"
+        background: "linear-gradient(180deg, rgba(11, 19, 14, 0.82) 0%, rgba(11, 19, 14, 0.95) 100%), url('assets/patio-lifestyle.jpg') center/cover no-repeat"
       }}>
         <div className="container" style={{ textAlign: 'center', maxWidth: '850px' }}>
           <div className="badge-emerald" style={{ marginBottom: '1rem' }}>
@@ -246,14 +246,14 @@ export const B2CStorefront: React.FC<B2CStorefrontProps> = ({ onSelectView }) =>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
               <div className="glass-panel" style={{ padding: '0.75rem', borderRadius: '20px', overflow: 'hidden' }}>
                 <img
-                  src="/assets/balcony-person.jpg"
+                  src="assets/balcony-person.jpg"
                   alt="Harvesting fresh herbs on home balcony"
                   style={{ width: '100%', height: '260px', objectFit: 'cover', borderRadius: '14px' }}
                 />
               </div>
               <div className="glass-panel" style={{ padding: '0.75rem', borderRadius: '20px', overflow: 'hidden' }}>
                 <img
-                  src="/assets/harvest-macro.jpg"
+                  src="assets/harvest-macro.jpg"
                   alt="Freshly harvested lettuce close up"
                   style={{ width: '100%', height: '180px', objectFit: 'cover', borderRadius: '14px' }}
                 />
@@ -305,7 +305,7 @@ export const B2CStorefront: React.FC<B2CStorefrontProps> = ({ onSelectView }) =>
             <div style={{ order: 1 }}>
               <div className="glass-panel" style={{ padding: '0.75rem', borderRadius: '20px' }}>
                 <img
-                  src="/assets/family-kitchen.jpg"
+                  src="assets/family-kitchen.jpg"
                   alt="Happy family harvesting fresh greens in kitchen"
                   style={{ width: '100%', height: '380px', objectFit: 'cover', borderRadius: '16px' }}
                 />
@@ -434,7 +434,7 @@ export const B2CStorefront: React.FC<B2CStorefrontProps> = ({ onSelectView }) =>
               </h3>
               <button
                 type="button"
-                onClick={() => setActiveConfigImg('/assets/tier-comparison-all.jpg')}
+                onClick={() => setActiveConfigImg('assets/tier-comparison-all.jpg')}
                 style={{
                   background: 'rgba(52, 211, 153, 0.1)',
                   border: '1px solid rgba(52, 211, 153, 0.3)',
@@ -504,7 +504,7 @@ export const B2CStorefront: React.FC<B2CStorefrontProps> = ({ onSelectView }) =>
                       position: 'relative'
                     }}>
                       <img
-                        src={tier.image || '/assets/tier-7-studio.png'}
+                        src={tier.image || 'assets/tier-7-studio.png'}
                         alt={tier.name}
                         style={{ width: '100%', height: '100%', objectFit: 'contain', padding: '0.4rem' }}
                       />
@@ -580,7 +580,7 @@ export const B2CStorefront: React.FC<B2CStorefrontProps> = ({ onSelectView }) =>
                 }}
               >
                 <div style={{ width: '110px', height: '110px', flexShrink: 0, borderRadius: '10px', overflow: 'hidden', background: '#040806', border: '1px solid rgba(255,255,255,0.1)' }}>
-                  <img src="/assets/package-base-hardware.png" alt="Standard Base Package" style={{ width: '100%', height: '100%', objectFit: 'contain', padding: '4px' }} />
+                  <img src="assets/package-base-hardware.png" alt="Standard Base Package" style={{ width: '100%', height: '100%', objectFit: 'contain', padding: '4px' }} />
                 </div>
                 <div style={{ flex: 1 }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
@@ -626,7 +626,7 @@ export const B2CStorefront: React.FC<B2CStorefrontProps> = ({ onSelectView }) =>
                 }}
               >
                 <div style={{ width: '110px', height: '110px', flexShrink: 0, borderRadius: '10px', overflow: 'hidden', background: '#040806', border: '1px solid rgba(255,255,255,0.1)' }}>
-                  <img src="/assets/complete-kit.jpg" alt="Complete Growing Kit" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  <img src="assets/complete-kit.jpg" alt="Complete Growing Kit" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                 </div>
                 <div style={{ flex: 1 }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
@@ -849,7 +849,7 @@ export const B2CStorefront: React.FC<B2CStorefrontProps> = ({ onSelectView }) =>
       {/* NASA & SPACE RESEARCH STORY SECTION WITH AUTHENTIC NASA LAB & MISTING IMAGES */}
       <section style={{
         padding: '4.5rem 0',
-        background: "linear-gradient(180deg, rgba(11, 19, 14, 0.88) 0%, rgba(16, 28, 21, 0.94) 100%), url('/assets/nasa-lab-bg.jpg') center/cover no-repeat",
+        background: "linear-gradient(180deg, rgba(11, 19, 14, 0.88) 0%, rgba(16, 28, 21, 0.94) 100%), url('assets/nasa-lab-bg.jpg') center/cover no-repeat",
         borderTop: '1px solid rgba(255,255,255,0.06)'
       }}>
         <div className="container">
@@ -879,7 +879,7 @@ export const B2CStorefront: React.FC<B2CStorefrontProps> = ({ onSelectView }) =>
               <div>
                 <div className="glass-panel" style={{ padding: '0.75rem', borderRadius: '18px' }}>
                   <img
-                    src="/assets/misting-roots.jpg"
+                    src="assets/misting-roots.jpg"
                     alt="Aeroponic misting suspended roots"
                     style={{ width: '100%', height: '340px', objectFit: 'cover', borderRadius: '12px' }}
                   />

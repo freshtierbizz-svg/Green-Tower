@@ -7,7 +7,7 @@ export const SpecsGrid: React.FC = () => {
     <section id="inclusions" style={{ 
       padding: '6rem 0', 
       position: 'relative',
-      background: "linear-gradient(180deg, rgba(11, 19, 14, 0.9) 0%, rgba(15, 23, 42, 0.94) 100%), url('/assets/kitchen-bg.jpg') center/cover fixed no-repeat",
+      background: "linear-gradient(180deg, rgba(11, 19, 14, 0.9) 0%, rgba(15, 23, 42, 0.94) 100%), url('assets/kitchen-bg.jpg') center/cover fixed no-repeat",
       borderTop: '1px solid rgba(16, 185, 129, 0.15)',
       borderBottom: '1px solid rgba(16, 185, 129, 0.15)'
     }}>
@@ -74,7 +74,7 @@ export const SpecsGrid: React.FC = () => {
             }}>
               <div style={{ borderRadius: '8px', overflow: 'hidden', marginBottom: '1rem', border: '1px solid rgba(16, 185, 129, 0.3)' }}>
                 <img
-                  src="/assets/complete-kit.jpg"
+                  src="assets/complete-kit.jpg"
                   alt="AeroHarvest Complete Kit Studio Photoshoot Inclusions"
                   style={{ width: '100%', height: '180px', objectFit: 'cover', display: 'block' }}
                 />

@@ -11,15 +11,15 @@ export const SplitMarketHero: React.FC<SplitMarketHeroProps> = ({
   onSelectView,
   onOpenCommercialTrial,
 }) => {
-  const [activeGalleryImg, setActiveGalleryImg] = useState<string>('/assets/real-tower-studio.png');
+  const [activeGalleryImg, setActiveGalleryImg] = useState<string>('assets/real-tower-studio.png');
 
   const galleryImages = [
-    { src: '/assets/real-tower-studio.png', title: 'Real Product Studio View — 7-Tier Column & Sage Green Basin' },
-    { src: '/assets/real-tower-hardware.png', title: 'Real Unplanted Hardware View — Funnel Ports & Circular Deck' },
-    { src: '/assets/real-tower-close.jpg', title: 'Real Crop Harvest — Red Oakleaf & Butterhead Lettuce' },
-    { src: '/assets/real-tower-farm.jpg', title: 'Real Commercial Greenhouse Harvest Production' },
-    { src: '/assets/family-kitchen.jpg', title: 'Happy Family Kitchen Harvest' },
-    { src: '/assets/complete-kit.jpg', title: 'Complete Starter Kit Inclusions' },
+    { src: 'assets/real-tower-studio.png', title: 'Real Product Studio View — 7-Tier Column & Sage Green Basin' },
+    { src: 'assets/real-tower-hardware.png', title: 'Real Unplanted Hardware View — Funnel Ports & Circular Deck' },
+    { src: 'assets/real-tower-close.jpg', title: 'Real Crop Harvest — Red Oakleaf & Butterhead Lettuce' },
+    { src: 'assets/real-tower-farm.jpg', title: 'Real Commercial Greenhouse Harvest Production' },
+    { src: 'assets/family-kitchen.jpg', title: 'Happy Family Kitchen Harvest' },
+    { src: 'assets/complete-kit.jpg', title: 'Complete Starter Kit Inclusions' },
   ];
 
   return (
@@ -65,7 +65,7 @@ export const SplitMarketHero: React.FC<SplitMarketHeroProps> = ({
             position: 'relative',
             borderTop: '3px solid #34D399',
             borderRadius: '20px',
-            background: "linear-gradient(180deg, rgba(23, 38, 28, 0.9) 0%, rgba(11, 19, 14, 0.95) 100%), url('/assets/balcony-accurate.jpg') center/cover no-repeat",
+            background: "linear-gradient(180deg, rgba(23, 38, 28, 0.9) 0%, rgba(11, 19, 14, 0.95) 100%), url('assets/balcony-accurate.jpg') center/cover no-repeat",
           }}>
             <div>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.25rem' }}>
@@ -133,7 +133,7 @@ export const SplitMarketHero: React.FC<SplitMarketHeroProps> = ({
             position: 'relative',
             borderTop: '3px solid #FBBF24',
             borderRadius: '20px',
-            background: "linear-gradient(180deg, rgba(30, 41, 59, 0.92) 0%, rgba(15, 23, 42, 0.95) 100%), url('/assets/real-tower-farm.jpg') center/cover no-repeat",
+            background: "linear-gradient(180deg, rgba(30, 41, 59, 0.92) 0%, rgba(15, 23, 42, 0.95) 100%), url('assets/real-tower-farm.jpg') center/cover no-repeat",
           }}>
             <div>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.25rem' }}>

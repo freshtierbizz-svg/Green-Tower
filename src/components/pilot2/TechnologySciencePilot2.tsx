@@ -161,7 +161,7 @@ export const TechnologySciencePilot2: React.FC<TechnologySciencePilot2Props> = (
               }}
             >
               <img
-                src="/assets/misting-roots.jpg"
+                src="assets/misting-roots.jpg"
                 alt="Suspended plant roots bathed in automated aeroponic nutrient mist"
                 style={{
                   width: '100%',

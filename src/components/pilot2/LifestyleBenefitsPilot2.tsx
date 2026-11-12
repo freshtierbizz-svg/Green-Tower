@@ -81,7 +81,7 @@ export const LifestyleBenefitsPilot2: React.FC<LifestyleBenefitsPilot2Props> = (
               }}
             >
               <img
-                src="/assets/harvest-macro.jpg"
+                src="assets/harvest-macro.jpg"
                 alt="Hand harvesting fresh basil and strawberries from vertical aeroponic cup"
                 style={{
                   width: '100%',
@@ -281,7 +281,7 @@ export const LifestyleBenefitsPilot2: React.FC<LifestyleBenefitsPilot2Props> = (
               }}
             >
               <img
-                src="/assets/balcony-accurate.jpg"
+                src="assets/balcony-accurate.jpg"
                 alt="AeroHarvest vertical aeroponic tower on sunny Australian balcony timber deck"
                 style={{
                   width: '100%',
@@ -342,7 +342,7 @@ export const LifestyleBenefitsPilot2: React.FC<LifestyleBenefitsPilot2Props> = (
               }}
             >
               <img
-                src="/assets/family-kitchen.jpg"
+                src="assets/family-kitchen.jpg"
                 alt="Family and young children harvesting fresh strawberries and herbs from indoor tower"
                 style={{
                   width: '100%',

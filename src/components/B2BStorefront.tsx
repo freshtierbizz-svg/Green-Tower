@@ -17,7 +17,7 @@ export const B2BStorefront: React.FC<B2BStorefrontProps> = ({
       {/* B2B HERO HEADER WITH AUTHENTIC GREENHOUSE KITCHEN BACKGROUND */}
       <section style={{
         padding: '3.5rem 0 3rem 0',
-        background: "linear-gradient(180deg, rgba(15, 23, 42, 0.88) 0%, rgba(11, 19, 14, 0.95) 100%), url('/assets/kitchen-bg.jpg') center/cover no-repeat"
+        background: "linear-gradient(180deg, rgba(15, 23, 42, 0.88) 0%, rgba(11, 19, 14, 0.95) 100%), url('assets/kitchen-bg.jpg') center/cover no-repeat"
       }}>
         <div className="container" style={{ textAlign: 'center', maxWidth: '850px' }}>
           <div className="badge-emerald" style={{ background: 'rgba(251, 191, 36, 0.15)', borderColor: 'rgba(251, 191, 36, 0.4)', color: '#FBBF24', marginBottom: '1rem' }}>
@@ -188,7 +188,7 @@ export const B2BStorefront: React.FC<B2BStorefrontProps> = ({
             <div>
               <div className="glass-panel" style={{ padding: '0.75rem', borderRadius: '20px' }}>
                 <img
-                  src="/assets/real-tower-farm.jpg"
+                  src="assets/real-tower-farm.jpg"
                   alt="AeroHarvest Commercial Farm Harvest"
                   style={{ width: '100%', height: '380px', objectFit: 'cover', borderRadius: '16px', border: '1px solid rgba(251, 191, 36, 0.3)' }}
                 />

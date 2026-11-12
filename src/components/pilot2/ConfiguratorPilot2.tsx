@@ -343,13 +343,12 @@ export const ConfiguratorPilot2: React.FC<ConfiguratorPilot2Props> = ({
                 </button>
               </div>
 
-              {/* 3 TIER CARDS WITH "BEST FOR" GUIDANCE */}
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+              {/* 3 TIER OPTIONS — COMPACT UNSELECTED, EXPANDS WHEN SELECTED */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
                 {B2C_TIERS.map((tier) => {
                   const isSelected = selectedTier.id === tier.id;
                   const priceToDisplay = isCompleteKit ? tier.completeKitPrice : tier.basePrice;
 
-                  // Clear "Best For" Descriptions (Priority 5)
                   const bestForGuide =
                     tier.id === '5-tier'
                       ? 'Best for singles, couples, small balconies & cocktail herbs.'
@@ -363,101 +362,112 @@ export const ConfiguratorPilot2: React.FC<ConfiguratorPilot2Props> = ({
                       onClick={() => handleSelectTier(tier)}
                       className="pilot2-card"
                       style={{
-                        padding: '1.25rem 1.5rem',
+                        padding: isSelected ? '1.15rem 1.35rem' : '0.9rem 1.25rem',
                         cursor: 'pointer',
-                        borderRadius: '14px',
-                        border: isSelected ? '2px solid #1B4332' : '1px solid rgba(27, 67, 50, 0.1)',
+                        borderRadius: '12px',
+                        border: isSelected ? '2px solid #1B4332' : '1px solid rgba(27, 67, 50, 0.12)',
                         background: isSelected ? '#F4F8F4' : '#FFFFFF',
                         boxShadow: isSelected ? '0 6px 20px -2px rgba(27, 67, 50, 0.12)' : 'none',
-                        position: 'relative',
                         transition: 'all 0.2s ease',
                       }}
                     >
-                      {tier.popular && (
-                        <span
-                          className="pilot2-badge"
-                          style={{
-                            position: 'absolute',
-                            top: '-10px',
-                            right: '1.5rem',
-                            background: '#1B4332',
-                            color: '#FFFFFF',
-                            borderColor: '#1B4332',
-                            fontSize: '0.725rem',
-                          }}
-                        >
-                          MOST POPULAR CHOICE
-                        </span>
-                      )}
-
+                      {/* COMPACT HEADER ROW: CHECKBOX + NAME + PRICE */}
                       <div
                         style={{
                           display: 'flex',
                           justifyContent: 'space-between',
                           alignItems: 'center',
-                          flexWrap: 'wrap',
                           gap: '1rem',
                         }}
                       >
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem' }}>
-                          {/* RADIO SELECTOR */}
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem', flexWrap: 'wrap' }}>
                           <div
                             style={{
                               width: '22px',
                               height: '22px',
-                              borderRadius: '50%',
-                              border: isSelected ? '6px solid #1B4332' : '2px solid #9CA3AF',
-                              background: '#FFFFFF',
+                              borderRadius: '6px',
+                              border: isSelected ? 'none' : '2px solid #9CA3AF',
+                              background: isSelected ? '#1B4332' : '#FFFFFF',
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'center',
                               flexShrink: 0,
+                              transition: 'all 0.15s ease',
                             }}
-                          />
-
-                          <div>
-                            <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', marginBottom: '0.2rem' }}>
-                              <h4 style={{ fontSize: '1.15rem', fontWeight: 800, color: '#142018' }}>
-                                {tier.name}
-                              </h4>
-                              <span
-                                style={{
-                                  background: '#EEF4EE',
-                                  color: '#1B4332',
-                                  padding: '2px 8px',
-                                  borderRadius: '6px',
-                                  fontSize: '0.75rem',
-                                  fontWeight: 700,
-                                }}
-                              >
-                                {tier.heightMeter} m tall • {tier.growSites} sites
-                              </span>
-                            </div>
-
-                            <p style={{ fontSize: '0.85rem', color: '#495B50', marginBottom: '0.25rem' }}>
-                              {bestForGuide}
-                            </p>
-
-                            <div style={{ fontSize: '0.775rem', color: '#6B7C72' }}>
-                              Footprint: 60 × 60 cm (0.22 m²) • 38L Reservoir Base
-                            </div>
+                          >
+                            {isSelected && <Check size={15} color="#FFFFFF" />}
                           </div>
+
+                          <h4 style={{ fontSize: '1.05rem', fontWeight: 800, color: '#142018', margin: 0 }}>
+                            {tier.name}
+                          </h4>
+
+                          {tier.popular && (
+                            <span
+                              style={{
+                                background: '#1B4332',
+                                color: '#FFFFFF',
+                                padding: '2px 8px',
+                                borderRadius: '999px',
+                                fontSize: '0.68rem',
+                                fontWeight: 700,
+                                letterSpacing: '0.04em',
+                                textTransform: 'uppercase',
+                              }}
+                            >
+                              Most Popular
+                            </span>
+                          )}
                         </div>
 
-                        {/* PRICE DISPLAY */}
-                        <div style={{ textAlign: 'right' }}>
-                          <div style={{ fontSize: '1.5rem', fontWeight: 800, color: '#142018' }}>
+                        <div style={{ textAlign: 'right', flexShrink: 0 }}>
+                          <span style={{ fontSize: '1.2rem', fontWeight: 800, color: '#142018' }}>
                             ${priceToDisplay}
-                          </div>
-                          <div style={{ fontSize: '0.75rem', color: '#6B7C72' }}>
-                            AUD GST Inc.
-                          </div>
+                          </span>{' '}
+                          <span style={{ fontSize: '0.75rem', color: '#6B7C72', fontWeight: 600 }}>AUD</span>
                         </div>
                       </div>
+
+                      {/* EXPANDED DETAILS (ONLY SHOWN WHEN SELECTED) */}
+                      {isSelected && (
+                        <div
+                          style={{
+                            marginTop: '0.85rem',
+                            paddingTop: '0.85rem',
+                            borderTop: '1px solid rgba(27, 67, 50, 0.12)',
+                            paddingLeft: '2.2rem',
+                          }}
+                        >
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap', marginBottom: '0.4rem' }}>
+                            <span
+                              style={{
+                                background: '#EEF4EE',
+                                color: '#1B4332',
+                                padding: '3px 9px',
+                                borderRadius: '6px',
+                                fontSize: '0.78rem',
+                                fontWeight: 700,
+                              }}
+                            >
+                              {tier.heightMeter} m tall • {tier.growSites} grow sites
+                            </span>
+                            <span style={{ fontSize: '0.78rem', color: '#6B7C72', fontWeight: 600 }}>
+                              Footprint: 60 × 60 cm (0.22 m²) • 38L Reservoir Base
+                            </span>
+                          </div>
+
+                          <p style={{ fontSize: '0.88rem', color: '#37473E', margin: 0, lineHeight: 1.5 }}>
+                            {bestForGuide}
+                          </p>
+                        </div>
+                      )}
                     </div>
                   );
                 })}
               </div>
             </div>
 
-            {/* STEP 2: PLAIN ENGLISH PACKAGE COMPARISON (Priority 5: Explain Base vs Kit plainly) */}
+            {/* STEP 2: PACKAGE INCLUSION LEVEL — COMPACT UNSELECTED, EXPANDS WHEN SELECTED */}
             <div style={{ marginBottom: '2.5rem' }}>
               <div style={{ marginBottom: '1rem' }}>
                 <span style={{ fontSize: '0.8rem', fontWeight: 800, color: '#2D6A4F', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
@@ -466,66 +476,90 @@ export const ConfiguratorPilot2: React.FC<ConfiguratorPilot2Props> = ({
                 <h3 style={{ fontSize: '1.35rem', fontWeight: 800, color: '#142018' }}>
                   Choose Your Package Inclusion Level
                 </h3>
-                <p style={{ fontSize: '0.9rem', color: '#495B50' }}>
-                  Decide between bare-bones hardware or the complete starter kit with nutrients and propagation dome.
-                </p>
               </div>
 
-              <div
-                style={{
-                  display: 'grid',
-                  gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-                  gap: '1.25rem',
-                }}
-              >
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
                 {/* 1. STANDARD BASE TOWER */}
                 <div
                   onClick={() => handleSelectPackageType(false)}
                   className="pilot2-card"
                   style={{
-                    padding: '1.5rem',
+                    padding: !isCompleteKit ? '1.15rem 1.35rem' : '0.9rem 1.25rem',
                     cursor: 'pointer',
-                    borderRadius: '16px',
-                    border: !isCompleteKit ? '2px solid #1B4332' : '1px solid rgba(27, 67, 50, 0.1)',
+                    borderRadius: '12px',
+                    border: !isCompleteKit ? '2px solid #1B4332' : '1px solid rgba(27, 67, 50, 0.12)',
                     background: !isCompleteKit ? '#F4F8F4' : '#FFFFFF',
+                    boxShadow: !isCompleteKit ? '0 6px 20px -2px rgba(27, 67, 50, 0.12)' : 'none',
                     transition: 'all 0.2s ease',
                   }}
                 >
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '0.75rem' }}>
-                    <h4 style={{ fontSize: '1.15rem', fontWeight: 800, color: '#142018' }}>
-                      Standard Base Tower
-                    </h4>
-                    <span style={{ fontSize: '1.3rem', fontWeight: 800, color: '#142018' }}>
-                      ${selectedTier.basePrice} <span style={{ fontSize: '0.8rem', fontWeight: 500, color: '#6B7C72' }}>AUD</span>
-                    </span>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '1rem' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
+                      <div
+                        style={{
+                          width: '22px',
+                          height: '22px',
+                          borderRadius: '6px',
+                          border: !isCompleteKit ? 'none' : '2px solid #9CA3AF',
+                          background: !isCompleteKit ? '#1B4332' : '#FFFFFF',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          flexShrink: 0,
+                        }}
+                      >
+                        {!isCompleteKit && <Check size={15} color="#FFFFFF" />}
+                      </div>
+                      <h4 style={{ fontSize: '1.05rem', fontWeight: 800, color: '#142018', margin: 0 }}>
+                        Standard Base Tower (Hardware Only)
+                      </h4>
+                    </div>
+
+                    <div style={{ textAlign: 'right', flexShrink: 0 }}>
+                      <span style={{ fontSize: '1.2rem', fontWeight: 800, color: '#142018' }}>
+                        ${selectedTier.basePrice}
+                      </span>{' '}
+                      <span style={{ fontSize: '0.75rem', color: '#6B7C72', fontWeight: 600 }}>AUD</span>
+                    </div>
                   </div>
 
-                  <p style={{ fontSize: '0.85rem', color: '#495B50', lineHeight: 1.5, marginBottom: '1rem', minHeight: '40px' }}>
-                    <strong>The complete mechanical hardware.</strong> Best if you already own your own hydroponic nutrients, seedlings, and testing meters.
-                  </p>
+                  {!isCompleteKit && (
+                    <div
+                      style={{
+                        marginTop: '0.85rem',
+                        paddingTop: '0.85rem',
+                        borderTop: '1px solid rgba(27, 67, 50, 0.12)',
+                        paddingLeft: '2.2rem',
+                      }}
+                    >
+                      <p style={{ fontSize: '0.85rem', color: '#495B50', lineHeight: 1.5, marginBottom: '0.75rem' }}>
+                        <strong>The complete mechanical hardware.</strong> Best if you already own your own hydroponic nutrients, seedlings, and testing meters.
+                      </p>
 
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', fontSize: '0.825rem', color: '#27382F' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
-                      <Check size={14} color="#1B4332" />
-                      <span>Modular food-grade white tiers ({selectedTier.growSites} grow sites)</span>
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem', fontSize: '0.825rem', color: '#27382F' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
+                          <Check size={14} color="#1B4332" />
+                          <span>Modular food-grade white tiers ({selectedTier.growSites} grow sites)</span>
+                        </div>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
+                          <Check size={14} color="#1B4332" />
+                          <span>38L heavy-duty sealed sage green water reservoir</span>
+                        </div>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
+                          <Check size={14} color="#1B4332" />
+                          <span>Submerged low-voltage DC water circulation pump</span>
+                        </div>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
+                          <Check size={14} color="#1B4332" />
+                          <span>Automated programmable digital timer switch</span>
+                        </div>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
+                          <Check size={14} color="#1B4332" />
+                          <span>{selectedTier.growSites} reusable food-grade net grow cups</span>
+                        </div>
+                      </div>
                     </div>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
-                      <Check size={14} color="#1B4332" />
-                      <span>38L heavy-duty sealed sage green water reservoir</span>
-                    </div>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
-                      <Check size={14} color="#1B4332" />
-                      <span>Submerged low-voltage DC water circulation pump</span>
-                    </div>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
-                      <Check size={14} color="#1B4332" />
-                      <span>Automated programmable digital timer switch</span>
-                    </div>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
-                      <Check size={14} color="#1B4332" />
-                      <span>{selectedTier.growSites} reusable food-grade net grow cups</span>
-                    </div>
-                  </div>
+                  )}
                 </div>
 
                 {/* 2. COMPLETE GROWING KIT (RECOMMENDED) */}
@@ -533,71 +567,101 @@ export const ConfiguratorPilot2: React.FC<ConfiguratorPilot2Props> = ({
                   onClick={() => handleSelectPackageType(true)}
                   className="pilot2-card"
                   style={{
-                    padding: '1.5rem',
+                    padding: isCompleteKit ? '1.15rem 1.35rem' : '0.9rem 1.25rem',
                     cursor: 'pointer',
-                    borderRadius: '16px',
-                    border: isCompleteKit ? '2px solid #1B4332' : '1px solid rgba(27, 67, 50, 0.1)',
+                    borderRadius: '12px',
+                    border: isCompleteKit ? '2px solid #1B4332' : '1px solid rgba(27, 67, 50, 0.12)',
                     background: isCompleteKit ? '#F4F8F4' : '#FFFFFF',
-                    boxShadow: isCompleteKit ? '0 8px 24px -3px rgba(27, 67, 50, 0.12)' : 'none',
-                    position: 'relative',
+                    boxShadow: isCompleteKit ? '0 6px 20px -2px rgba(27, 67, 50, 0.12)' : 'none',
                     transition: 'all 0.2s ease',
                   }}
                 >
-                  <span
-                    className="pilot2-badge"
-                    style={{
-                      position: 'absolute',
-                      top: '-10px',
-                      right: '1.5rem',
-                      background: '#1B4332',
-                      color: '#FFFFFF',
-                      borderColor: '#1B4332',
-                      fontSize: '0.725rem',
-                    }}
-                  >
-                    RECOMMENDED (+$100 AUD)
-                  </span>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '1rem' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem', flexWrap: 'wrap' }}>
+                      <div
+                        style={{
+                          width: '22px',
+                          height: '22px',
+                          borderRadius: '6px',
+                          border: isCompleteKit ? 'none' : '2px solid #9CA3AF',
+                          background: isCompleteKit ? '#1B4332' : '#FFFFFF',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          flexShrink: 0,
+                        }}
+                      >
+                        {isCompleteKit && <Check size={15} color="#FFFFFF" />}
+                      </div>
+                      <h4 style={{ fontSize: '1.05rem', fontWeight: 800, color: '#142018', margin: 0 }}>
+                        Complete Growing Kit
+                      </h4>
+                      <span
+                        style={{
+                          background: '#1B4332',
+                          color: '#FFFFFF',
+                          padding: '2px 8px',
+                          borderRadius: '999px',
+                          fontSize: '0.68rem',
+                          fontWeight: 700,
+                          letterSpacing: '0.04em',
+                          textTransform: 'uppercase',
+                        }}
+                      >
+                        Recommended (+$100)
+                      </span>
+                    </div>
 
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '0.75rem' }}>
-                    <h4 style={{ fontSize: '1.15rem', fontWeight: 800, color: '#142018' }}>
-                      Complete Growing Kit
-                    </h4>
-                    <span style={{ fontSize: '1.3rem', fontWeight: 800, color: '#1B4332' }}>
-                      ${selectedTier.completeKitPrice} <span style={{ fontSize: '0.8rem', fontWeight: 500, color: '#6B7C72' }}>AUD</span>
-                    </span>
+                    <div style={{ textAlign: 'right', flexShrink: 0 }}>
+                      <span style={{ fontSize: '1.2rem', fontWeight: 800, color: '#1B4332' }}>
+                        ${selectedTier.completeKitPrice}
+                      </span>{' '}
+                      <span style={{ fontSize: '0.75rem', color: '#6B7C72', fontWeight: 600 }}>AUD</span>
+                    </div>
                   </div>
 
-                  <p style={{ fontSize: '0.85rem', color: '#495B50', lineHeight: 1.5, marginBottom: '1rem', minHeight: '40px' }}>
-                    <strong>Everything in Base PLUS all living consumables.</strong> Recommended for 95% of first-time growers to begin harvesting Day 1.
-                  </p>
+                  {isCompleteKit && (
+                    <div
+                      style={{
+                        marginTop: '0.85rem',
+                        paddingTop: '0.85rem',
+                        borderTop: '1px solid rgba(27, 67, 50, 0.12)',
+                        paddingLeft: '2.2rem',
+                      }}
+                    >
+                      <p style={{ fontSize: '0.85rem', color: '#495B50', lineHeight: 1.5, marginBottom: '0.75rem' }}>
+                        <strong>Everything in Base PLUS all living consumables.</strong> Recommended for 95% of first-time growers to begin harvesting Day 1.
+                      </p>
 
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', fontSize: '0.825rem', color: '#27382F' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', fontWeight: 600 }}>
-                      <Check size={14} color="#1B4332" />
-                      <span>All Standard Base Tower hardware included</span>
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem', fontSize: '0.825rem', color: '#27382F' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', fontWeight: 600 }}>
+                          <Check size={14} color="#1B4332" />
+                          <span>All Standard Base Tower hardware included ({selectedTier.growSites} sites)</span>
+                        </div>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', color: '#1B4332', fontWeight: 600 }}>
+                          <Check size={14} color="#1B4332" />
+                          <span>1L AeroHarvest Premium A+B Liquid Nutrients</span>
+                        </div>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', color: '#1B4332', fontWeight: 600 }}>
+                          <Check size={14} color="#1B4332" />
+                          <span>50x organic coco-coir seedling propagation plugs</span>
+                        </div>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', color: '#1B4332', fontWeight: 600 }}>
+                          <Check size={14} color="#1B4332" />
+                          <span>Seedling nursery tray + clear humidity dome</span>
+                        </div>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', color: '#1B4332', fontWeight: 600 }}>
+                          <Check size={14} color="#1B4332" />
+                          <span>Precision water pH testing liquid kit & calibration buffer</span>
+                        </div>
+                      </div>
                     </div>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', color: '#1B4332', fontWeight: 600 }}>
-                      <Check size={14} color="#1B4332" />
-                      <span>1L AeroHarvest Premium A+B Liquid Nutrients</span>
-                    </div>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', color: '#1B4332', fontWeight: 600 }}>
-                      <Check size={14} color="#1B4332" />
-                      <span>50x organic coco-coir seedling propagation plugs</span>
-                    </div>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', color: '#1B4332', fontWeight: 600 }}>
-                      <Check size={14} color="#1B4332" />
-                      <span>Seedling nursery tray + clear humidity dome</span>
-                    </div>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', color: '#1B4332', fontWeight: 600 }}>
-                      <Check size={14} color="#1B4332" />
-                      <span>Precision water pH testing liquid kit & calibration buffer</span>
-                    </div>
-                  </div>
+                  )}
                 </div>
               </div>
             </div>
 
-            {/* STEP 3: OPTIONAL ADD-ONS */}
+            {/* STEP 3: OPTIONAL ADD-ONS — COMPACT UNSELECTED, EXPANDS WHEN SELECTED */}
             <div>
               <div style={{ marginBottom: '1rem' }}>
                 <span style={{ fontSize: '0.8rem', fontWeight: 800, color: '#2D6A4F', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
@@ -608,7 +672,7 @@ export const ConfiguratorPilot2: React.FC<ConfiguratorPilot2Props> = ({
                 </h3>
               </div>
 
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
                 {B2C_ADDONS.map((addon) => {
                   const isChecked = selectedAddons.includes(addon.id);
                   return (
@@ -617,49 +681,83 @@ export const ConfiguratorPilot2: React.FC<ConfiguratorPilot2Props> = ({
                       onClick={() => handleToggleAddon(addon.id)}
                       className="pilot2-card"
                       style={{
-                        padding: '1.25rem 1.5rem',
+                        padding: isChecked ? '1.15rem 1.35rem' : '0.9rem 1.25rem',
                         cursor: 'pointer',
-                        borderRadius: '14px',
-                        border: isChecked ? '2px solid #1B4332' : '1px solid rgba(27, 67, 50, 0.1)',
+                        borderRadius: '12px',
+                        border: isChecked ? '2px solid #1B4332' : '1px solid rgba(27, 67, 50, 0.12)',
                         background: isChecked ? '#F4F8F4' : '#FFFFFF',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'space-between',
-                        gap: '1rem',
+                        boxShadow: isChecked ? '0 6px 20px -2px rgba(27, 67, 50, 0.12)' : 'none',
                         transition: 'all 0.2s ease',
                       }}
                     >
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                        <div
-                          style={{
-                            width: '22px',
-                            height: '22px',
-                            borderRadius: '6px',
-                            border: isChecked ? 'none' : '2px solid #9CA3AF',
-                            background: isChecked ? '#1B4332' : '#FFFFFF',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            flexShrink: 0,
-                          }}
-                        >
-                          {isChecked && <Check size={15} color="#FFFFFF" />}
+                      <div
+                        style={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'space-between',
+                          gap: '1rem',
+                        }}
+                      >
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
+                          <div
+                            style={{
+                              width: '22px',
+                              height: '22px',
+                              borderRadius: '6px',
+                              border: isChecked ? 'none' : '2px solid #9CA3AF',
+                              background: isChecked ? '#1B4332' : '#FFFFFF',
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                              flexShrink: 0,
+                            }}
+                          >
+                            {isChecked && <Check size={15} color="#FFFFFF" />}
+                          </div>
+
+                          <h4 style={{ fontSize: '1rem', fontWeight: 800, color: '#142018', margin: 0 }}>
+                            {addon.name}
+                          </h4>
                         </div>
 
-                        <div>
-                          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                            <h4 style={{ fontSize: '1rem', fontWeight: 800, color: '#142018' }}>
-                              {addon.name}
-                            </h4>
-                            <span style={{ fontWeight: 800, color: '#1B4332', fontSize: '0.95rem' }}>
-                              +${addon.price} AUD
-                            </span>
-                          </div>
-                          <p style={{ fontSize: '0.825rem', color: '#6B7C72' }}>
+                        <span style={{ fontWeight: 800, color: '#1B4332', fontSize: '1rem', flexShrink: 0 }}>
+                          +${addon.price} AUD
+                        </span>
+                      </div>
+
+                      {isChecked && (
+                        <div
+                          style={{
+                            marginTop: '0.75rem',
+                            paddingTop: '0.75rem',
+                            borderTop: '1px solid rgba(27, 67, 50, 0.12)',
+                            paddingLeft: '2.2rem',
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '1rem',
+                          }}
+                        >
+                          {addon.image && (
+                            <img
+                              src={addon.image}
+                              alt={addon.name}
+                              style={{
+                                width: '56px',
+                                height: '56px',
+                                borderRadius: '8px',
+                                objectFit: 'contain',
+                                background: '#FFFFFF',
+                                border: '1px solid rgba(27, 67, 50, 0.12)',
+                                padding: '2px',
+                                flexShrink: 0,
+                              }}
+                            />
+                          )}
+                          <p style={{ fontSize: '0.85rem', color: '#495B50', margin: 0, lineHeight: 1.5 }}>
                             {addon.description}
                           </p>
                         </div>
-                      </div>
+                      )}
                     </div>
                   );
                 })}

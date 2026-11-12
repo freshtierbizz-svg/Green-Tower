@@ -69,33 +69,43 @@ export const Hero: React.FC = () => {
               </label>
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
-                {PRODUCT_CONFIG.towerTiers.map((tier) => (
-                  <button
-                    key={tier.id}
-                    onClick={() => setSelectedTier(tier)}
-                    style={{
-                      padding: '0.85rem 1rem',
-                      borderRadius: '12px',
-                      background: selectedTier.id === tier.id ? 'linear-gradient(135deg, rgba(31, 51, 38, 0.95) 0%, rgba(16, 185, 129, 0.25) 100%)' : 'linear-gradient(135deg, rgba(23, 38, 28, 0.7) 0%, rgba(15, 23, 42, 0.6) 100%)',
-                      border: selectedTier.id === tier.id ? '1px solid #10B981' : '1px solid rgba(255, 255, 255, 0.1)',
-                      color: '#ffffff',
-                      textAlign: 'left',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'space-between',
-                      transition: 'all 0.2s'
-                    }}
-                  >
-                    <div>
-                      <div style={{ fontSize: '0.95rem', fontWeight: '700' }}>{tier.name}</div>
-                      <div style={{ fontSize: '0.8rem', color: '#9CA3AF' }}>{tier.sectionsCount} Modular Tiers • {tier.growPotsCount} Grow Sites ({tier.height})</div>
-                    </div>
-                    <div style={{ textAlign: 'right' }}>
-                      <div style={{ fontSize: '1.05rem', fontWeight: '800', color: '#34D399' }}>${tier.basePriceAUD} AUD</div>
-                      <div style={{ fontSize: '0.7rem', color: '#6B7280' }}>Base Price</div>
-                    </div>
-                  </button>
-                ))}
+                {PRODUCT_CONFIG.towerTiers.map((tier) => {
+                  const isSelected = selectedTier.id === tier.id;
+                  return (
+                    <button
+                      key={tier.id}
+                      onClick={() => setSelectedTier(tier)}
+                      style={{
+                        padding: isSelected ? '0.9rem 1rem' : '0.7rem 1rem',
+                        borderRadius: '12px',
+                        background: isSelected ? 'linear-gradient(135deg, rgba(31, 51, 38, 0.95) 0%, rgba(16, 185, 129, 0.25) 100%)' : 'linear-gradient(135deg, rgba(23, 38, 28, 0.7) 0%, rgba(15, 23, 42, 0.6) 100%)',
+                        border: isSelected ? '1px solid #10B981' : '1px solid rgba(255, 255, 255, 0.1)',
+                        color: '#ffffff',
+                        textAlign: 'left',
+                        cursor: 'pointer',
+                        transition: 'all 0.2s'
+                      }}
+                    >
+                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '0.75rem' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
+                          <input
+                            type="checkbox"
+                            checked={isSelected}
+                            readOnly
+                            style={{ width: '18px', height: '18px', accentColor: '#10B981', pointerEvents: 'none' }}
+                          />
+                          <div style={{ fontSize: '0.95rem', fontWeight: '700' }}>{tier.name}</div>
+                        </div>
+                        <div style={{ fontSize: '1rem', fontWeight: '800', color: '#34D399' }}>${tier.basePriceAUD} AUD</div>
+                      </div>
+                      {isSelected && (
+                        <div style={{ fontSize: '0.8rem', color: '#D1D5DB', marginTop: '0.5rem', paddingTop: '0.5rem', borderTop: '1px solid rgba(255,255,255,0.1)', paddingLeft: '1.75rem' }}>
+                          {tier.sectionsCount} Modular Tiers • {tier.growPotsCount} Grow Sites ({tier.height}) — {tier.recommendedFor}
+                        </div>
+                      )}
+                    </button>
+                  );
+                })}
               </div>
             </div>
 
@@ -105,11 +115,11 @@ export const Hero: React.FC = () => {
                 2. Select Package Type:
               </label>
 
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
                 <button
                   onClick={() => setPackageType('base')}
                   style={{
-                    padding: '0.85rem',
+                    padding: packageType === 'base' ? '0.9rem 1rem' : '0.7rem 1rem',
                     borderRadius: '12px',
                     background: packageType === 'base' ? 'linear-gradient(135deg, rgba(31, 51, 38, 0.95) 0%, rgba(16, 185, 129, 0.25) 100%)' : 'linear-gradient(135deg, rgba(23, 38, 28, 0.7) 0%, rgba(15, 23, 42, 0.6) 100%)',
                     border: packageType === 'base' ? '1px solid #10B981' : '1px solid rgba(255, 255, 255, 0.1)',
@@ -118,15 +128,24 @@ export const Hero: React.FC = () => {
                     cursor: 'pointer'
                   }}
                 >
-                  <div style={{ fontSize: '0.75rem', color: packageType === 'base' ? '#34D399' : '#9CA3AF', fontWeight: '700' }}>STANDARD BASE</div>
-                  <div style={{ fontSize: '1.1rem', fontWeight: '800', color: '#ffffff' }}>${selectedTier.basePriceAUD} AUD</div>
-                  <div style={{ fontSize: '0.725rem', color: '#9CA3AF', marginTop: '0.2rem' }}>Tower + 38L Base + DC Pump</div>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '0.75rem' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
+                      <input type="checkbox" checked={packageType === 'base'} readOnly style={{ width: '18px', height: '18px', accentColor: '#10B981', pointerEvents: 'none' }} />
+                      <div style={{ fontSize: '0.95rem', fontWeight: '700' }}>Standard Base Tower</div>
+                    </div>
+                    <div style={{ fontSize: '1rem', fontWeight: '800', color: '#ffffff' }}>${selectedTier.basePriceAUD} AUD</div>
+                  </div>
+                  {packageType === 'base' && (
+                    <div style={{ fontSize: '0.8rem', color: '#D1D5DB', marginTop: '0.5rem', paddingTop: '0.5rem', borderTop: '1px solid rgba(255,255,255,0.1)', paddingLeft: '1.75rem' }}>
+                      Includes modular tower sections, 38L reservoir base, DC water pump & automated timer.
+                    </div>
+                  )}
                 </button>
 
                 <button
                   onClick={() => setPackageType('kit')}
                   style={{
-                    padding: '0.85rem',
+                    padding: packageType === 'kit' ? '0.9rem 1rem' : '0.7rem 1rem',
                     borderRadius: '12px',
                     background: packageType === 'kit' ? 'linear-gradient(135deg, rgba(31, 51, 38, 0.95) 0%, rgba(16, 185, 129, 0.25) 100%)' : 'linear-gradient(135deg, rgba(23, 38, 28, 0.7) 0%, rgba(15, 23, 42, 0.6) 100%)',
                     border: packageType === 'kit' ? '1px solid #10B981' : '1px solid rgba(255, 255, 255, 0.1)',
@@ -135,9 +154,18 @@ export const Hero: React.FC = () => {
                     cursor: 'pointer'
                   }}
                 >
-                  <div style={{ fontSize: '0.75rem', color: packageType === 'kit' ? '#34D399' : '#9CA3AF', fontWeight: '700' }}>COMPLETE STARTER KIT</div>
-                  <div style={{ fontSize: '1.1rem', fontWeight: '800', color: '#ffffff' }}>${selectedTier.kitPriceAUD} AUD</div>
-                  <div style={{ fontSize: '0.725rem', color: '#34D399', marginTop: '0.2rem' }}>Base + Nutrients, Plugs & pH Kit (+$100)</div>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '0.75rem' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
+                      <input type="checkbox" checked={packageType === 'kit'} readOnly style={{ width: '18px', height: '18px', accentColor: '#10B981', pointerEvents: 'none' }} />
+                      <div style={{ fontSize: '0.95rem', fontWeight: '700' }}>Complete Starter Kit (Recommended)</div>
+                    </div>
+                    <div style={{ fontSize: '1rem', fontWeight: '800', color: '#34D399' }}>${selectedTier.kitPriceAUD} AUD</div>
+                  </div>
+                  {packageType === 'kit' && (
+                    <div style={{ fontSize: '0.8rem', color: '#34D399', marginTop: '0.5rem', paddingTop: '0.5rem', borderTop: '1px solid rgba(255,255,255,0.1)', paddingLeft: '1.75rem' }}>
+                      Everything in Base + 1L A/B Nutrients, 50 Coco Plugs, Nursery Dome & pH Kit (+$100 AUD).
+                    </div>
+                  )}
                 </button>
               </div>
             </div>
@@ -151,54 +179,58 @@ export const Hero: React.FC = () => {
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
                 {/* LED Lights Toggle */}
                 <label style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
+                  display: 'block',
                   padding: '0.75rem 1rem',
                   borderRadius: '10px',
                   background: 'linear-gradient(135deg, rgba(23, 38, 28, 0.7) 0%, rgba(15, 23, 42, 0.6) 100%)',
-                  border: '1px solid rgba(255, 255, 255, 0.1)',
+                  border: hasLedLights ? '1px solid #10B981' : '1px solid rgba(255, 255, 255, 0.1)',
                   cursor: 'pointer'
                 }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                    <input
-                      type="checkbox"
-                      checked={hasLedLights}
-                      onChange={(e) => setHasLedLights(e.target.checked)}
-                      style={{ width: '18px', height: '18px', accentColor: '#10B981', cursor: 'pointer' }}
-                    />
-                    <div>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                      <input
+                        type="checkbox"
+                        checked={hasLedLights}
+                        onChange={(e) => setHasLedLights(e.target.checked)}
+                        style={{ width: '18px', height: '18px', accentColor: '#10B981', cursor: 'pointer' }}
+                      />
                       <div style={{ fontSize: '0.9rem', fontWeight: '600', color: '#ffffff' }}>Full-Spectrum LED Grow Lights</div>
-                      <div style={{ fontSize: '0.78rem', color: '#9CA3AF' }}>Vertical light bars for indoor growing</div>
                     </div>
+                    <span style={{ fontSize: '0.9rem', fontWeight: '700', color: '#34D399' }}>+${PRODUCT_CONFIG.addons.ledGrowLights.priceAUD} AUD</span>
                   </div>
-                  <span style={{ fontSize: '0.9rem', fontWeight: '700', color: '#34D399' }}>+${PRODUCT_CONFIG.addons.ledGrowLights.priceAUD} AUD</span>
+                  {hasLedLights && (
+                    <div style={{ fontSize: '0.78rem', color: '#D1D5DB', marginTop: '0.45rem', paddingTop: '0.45rem', borderTop: '1px solid rgba(255,255,255,0.1)', paddingLeft: '1.85rem' }}>
+                      {PRODUCT_CONFIG.addons.ledGrowLights.description}
+                    </div>
+                  )}
                 </label>
 
                 {/* Plant Supports Toggle */}
                 <label style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
+                  display: 'block',
                   padding: '0.75rem 1rem',
                   borderRadius: '10px',
                   background: 'linear-gradient(135deg, rgba(23, 38, 28, 0.7) 0%, rgba(15, 23, 42, 0.6) 100%)',
-                  border: '1px solid rgba(255, 255, 255, 0.1)',
+                  border: hasPlantSupports ? '1px solid #10B981' : '1px solid rgba(255, 255, 255, 0.1)',
                   cursor: 'pointer'
                 }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                    <input
-                      type="checkbox"
-                      checked={hasPlantSupports}
-                      onChange={(e) => setHasPlantSupports(e.target.checked)}
-                      style={{ width: '18px', height: '18px', accentColor: '#10B981', cursor: 'pointer' }}
-                    />
-                    <div>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                      <input
+                        type="checkbox"
+                        checked={hasPlantSupports}
+                        onChange={(e) => setHasPlantSupports(e.target.checked)}
+                        style={{ width: '18px', height: '18px', accentColor: '#10B981', cursor: 'pointer' }}
+                      />
                       <div style={{ fontSize: '0.9rem', fontWeight: '600', color: '#ffffff' }}>Growth Support Trellis Rings</div>
-                      <div style={{ fontSize: '0.78rem', color: '#9CA3AF' }}>360° support cage for heavy fruiting crops</div>
                     </div>
+                    <span style={{ fontSize: '0.9rem', fontWeight: '700', color: '#34D399' }}>+${PRODUCT_CONFIG.addons.plantSupports.priceAUD} AUD</span>
                   </div>
-                  <span style={{ fontSize: '0.9rem', fontWeight: '700', color: '#34D399' }}>+${PRODUCT_CONFIG.addons.plantSupports.priceAUD} AUD</span>
+                  {hasPlantSupports && (
+                    <div style={{ fontSize: '0.78rem', color: '#D1D5DB', marginTop: '0.45rem', paddingTop: '0.45rem', borderTop: '1px solid rgba(255,255,255,0.1)', paddingLeft: '1.85rem' }}>
+                      {PRODUCT_CONFIG.addons.plantSupports.description}
+                    </div>
+                  )}
                 </label>
               </div>
             </div>

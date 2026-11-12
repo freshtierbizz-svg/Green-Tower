@@ -453,7 +453,7 @@ export const B2CStorefront: React.FC<B2CStorefrontProps> = ({ onSelectView }) =>
               </button>
             </div>
 
-            <div className="grid-3" style={{ gap: '1.5rem' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
               {B2C_TIERS.map((tier) => {
                 const isSelected = selectedTier.id === tier.id;
                 return (
@@ -462,95 +462,112 @@ export const B2CStorefront: React.FC<B2CStorefrontProps> = ({ onSelectView }) =>
                     onClick={() => handleSelectTier(tier)}
                     className="glass-panel"
                     style={{
-                      padding: '1.5rem',
+                      padding: isSelected ? '1.25rem 1.5rem' : '0.9rem 1.25rem',
                       cursor: 'pointer',
-                      borderRadius: '16px',
+                      borderRadius: '14px',
                       border: isSelected ? '2px solid #34D399' : '1px solid rgba(255,255,255,0.12)',
                       background: isSelected ? 'linear-gradient(135deg, rgba(26, 46, 34, 0.95) 0%, rgba(15, 25, 18, 0.9) 100%)' : 'rgba(255,255,255,0.03)',
-                      boxShadow: isSelected ? '0 0 25px rgba(52, 211, 153, 0.25)' : 'none',
-                      position: 'relative',
-                      transition: 'all 0.25s ease'
+                      boxShadow: isSelected ? '0 0 25px rgba(52, 211, 153, 0.2)' : 'none',
+                      transition: 'all 0.2s ease'
                     }}
                   >
-                    {tier.popular && (
-                      <span style={{
-                        position: 'absolute',
-                        top: '-12px',
-                        right: '1.5rem',
-                        background: 'linear-gradient(135deg, #34D399 0%, #10B981 100%)',
-                        color: '#042F2E',
-                        fontSize: '0.75rem',
-                        fontWeight: 800,
-                        padding: '0.25rem 0.75rem',
-                        borderRadius: '999px',
-                        textTransform: 'uppercase',
-                        letterSpacing: '0.05em'
+                    {/* COMPACT HEADER ROW: CHECKBOX + NAME + PRICE */}
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '1rem' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem', flexWrap: 'wrap' }}>
+                        <div style={{
+                          width: '22px',
+                          height: '22px',
+                          borderRadius: '6px',
+                          border: isSelected ? '2px solid #34D399' : '2px solid rgba(255,255,255,0.35)',
+                          background: isSelected ? '#34D399' : 'transparent',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          color: '#000000',
+                          flexShrink: 0
+                        }}>
+                          {isSelected && <Check size={15} strokeWidth={3} />}
+                        </div>
+
+                        <h4 style={{ fontSize: '1.1rem', fontWeight: 800, color: '#ffffff', margin: 0 }}>
+                          {tier.name}
+                        </h4>
+
+                        {tier.popular && (
+                          <span style={{
+                            background: 'linear-gradient(135deg, #34D399 0%, #10B981 100%)',
+                            color: '#042F2E',
+                            fontSize: '0.7rem',
+                            fontWeight: 800,
+                            padding: '0.2rem 0.65rem',
+                            borderRadius: '999px',
+                            textTransform: 'uppercase',
+                            letterSpacing: '0.05em'
+                          }}>
+                            MOST POPULAR
+                          </span>
+                        )}
+                      </div>
+
+                      <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.35rem', flexShrink: 0 }}>
+                        <span style={{ fontSize: '1.35rem', fontWeight: 800, color: '#ffffff' }}>
+                          ${isCompleteKit ? tier.completeKitPrice : tier.basePrice}
+                        </span>
+                        <span style={{ fontSize: '0.75rem', color: '#9CA3AF' }}>AUD</span>
+                      </div>
+                    </div>
+
+                    {/* EXPANDED FULL INFO WHEN SELECTED */}
+                    {isSelected && (
+                      <div style={{
+                        marginTop: '1rem',
+                        paddingTop: '1rem',
+                        borderTop: '1px solid rgba(255,255,255,0.1)',
+                        display: 'flex',
+                        gap: '1.25rem',
+                        alignItems: 'center',
+                        flexWrap: 'wrap'
                       }}>
-                        MOST POPULAR
-                      </span>
+                        <div style={{
+                          width: '110px',
+                          height: '110px',
+                          borderRadius: '10px',
+                          overflow: 'hidden',
+                          background: '#040806',
+                          border: '1px solid rgba(52, 211, 153, 0.4)',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          flexShrink: 0
+                        }}>
+                          <img
+                            src={tier.image || 'assets/tier-7-studio.png'}
+                            alt={tier.name}
+                            style={{ width: '100%', height: '100%', objectFit: 'contain', padding: '0.35rem' }}
+                          />
+                        </div>
+
+                        <div style={{ flex: 1, minWidth: '220px' }}>
+                          <p style={{ fontSize: '0.88rem', color: '#D1D5DB', marginBottom: '0.65rem' }}>
+                            {tier.subtitle}
+                          </p>
+                          <div style={{ display: 'flex', gap: '1.25rem', flexWrap: 'wrap', fontSize: '0.825rem' }}>
+                            <div>
+                              <span style={{ color: '#9CA3AF' }}>Growing Sites: </span>
+                              <strong style={{ color: '#34D399' }}>{tier.growSites} Sites</strong>
+                            </div>
+                            <div>
+                              <span style={{ color: '#9CA3AF' }}>Height: </span>
+                              <strong style={{ color: '#ffffff' }}>{tier.heightMeter} m</strong>
+                            </div>
+                            <div>
+                              <span style={{ color: '#9CA3AF' }}>Footprint: </span>
+                              <strong style={{ color: '#ffffff' }}>{tier.footprint}</strong>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     )}
-
-                    {/* TIER IMAGE PREVIEW CONTAINER */}
-                    <div style={{
-                      height: '140px',
-                      borderRadius: '10px',
-                      overflow: 'hidden',
-                      marginBottom: '1rem',
-                      background: '#040806',
-                      border: isSelected ? '1px solid rgba(52, 211, 153, 0.4)' : '1px solid rgba(255,255,255,0.08)',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      position: 'relative'
-                    }}>
-                      <img
-                        src={tier.image || 'assets/tier-7-studio.png'}
-                        alt={tier.name}
-                        style={{ width: '100%', height: '100%', objectFit: 'contain', padding: '0.4rem' }}
-                      />
-                      <span style={{
-                        position: 'absolute',
-                        bottom: '6px',
-                        right: '6px',
-                        background: 'rgba(0,0,0,0.75)',
-                        padding: '2px 8px',
-                        borderRadius: '4px',
-                        fontSize: '0.725rem',
-                        color: '#34D399',
-                        fontWeight: 700
-                      }}>
-                        {tier.heightMeter} m Tall
-                      </span>
-                    </div>
-
-                    <h4 style={{ fontSize: '1.25rem', fontWeight: 800, marginBottom: '0.35rem', color: '#ffffff' }}>
-                      {tier.name}
-                    </h4>
-                    <p style={{ fontSize: '0.825rem', color: '#9CA3AF', marginBottom: '1rem', minHeight: '38px' }}>
-                      {tier.subtitle}
-                    </p>
-
-                    <div style={{ padding: '0.65rem 0.85rem', background: 'rgba(0,0,0,0.3)', borderRadius: '10px', marginBottom: '1rem' }}>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.85rem', marginBottom: '0.25rem' }}>
-                        <span style={{ color: '#9CA3AF' }}>Growing Sites:</span>
-                        <strong style={{ color: '#34D399' }}>{tier.growSites} Sites</strong>
-                      </div>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.85rem', marginBottom: '0.25rem' }}>
-                        <span style={{ color: '#9CA3AF' }}>Tower Height:</span>
-                        <strong style={{ color: '#ffffff' }}>{tier.heightMeter} m</strong>
-                      </div>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.85rem' }}>
-                        <span style={{ color: '#9CA3AF' }}>Footprint:</span>
-                        <strong style={{ color: '#ffffff' }}>{tier.footprint}</strong>
-                      </div>
-                    </div>
-
-                    <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.4rem' }}>
-                      <span style={{ fontSize: '1.75rem', fontWeight: 800, color: '#ffffff' }}>
-                        ${isCompleteKit ? tier.completeKitPrice : tier.basePrice}
-                      </span>
-                      <span style={{ fontSize: '0.8rem', color: '#9CA3AF' }}>AUD (GST Inc.)</span>
-                    </div>
                   </div>
                 );
               })}
@@ -563,50 +580,80 @@ export const B2CStorefront: React.FC<B2CStorefrontProps> = ({ onSelectView }) =>
               Step 2: Choose Package Inclusion Level
             </h3>
 
-            <div className="grid-2" style={{ gap: '1.5rem' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
               {/* STANDARD BASE */}
               <div
                 onClick={() => handleSelectPackageType(false)}
                 className="glass-panel"
                 style={{
-                  padding: '1.5rem',
+                  padding: !isCompleteKit ? '1.25rem 1.5rem' : '0.9rem 1.25rem',
                   cursor: 'pointer',
                   borderRadius: '14px',
                   border: !isCompleteKit ? '2px solid #34D399' : '1px solid rgba(255,255,255,0.1)',
                   background: !isCompleteKit ? 'rgba(52, 211, 153, 0.08)' : 'rgba(255,255,255,0.02)',
-                  display: 'flex',
-                  gap: '1.25rem',
-                  alignItems: 'center'
+                  transition: 'all 0.2s ease'
                 }}
               >
-                <div style={{ width: '110px', height: '110px', flexShrink: 0, borderRadius: '10px', overflow: 'hidden', background: '#040806', border: '1px solid rgba(255,255,255,0.1)' }}>
-                  <img src="assets/package-base-hardware.png" alt="Standard Base Package" style={{ width: '100%', height: '100%', objectFit: 'contain', padding: '4px' }} />
-                </div>
-                <div style={{ flex: 1 }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
-                    <h4 style={{ fontSize: '1.15rem', fontWeight: 700, color: '#ffffff' }}>Standard Base Tower</h4>
-                    <span style={{ fontSize: '1.2rem', fontWeight: 800, color: '#ffffff' }}>
-                      ${selectedTier.basePrice} AUD
-                    </span>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '1rem' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
+                    <div style={{
+                      width: '22px',
+                      height: '22px',
+                      borderRadius: '6px',
+                      border: !isCompleteKit ? '2px solid #34D399' : '2px solid rgba(255,255,255,0.35)',
+                      background: !isCompleteKit ? '#34D399' : 'transparent',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      color: '#000000',
+                      flexShrink: 0
+                    }}>
+                      {!isCompleteKit && <Check size={15} strokeWidth={3} />}
+                    </div>
+                    <h4 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#ffffff', margin: 0 }}>
+                      Standard Base Tower (Hardware Only)
+                    </h4>
                   </div>
-                  <p style={{ fontSize: '0.825rem', color: '#9CA3AF', marginBottom: '0.75rem' }}>
-                    Includes modular tower sections, 38L reservoir base, and submerged low-voltage DC water circulation pump.
-                  </p>
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.3rem', fontSize: '0.8rem', color: '#D1D5DB' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-                      <Check size={13} color="#34D399" />
-                      <span>Modular vertical tower ({selectedTier.growSites} sites)</span>
+
+                  <span style={{ fontSize: '1.25rem', fontWeight: 800, color: '#ffffff', flexShrink: 0 }}>
+                    ${selectedTier.basePrice} AUD
+                  </span>
+                </div>
+
+                {!isCompleteKit && (
+                  <div style={{
+                    marginTop: '1rem',
+                    paddingTop: '1rem',
+                    borderTop: '1px solid rgba(255,255,255,0.1)',
+                    display: 'flex',
+                    gap: '1.25rem',
+                    alignItems: 'center',
+                    flexWrap: 'wrap'
+                  }}>
+                    <div style={{ width: '96px', height: '96px', flexShrink: 0, borderRadius: '10px', overflow: 'hidden', background: '#040806', border: '1px solid rgba(255,255,255,0.1)' }}>
+                      <img src="assets/package-base-hardware.png" alt="Standard Base Package" style={{ width: '100%', height: '100%', objectFit: 'contain', padding: '4px' }} />
                     </div>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-                      <Check size={13} color="#34D399" />
-                      <span>38L heavy-duty water reservoir</span>
-                    </div>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-                      <Check size={13} color="#34D399" />
-                      <span>Low-voltage DC circulation pump & automated timer</span>
+                    <div style={{ flex: 1, minWidth: '220px' }}>
+                      <p style={{ fontSize: '0.85rem', color: '#9CA3AF', marginBottom: '0.65rem' }}>
+                        Includes modular tower sections, 38L reservoir base, and submerged low-voltage DC water circulation pump.
+                      </p>
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: '0.3rem', fontSize: '0.825rem', color: '#D1D5DB' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                          <Check size={13} color="#34D399" />
+                          <span>Modular vertical tower ({selectedTier.growSites} sites)</span>
+                        </div>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                          <Check size={13} color="#34D399" />
+                          <span>38L heavy-duty water reservoir</span>
+                        </div>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                          <Check size={13} color="#34D399" />
+                          <span>Low-voltage DC circulation pump & automated timer</span>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
+                )}
               </div>
 
               {/* COMPLETE STARTER KIT */}
@@ -614,54 +661,90 @@ export const B2CStorefront: React.FC<B2CStorefrontProps> = ({ onSelectView }) =>
                 onClick={() => handleSelectPackageType(true)}
                 className="glass-panel"
                 style={{
-                  padding: '1.5rem',
+                  padding: isCompleteKit ? '1.25rem 1.5rem' : '0.9rem 1.25rem',
                   cursor: 'pointer',
                   borderRadius: '14px',
                   border: isCompleteKit ? '2px solid #34D399' : '1px solid rgba(255,255,255,0.1)',
                   background: isCompleteKit ? 'rgba(52, 211, 153, 0.12)' : 'rgba(255,255,255,0.02)',
-                  display: 'flex',
-                  gap: '1.25rem',
-                  alignItems: 'center',
-                  position: 'relative'
+                  transition: 'all 0.2s ease'
                 }}
               >
-                <div style={{ width: '110px', height: '110px', flexShrink: 0, borderRadius: '10px', overflow: 'hidden', background: '#040806', border: '1px solid rgba(255,255,255,0.1)' }}>
-                  <img src="assets/complete-kit.jpg" alt="Complete Growing Kit" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                </div>
-                <div style={{ flex: 1 }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
-                    <div>
-                      <span style={{ fontSize: '0.675rem', color: '#34D399', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.05em', display: 'block' }}>
-                        RECOMMENDED (+$100 AUD)
-                      </span>
-                      <h4 style={{ fontSize: '1.15rem', fontWeight: 700, color: '#ffffff' }}>Complete Growing Kit</h4>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '1rem' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem', flexWrap: 'wrap' }}>
+                    <div style={{
+                      width: '22px',
+                      height: '22px',
+                      borderRadius: '6px',
+                      border: isCompleteKit ? '2px solid #34D399' : '2px solid rgba(255,255,255,0.35)',
+                      background: isCompleteKit ? '#34D399' : 'transparent',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      color: '#000000',
+                      flexShrink: 0
+                    }}>
+                      {isCompleteKit && <Check size={15} strokeWidth={3} />}
                     </div>
-                    <span style={{ fontSize: '1.2rem', fontWeight: 800, color: '#34D399' }}>
-                      ${selectedTier.completeKitPrice} AUD
+                    <h4 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#ffffff', margin: 0 }}>
+                      Complete Growing Kit
+                    </h4>
+                    <span style={{
+                      fontSize: '0.675rem',
+                      color: '#042F2E',
+                      background: '#34D399',
+                      padding: '2px 8px',
+                      borderRadius: '999px',
+                      fontWeight: 800,
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.05em'
+                    }}>
+                      RECOMMENDED (+$100 AUD)
                     </span>
                   </div>
-                  <p style={{ fontSize: '0.825rem', color: '#9CA3AF', marginBottom: '0.75rem' }}>
-                    Everything in Base PLUS organic-compatible nutrients, propagation dome, seedling plugs, and pH testing kit.
-                  </p>
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.3rem', fontSize: '0.8rem', color: '#D1D5DB' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-                      <Check size={13} color="#34D399" />
-                      <span>Base Tower + 38L Reservoir & DC Pump</span>
+
+                  <span style={{ fontSize: '1.25rem', fontWeight: 800, color: '#34D399', flexShrink: 0 }}>
+                    ${selectedTier.completeKitPrice} AUD
+                  </span>
+                </div>
+
+                {isCompleteKit && (
+                  <div style={{
+                    marginTop: '1rem',
+                    paddingTop: '1rem',
+                    borderTop: '1px solid rgba(255,255,255,0.1)',
+                    display: 'flex',
+                    gap: '1.25rem',
+                    alignItems: 'center',
+                    flexWrap: 'wrap'
+                  }}>
+                    <div style={{ width: '96px', height: '96px', flexShrink: 0, borderRadius: '10px', overflow: 'hidden', background: '#040806', border: '1px solid rgba(255,255,255,0.1)' }}>
+                      <img src="assets/complete-kit.jpg" alt="Complete Growing Kit" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                     </div>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-                      <Check size={13} color="#34D399" />
-                      <span>Organic A+B liquid nutrient concentrate (1L)</span>
-                    </div>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-                      <Check size={13} color="#34D399" />
-                      <span>50x coco seedling plugs + nursery tray & dome</span>
-                    </div>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-                      <Check size={13} color="#34D399" />
-                      <span>Precision pH testing liquid kit & buffer solution</span>
+                    <div style={{ flex: 1, minWidth: '220px' }}>
+                      <p style={{ fontSize: '0.85rem', color: '#9CA3AF', marginBottom: '0.65rem' }}>
+                        Everything in Base PLUS organic-compatible nutrients, propagation dome, seedling plugs, and pH testing kit.
+                      </p>
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: '0.3rem', fontSize: '0.825rem', color: '#D1D5DB' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                          <Check size={13} color="#34D399" />
+                          <span>Base Tower + 38L Reservoir & DC Pump</span>
+                        </div>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                          <Check size={13} color="#34D399" />
+                          <span>Organic A+B liquid nutrient concentrate (1L)</span>
+                        </div>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                          <Check size={13} color="#34D399" />
+                          <span>50x coco seedling plugs + nursery tray & dome</span>
+                        </div>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                          <Check size={13} color="#34D399" />
+                          <span>Precision pH testing liquid kit & buffer solution</span>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
+                )}
               </div>
             </div>
           </div>
@@ -672,7 +755,7 @@ export const B2CStorefront: React.FC<B2CStorefrontProps> = ({ onSelectView }) =>
               Step 3: Optional System Accessories
             </h3>
 
-            <div className="grid-2" style={{ gap: '1.25rem' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
               {B2C_ADDONS.map((addon) => {
                 const isSelected = selectedAddons.includes(addon.id);
                 return (
@@ -681,54 +764,62 @@ export const B2CStorefront: React.FC<B2CStorefrontProps> = ({ onSelectView }) =>
                     onClick={() => handleToggleAddon(addon.id)}
                     className="glass-panel"
                     style={{
-                      padding: '1.25rem',
+                      padding: isSelected ? '1.25rem 1.5rem' : '0.9rem 1.25rem',
                       cursor: 'pointer',
                       borderRadius: '12px',
-                      border: isSelected ? '1px solid #34D399' : '1px solid rgba(255,255,255,0.08)',
+                      border: isSelected ? '2px solid #34D399' : '1px solid rgba(255,255,255,0.08)',
                       background: isSelected ? 'rgba(52, 211, 153, 0.08)' : 'rgba(255,255,255,0.02)',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '1rem'
+                      transition: 'all 0.2s ease'
                     }}
                   >
-                    <div style={{
-                      width: '24px',
-                      height: '24px',
-                      borderRadius: '6px',
-                      border: isSelected ? '2px solid #34D399' : '2px solid rgba(255,255,255,0.3)',
-                      background: isSelected ? '#34D399' : 'transparent',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      color: '#000000',
-                      flexShrink: 0
-                    }}>
-                      {isSelected && <Check size={16} strokeWidth={3} />}
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '1rem' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
+                        <div style={{
+                          width: '22px',
+                          height: '22px',
+                          borderRadius: '6px',
+                          border: isSelected ? '2px solid #34D399' : '2px solid rgba(255,255,255,0.35)',
+                          background: isSelected ? '#34D399' : 'transparent',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          color: '#000000',
+                          flexShrink: 0
+                        }}>
+                          {isSelected && <Check size={15} strokeWidth={3} />}
+                        </div>
+                        <strong style={{ color: '#ffffff', fontSize: '1rem' }}>{addon.name}</strong>
+                      </div>
+                      <span style={{ color: '#34D399', fontWeight: 700, fontSize: '1rem', flexShrink: 0 }}>+${addon.price} AUD</span>
                     </div>
 
-                    {addon.image && (
+                    {isSelected && (
                       <div style={{
-                        width: '70px',
-                        height: '70px',
-                        borderRadius: '8px',
-                        overflow: 'hidden',
-                        background: '#040806',
-                        border: '1px solid rgba(255,255,255,0.1)',
-                        flexShrink: 0
+                        marginTop: '0.85rem',
+                        paddingTop: '0.85rem',
+                        borderTop: '1px solid rgba(255,255,255,0.1)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '1rem'
                       }}>
-                        <img src={addon.image} alt={addon.name} style={{ width: '100%', height: '100%', objectFit: 'contain', padding: '2px' }} />
+                        {addon.image && (
+                          <div style={{
+                            width: '64px',
+                            height: '64px',
+                            borderRadius: '8px',
+                            overflow: 'hidden',
+                            background: '#040806',
+                            border: '1px solid rgba(255,255,255,0.1)',
+                            flexShrink: 0
+                          }}>
+                            <img src={addon.image} alt={addon.name} style={{ width: '100%', height: '100%', objectFit: 'contain', padding: '2px' }} />
+                          </div>
+                        )}
+                        <p style={{ fontSize: '0.85rem', color: '#D1D5DB', margin: 0, lineHeight: 1.5 }}>
+                          {addon.description}
+                        </p>
                       </div>
                     )}
-
-                    <div style={{ flex: 1 }}>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                        <strong style={{ color: '#ffffff', fontSize: '0.95rem' }}>{addon.name}</strong>
-                        <span style={{ color: '#34D399', fontWeight: 700, fontSize: '0.95rem' }}>+${addon.price} AUD</span>
-                      </div>
-                      <p style={{ fontSize: '0.8rem', color: '#9CA3AF', marginTop: '0.2rem' }}>
-                        {addon.description}
-                      </p>
-                    </div>
                   </div>
                 );
               })}

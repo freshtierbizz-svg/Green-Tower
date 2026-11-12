@@ -1,6 +1,6 @@
 import React from 'react';
 import { ActiveView } from '../types/storefront';
-import { STORE_META, COMPLIANCE_STATEMENT } from '../config/storefrontConfig';
+import { STORE_META, COMPLIANCE_STATEMENT, ENABLE_B2B_SECTION } from '../config/storefrontConfig';
 import { Leaf, Shield, Lock, ArrowRight, Building2, Home } from 'lucide-react';
 
 interface FooterProps {
@@ -45,17 +45,19 @@ export const Footer: React.FC<FooterProps> = ({ onSelectView, onOpenCommercialTr
                 Explore B2C Home Systems (From $299 AUD)
               </button>
 
-              <button
-                onClick={() => {
-                  if (onOpenCommercialTrial) onOpenCommercialTrial();
-                  else handleNav('b2b');
-                }}
-                className="btn-secondary"
-                style={{ width: '100%', justifyContent: 'center', borderColor: 'rgba(251, 191, 36, 0.4)', color: '#FCD34D' }}
-              >
-                <Building2 size={18} color="#FBBF24" />
-                Book 6-Week Venue Pilot ($49.99/wk)
-              </button>
+              {ENABLE_B2B_SECTION && (
+                <button
+                  onClick={() => {
+                    if (onOpenCommercialTrial) onOpenCommercialTrial();
+                    else handleNav('b2b');
+                  }}
+                  className="btn-secondary"
+                  style={{ width: '100%', justifyContent: 'center', borderColor: 'rgba(251, 191, 36, 0.4)', color: '#FCD34D' }}
+                >
+                  <Building2 size={18} color="#FBBF24" />
+                  Book 6-Week Venue Pilot ($49.99/wk)
+                </button>
+              )}
             </div>
           </div>
         </div>
@@ -83,7 +85,9 @@ export const Footer: React.FC<FooterProps> = ({ onSelectView, onOpenCommercialTr
             <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.5rem', color: '#9CA3AF' }}>
               <li><button onClick={() => handleNav('home')} style={{ color: '#9CA3AF', background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}>Homepage Gateway</button></li>
               <li><button onClick={() => handleNav('b2c')} style={{ color: '#9CA3AF', background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}>For Your Home (B2C)</button></li>
-              <li><button onClick={() => handleNav('b2b')} style={{ color: '#9CA3AF', background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}>For Your Business (B2B)</button></li>
+              {ENABLE_B2B_SECTION && (
+                <li><button onClick={() => handleNav('b2b')} style={{ color: '#9CA3AF', background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}>For Your Business (B2B)</button></li>
+              )}
               <li><button onClick={() => handleNav('nursery')} style={{ color: '#9CA3AF', background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}>Seedling Nursery</button></li>
               <li><button onClick={() => handleNav('calculators')} style={{ color: '#9CA3AF', background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}>Savings Calculators</button></li>
             </ul>

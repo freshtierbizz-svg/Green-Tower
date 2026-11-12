@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ActiveView } from '../../types/storefront';
+import { ENABLE_B2B_SECTION } from '../../config/storefrontConfig';
 import { Sprout, Menu, X, ArrowRight, ShieldCheck, Truck, MapPin, Building2, Phone } from 'lucide-react';
 
 interface NavbarPilot2Props {
@@ -249,37 +250,41 @@ export const NavbarPilot2: React.FC<NavbarPilot2Props> = ({
             </button>
 
             {/* SEPARATE, CLEARLY LABELLED COMMERCIAL ROUTE (Priority 7) */}
-            <div style={{ height: '24px', width: '1px', background: 'rgba(27, 67, 50, 0.15)', margin: '0 0.25rem' }} />
+            {ENABLE_B2B_SECTION && (
+              <>
+                <div style={{ height: '24px', width: '1px', background: 'rgba(27, 67, 50, 0.15)', margin: '0 0.25rem' }} />
 
-            <button
-              type="button"
-              onClick={() => onSelectView('b2b')}
-              style={{
-                fontSize: '0.85rem',
-                fontWeight: 700,
-                color: activeView === 'b2b' ? '#1B4332' : '#55655C',
-                background: 'rgba(27, 67, 50, 0.05)',
-                border: '1px solid rgba(27, 67, 50, 0.12)',
-                padding: '0.4rem 0.85rem',
-                borderRadius: '8px',
-                cursor: 'pointer',
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '0.4rem',
-                transition: 'all 0.2s',
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = 'rgba(27, 67, 50, 0.1)';
-                e.currentTarget.style.color = '#1B4332';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = 'rgba(27, 67, 50, 0.05)';
-                e.currentTarget.style.color = activeView === 'b2b' ? '#1B4332' : '#55655C';
-              }}
-            >
-              <Building2 size={13} color="#2D6A4F" />
-              <span>Hospitality & Commercial</span>
-            </button>
+                <button
+                  type="button"
+                  onClick={() => onSelectView('b2b')}
+                  style={{
+                    fontSize: '0.85rem',
+                    fontWeight: 700,
+                    color: activeView === 'b2b' ? '#1B4332' : '#55655C',
+                    background: 'rgba(27, 67, 50, 0.05)',
+                    border: '1px solid rgba(27, 67, 50, 0.12)',
+                    padding: '0.4rem 0.85rem',
+                    borderRadius: '8px',
+                    cursor: 'pointer',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '0.4rem',
+                    transition: 'all 0.2s',
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = 'rgba(27, 67, 50, 0.1)';
+                    e.currentTarget.style.color = '#1B4332';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = 'rgba(27, 67, 50, 0.05)';
+                    e.currentTarget.style.color = activeView === 'b2b' ? '#1B4332' : '#55655C';
+                  }}
+                >
+                  <Building2 size={13} color="#2D6A4F" />
+                  <span>Hospitality & Commercial</span>
+                </button>
+              </>
+            )}
           </div>
 
           {/* PRIMARY CALL TO ACTION: HOME CONSUMER FOCUSED (Priority 7) */}
@@ -379,30 +384,34 @@ export const NavbarPilot2: React.FC<NavbarPilot2Props> = ({
             >
               Savings Calculator
             </button>
-            <div style={{ height: '1px', background: 'rgba(27, 67, 50, 0.1)', margin: '0.25rem 0' }} />
-            <button
-              type="button"
-              onClick={() => {
-                onSelectView('b2b');
-                setMobileMenuOpen(false);
-              }}
-              style={{
-                textAlign: 'left',
-                fontSize: '0.95rem',
-                fontWeight: 700,
-                color: '#1B4332',
-                background: 'rgba(27, 67, 50, 0.05)',
-                border: '1px solid rgba(27, 67, 50, 0.12)',
-                padding: '0.6rem 0.85rem',
-                borderRadius: '8px',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.5rem',
-              }}
-            >
-              <Building2 size={15} color="#2D6A4F" />
-              <span>Hospitality & Commercial Portal</span>
-            </button>
+            {ENABLE_B2B_SECTION && (
+              <>
+                <div style={{ height: '1px', background: 'rgba(27, 67, 50, 0.1)', margin: '0.25rem 0' }} />
+                <button
+                  type="button"
+                  onClick={() => {
+                    onSelectView('b2b');
+                    setMobileMenuOpen(false);
+                  }}
+                  style={{
+                    textAlign: 'left',
+                    fontSize: '0.95rem',
+                    fontWeight: 700,
+                    color: '#1B4332',
+                    background: 'rgba(27, 67, 50, 0.05)',
+                    border: '1px solid rgba(27, 67, 50, 0.12)',
+                    padding: '0.6rem 0.85rem',
+                    borderRadius: '8px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.5rem',
+                  }}
+                >
+                  <Building2 size={15} color="#2D6A4F" />
+                  <span>Hospitality & Commercial Portal</span>
+                </button>
+              </>
+            )}
           </div>
         )}
       </nav>

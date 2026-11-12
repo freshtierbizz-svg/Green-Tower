@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ActiveView } from '../types/storefront';
+import { ENABLE_B2B_SECTION } from '../config/storefrontConfig';
 import { Home, Building2, ArrowRight, Sparkles, CheckCircle2, Leaf, Eye } from 'lucide-react';
 
 interface SplitMarketHeroProps {
@@ -54,8 +55,8 @@ export const SplitMarketHero: React.FC<SplitMarketHeroProps> = ({
           </p>
         </div>
 
-        {/* Dual Split Market Gateway Cards */}
-        <div className="grid-2" style={{ gap: '2rem', alignItems: 'stretch', marginBottom: '3rem' }}>
+        {/* Gateway Card(s) */}
+        <div className={ENABLE_B2B_SECTION ? 'grid-2' : ''} style={{ gap: '2rem', alignItems: 'stretch', marginBottom: '3rem', maxWidth: ENABLE_B2B_SECTION ? undefined : '720px', margin: ENABLE_B2B_SECTION ? '0 0 3rem 0' : '0 auto 3rem auto' }}>
           {/* B2C CARD - FOR YOUR HOME */}
           <div className="glass-panel" style={{
             padding: '2.25rem 2rem',
@@ -125,6 +126,7 @@ export const SplitMarketHero: React.FC<SplitMarketHeroProps> = ({
           </div>
 
           {/* B2B CARD - FOR YOUR BUSINESS */}
+          {ENABLE_B2B_SECTION && (
           <div className="glass-panel" style={{
             padding: '2.25rem 2rem',
             display: 'flex',
@@ -192,6 +194,7 @@ export const SplitMarketHero: React.FC<SplitMarketHeroProps> = ({
               </button>
             </div>
           </div>
+          )}
         </div>
 
         {/* AUTHENTIC PRODUCT GALLERY SHOWCASE */}

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ActiveView } from '../types/storefront';
-import { STORE_META } from '../config/storefrontConfig';
+import { STORE_META, ENABLE_B2B_SECTION } from '../config/storefrontConfig';
 import { Leaf, Menu, X, User, ArrowRight, Building2, Home } from 'lucide-react';
 
 interface NavbarProps {
@@ -99,25 +99,27 @@ export const Navbar: React.FC<NavbarProps> = ({
               For Your Home
             </button>
 
-            <button
-              onClick={() => handleNavClick('b2b')}
-              style={{
-                fontSize: '0.9rem',
-                fontWeight: activeView === 'b2b' ? '700' : '500',
-                color: activeView === 'b2b' ? '#34D399' : '#E2E8F0',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.4rem',
-                padding: '0.35rem 0.65rem',
-                borderRadius: '6px',
-                background: activeView === 'b2b' ? 'rgba(52, 211, 153, 0.12)' : 'transparent',
-                border: activeView === 'b2b' ? '1px solid rgba(52, 211, 153, 0.3)' : '1px solid transparent',
-                transition: 'all 0.2s',
-              }}
-            >
-              <Building2 size={14} color={activeView === 'b2b' ? '#34D399' : '#9CA3AF'} />
-              For Your Business
-            </button>
+            {ENABLE_B2B_SECTION && (
+              <button
+                onClick={() => handleNavClick('b2b')}
+                style={{
+                  fontSize: '0.9rem',
+                  fontWeight: activeView === 'b2b' ? '700' : '500',
+                  color: activeView === 'b2b' ? '#34D399' : '#E2E8F0',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.4rem',
+                  padding: '0.35rem 0.65rem',
+                  borderRadius: '6px',
+                  background: activeView === 'b2b' ? 'rgba(52, 211, 153, 0.12)' : 'transparent',
+                  border: activeView === 'b2b' ? '1px solid rgba(52, 211, 153, 0.3)' : '1px solid transparent',
+                  transition: 'all 0.2s',
+                }}
+              >
+                <Building2 size={14} color={activeView === 'b2b' ? '#34D399' : '#9CA3AF'} />
+                For Your Business
+              </button>
+            )}
 
             <button
               onClick={() => handleNavClick('how-it-works')}
@@ -171,11 +173,11 @@ export const Navbar: React.FC<NavbarProps> = ({
           {/* Desktop Right Header Action CTA */}
           <div className="desktop-only" style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
             <button
-              onClick={onOpenCommercialTrial}
+              onClick={() => (ENABLE_B2B_SECTION ? onOpenCommercialTrial() : handleNavClick('b2c'))}
               className="btn-primary"
               style={{ padding: '0.55rem 1.15rem', fontSize: '0.875rem' }}
             >
-              Book a Commercial Trial
+              {ENABLE_B2B_SECTION ? 'Book a Commercial Trial' : 'Build Your Tower'}
               <ArrowRight size={14} />
             </button>
           </div>
@@ -232,27 +234,29 @@ export const Navbar: React.FC<NavbarProps> = ({
               <ArrowRight size={16} color="#9CA3AF" />
             </button>
 
-            <button
-              onClick={() => handleNavClick('b2b')}
-              style={{
-                textAlign: 'left',
-                padding: '0.75rem 1rem',
-                borderRadius: '8px',
-                background: activeView === 'b2b' ? 'rgba(52, 211, 153, 0.15)' : 'rgba(255,255,255,0.03)',
-                color: '#ffffff',
-                fontWeight: 600,
-                fontSize: '1rem',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between'
-              }}
-            >
-              <span style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
-                <Building2 size={18} color="#34D399" />
-                For Your Business (B2B)
-              </span>
-              <ArrowRight size={16} color="#9CA3AF" />
-            </button>
+            {ENABLE_B2B_SECTION && (
+              <button
+                onClick={() => handleNavClick('b2b')}
+                style={{
+                  textAlign: 'left',
+                  padding: '0.75rem 1rem',
+                  borderRadius: '8px',
+                  background: activeView === 'b2b' ? 'rgba(52, 211, 153, 0.15)' : 'rgba(255,255,255,0.03)',
+                  color: '#ffffff',
+                  fontWeight: 600,
+                  fontSize: '1rem',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between'
+                }}
+              >
+                <span style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+                  <Building2 size={18} color="#34D399" />
+                  For Your Business (B2B)
+                </span>
+                <ArrowRight size={16} color="#9CA3AF" />
+              </button>
+            )}
 
             <div style={{ height: '1px', background: 'rgba(255, 255, 255, 0.1)', margin: '0.25rem 0' }} />
 
@@ -272,12 +276,13 @@ export const Navbar: React.FC<NavbarProps> = ({
             <button
               onClick={() => {
                 setMobileMenuOpen(false);
-                onOpenCommercialTrial();
+                if (ENABLE_B2B_SECTION) onOpenCommercialTrial();
+                else handleNavClick('b2c');
               }}
               className="btn-primary"
               style={{ width: '100%', marginTop: '0.5rem', justifyContent: 'center' }}
             >
-              Book a Commercial Trial
+              {ENABLE_B2B_SECTION ? 'Book a Commercial Trial' : 'Build Your Tower'}
               <ArrowRight size={16} />
             </button>
           </div>

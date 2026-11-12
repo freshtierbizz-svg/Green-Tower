@@ -1,5 +1,8 @@
 import { B2CTierOption, B2CPackageAddon, B2BOffer, NurseryItem } from '../types/storefront';
 
+// Feature toggle: set to true when ready to launch the B2B / Hospitality Commercial portal
+export const ENABLE_B2B_SECTION = false;
+
 export const STORE_META = {
   brandName: 'AeroHarvest',
   countryTag: 'AUSTRALIA',

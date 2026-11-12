@@ -1,5 +1,6 @@
 import React from 'react';
 import { ActiveView } from '../../types/storefront';
+import { ENABLE_B2B_SECTION } from '../../config/storefrontConfig';
 import { Sprout, Phone, Mail, Clock, MapPin, ShieldCheck, Building2, ArrowRight } from 'lucide-react';
 
 interface FooterPilot2Props {
@@ -82,26 +83,28 @@ export const FooterPilot2: React.FC<FooterPilot2Props> = ({
               <ArrowRight size={16} />
             </button>
 
-            <button
-              type="button"
-              onClick={() => onSelectView('b2b')}
-              style={{
-                background: 'rgba(255, 255, 255, 0.08)',
-                color: '#FFFFFF',
-                padding: '0.95rem 1.5rem',
-                borderRadius: '12px',
-                fontWeight: 700,
-                fontSize: '0.95rem',
-                border: '1px solid rgba(255, 255, 255, 0.15)',
-                cursor: 'pointer',
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '0.45rem',
-              }}
-            >
-              <Building2 size={15} color="#FBBF24" />
-              <span>Commercial Venue Program</span>
-            </button>
+            {ENABLE_B2B_SECTION && (
+              <button
+                type="button"
+                onClick={() => onSelectView('b2b')}
+                style={{
+                  background: 'rgba(255, 255, 255, 0.08)',
+                  color: '#FFFFFF',
+                  padding: '0.95rem 1.5rem',
+                  borderRadius: '12px',
+                  fontWeight: 700,
+                  fontSize: '0.95rem',
+                  border: '1px solid rgba(255, 255, 255, 0.15)',
+                  cursor: 'pointer',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.45rem',
+                }}
+              >
+                <Building2 size={15} color="#FBBF24" />
+                <span>Commercial Venue Program</span>
+              </button>
+            )}
           </div>
         </div>
 
@@ -203,30 +206,32 @@ export const FooterPilot2: React.FC<FooterPilot2Props> = ({
           </div>
 
           {/* COL 3: HOSPITALITY & COMMERCIAL (Separate Route) */}
-          <div>
-            <h4 style={{ fontSize: '0.9rem', fontWeight: 800, color: '#FBBF24', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '1.25rem' }}>
-              Commercial & Venues
-            </h4>
-            <p style={{ fontSize: '0.85rem', color: '#9CA3AF', lineHeight: 1.6, marginBottom: '1rem' }}>
-              Living cocktail herbs and microgreens for bars, restaurants, and hospitality groups.
-            </p>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.65rem', fontSize: '0.9rem' }}>
-              <button
-                type="button"
-                onClick={() => onSelectView('b2b')}
-                style={{ textAlign: 'left', color: '#FBBF24', background: 'none', border: 'none', padding: 0, cursor: 'pointer', fontWeight: 700 }}
-              >
-                6-Week Hospitality Pilot ($49.99/wk) →
-              </button>
-              <button
-                type="button"
-                onClick={onOpenCommercialTrial}
-                style={{ textAlign: 'left', color: '#D1D5DB', background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}
-              >
-                Book a Venue Site Assessment
-              </button>
+          {ENABLE_B2B_SECTION && (
+            <div>
+              <h4 style={{ fontSize: '0.9rem', fontWeight: 800, color: '#FBBF24', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '1.25rem' }}>
+                Commercial & Venues
+              </h4>
+              <p style={{ fontSize: '0.85rem', color: '#9CA3AF', lineHeight: 1.6, marginBottom: '1rem' }}>
+                Living cocktail herbs and microgreens for bars, restaurants, and hospitality groups.
+              </p>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.65rem', fontSize: '0.9rem' }}>
+                <button
+                  type="button"
+                  onClick={() => onSelectView('b2b')}
+                  style={{ textAlign: 'left', color: '#FBBF24', background: 'none', border: 'none', padding: 0, cursor: 'pointer', fontWeight: 700 }}
+                >
+                  6-Week Hospitality Pilot ($49.99/wk) →
+                </button>
+                <button
+                  type="button"
+                  onClick={onOpenCommercialTrial}
+                  style={{ textAlign: 'left', color: '#D1D5DB', background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}
+                >
+                  Book a Venue Site Assessment
+                </button>
+              </div>
             </div>
-          </div>
+          )}
 
           {/* COL 4: CONTACT & AUSTRALIAN PROOF */}
           <div>

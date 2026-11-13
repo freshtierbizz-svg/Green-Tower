@@ -70,6 +70,8 @@ export const App: React.FC = () => {
     }
   };
 
+  const showDebugPilotSwitcher = typeof window !== 'undefined' && new URLSearchParams(window.location.search).get('debug') === 'pilot';
+
   return (
     <div
       style={{
@@ -82,11 +84,13 @@ export const App: React.FC = () => {
       {/* Schema.org Product & Offer Structured Data */}
       <StructuredData />
 
-      {/* VERSION SWITCHER: Instant toggle between Pilot 1 and Pilot 2 */}
-      <PilotVersionSwitcher
-        currentVersion={pilotVersion}
-        onToggleVersion={handleTogglePilotVersion}
-      />
+      {/* VERSION SWITCHER: Hidden from public view; accessible via ?debug=pilot */}
+      {showDebugPilotSwitcher && (
+        <PilotVersionSwitcher
+          currentVersion={pilotVersion}
+          onToggleVersion={handleTogglePilotVersion}
+        />
+      )}
 
       {/* =========================================================================
           PILOT 2 NAVIGATION OR PILOT 1 NAVIGATION

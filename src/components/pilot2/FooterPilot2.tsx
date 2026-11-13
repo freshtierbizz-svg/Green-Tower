@@ -283,7 +283,18 @@ export const FooterPilot2: React.FC<FooterPilot2Props> = ({
           </p>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.5rem' }}>
             <span>© 2026 AeroHarvest Australia. All rights reserved. Australian Owned & Operated.</span>
-            <span>Australian Business Number (ABN): 84 629 184 921 • Melbourne, Victoria</span>
+            <span>
+              Australian Business Number (ABN):{' '}
+              <a
+                href="https://abr.business.gov.au/ABN/View?abn=30783236188"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ color: '#9CA3AF', textDecoration: 'underline' }}
+              >
+                30 783 236 188
+              </a>{' '}
+              • Melbourne, Victoria
+            </span>
           </div>
         </div>
       </div>

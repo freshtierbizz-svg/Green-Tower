@@ -33,5 +33,10 @@ pnpm-debug.log*
 lerna-debug.log*
 *.log
 
-# Large temporary archives
-SkyHarvest/*.zip
+# Large temporary archives & internal/confidential working files (kept local, excluded from public repo)
+SkyHarvest/
+Alibaba Imgs/
+Master prompt/
+docs/
+AeroHarvest
+*.pdf

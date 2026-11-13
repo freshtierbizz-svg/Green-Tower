@@ -49,11 +49,11 @@ export const NavbarPilot2: React.FC<NavbarPilot2Props> = ({
               <Truck size={13} color="#34D399" />
               Free Victoria Express Dispatch (24–48h)
             </span>
-            <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', color: '#D1D5DB' }}>
+            <span className="announcement-secondary-item" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', color: '#D1D5DB' }}>
               <ShieldCheck size={13} color="#34D399" />
               2-Year Australian Replacement Warranty
             </span>
-            <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', color: '#D1D5DB' }}>
+            <span className="announcement-secondary-item" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', color: '#D1D5DB' }}>
               <MapPin size={13} color="#34D399" />
               Melbourne Owned & Stocked
             </span>
@@ -151,14 +151,7 @@ export const NavbarPilot2: React.FC<NavbarPilot2Props> = ({
           </div>
 
           {/* DESKTOP NAV LINKS */}
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '1.5rem',
-            }}
-            className="desktop-nav-links"
-          >
+          <div className="desktop-nav-links">
             <button
               type="button"
               onClick={onScrollToConfigurator}
@@ -288,18 +281,19 @@ export const NavbarPilot2: React.FC<NavbarPilot2Props> = ({
           </div>
 
           {/* PRIMARY CALL TO ACTION: HOME CONSUMER FOCUSED (Priority 7) */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexShrink: 0 }}>
             <button
               type="button"
               onClick={onScrollToConfigurator}
-              className="pilot2-btn-primary"
+              className="pilot2-btn-primary navbar-cta-btn"
               style={{
-                padding: '0.75rem 1.4rem',
-                fontSize: '0.925rem',
+                padding: '0.65rem 1.15rem',
+                fontSize: '0.88rem',
+                whiteSpace: 'nowrap',
               }}
             >
-              <span>Build Your Tower</span>
-              <ArrowRight size={15} />
+              <span>Choose Tower</span>
+              <ArrowRight size={14} />
             </button>
 
             {/* Mobile Hamburger Toggle */}
@@ -307,17 +301,17 @@ export const NavbarPilot2: React.FC<NavbarPilot2Props> = ({
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               style={{
-                background: 'none',
-                border: 'none',
+                background: '#EEF4EE',
+                border: '1px solid #D4E3D6',
+                borderRadius: '8px',
                 cursor: 'pointer',
-                padding: '0.5rem',
+                padding: '0.45rem',
                 color: '#142018',
-                display: 'none',
               }}
               className="mobile-hamburger-btn"
               aria-label="Toggle Navigation Menu"
             >
-              {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
             </button>
           </div>
         </div>

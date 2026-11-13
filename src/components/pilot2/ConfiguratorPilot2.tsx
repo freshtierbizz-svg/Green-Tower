@@ -34,7 +34,7 @@ export const ConfiguratorPilot2: React.FC<ConfiguratorPilot2Props> = ({
       id: 'tier-current',
       src: selectedTier.image || 'assets/tier-7-studio.png',
       title: `${selectedTier.name} (Height & Structure)`,
-      caption: `Real Studio View: ${selectedTier.name} (${selectedTier.heightMeter}m)`
+      caption: `Real Studio View: ${selectedTier.name} (${selectedTier.heightCm} cm / ${selectedTier.heightMeter} m)`
     },
     {
       id: 'scale-all',
@@ -163,31 +163,24 @@ export const ConfiguratorPilot2: React.FC<ConfiguratorPilot2Props> = ({
           </p>
         </div>
 
-        {/* MAIN CONFIGURATOR GRID: 2-COLUMN WITH ALWAYS-VISIBLE SUMMARY (Priority 5) */}
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'minmax(0, 1.35fr) minmax(320px, 0.95fr)',
-            gap: '2.5rem',
-            alignItems: 'start',
-          }}
-          className="configurator-main-grid"
-        >
+        {/* MAIN CONFIGURATOR GRID: 2-COLUMN DESKTOP, STACKED MOBILE (Priority 5) */}
+        <div className="configurator-main-grid">
           {/* LEFT COLUMN: VISUALIZER + SELECTION STEPS */}
-          <div>
+          <div style={{ minWidth: 0 }}>
             {/* 1. CONSISTENT PRODUCT VISUALIZER (Priority 3) */}
             <div
               className="pilot2-card"
               style={{
-                padding: '1.5rem',
-                marginBottom: '2.5rem',
+                padding: 'clamp(0.85rem, 2.5vw, 1.5rem)',
+                marginBottom: '2rem',
                 background: '#FAF9F5',
                 border: '1px solid rgba(27, 67, 50, 0.1)',
               }}
             >
               <div
                 style={{
-                  height: '380px',
+                  height: 'clamp(260px, 62vw, 380px)',
+                  width: '100%',
                   borderRadius: '12px',
                   background: '#FFFFFF',
                   border: '1px solid rgba(27, 67, 50, 0.08)',
@@ -203,8 +196,9 @@ export const ConfiguratorPilot2: React.FC<ConfiguratorPilot2Props> = ({
                   src={activeVisualizerImg}
                   alt={selectedTier.name}
                   style={{
-                    maxWidth: '92%',
-                    maxHeight: '92%',
+                    width: '100%',
+                    height: '100%',
+                    padding: '0.5rem',
                     objectFit: 'contain',
                     transition: 'all 0.3s ease',
                   }}
@@ -214,11 +208,12 @@ export const ConfiguratorPilot2: React.FC<ConfiguratorPilot2Props> = ({
                 <div
                   style={{
                     position: 'absolute',
-                    top: '12px',
-                    left: '12px',
+                    top: '10px',
+                    left: '10px',
                     display: 'flex',
                     flexDirection: 'column',
                     gap: '0.35rem',
+                    maxWidth: 'calc(100% - 20px)',
                   }}
                 >
                   <span
@@ -229,10 +224,10 @@ export const ConfiguratorPilot2: React.FC<ConfiguratorPilot2Props> = ({
                       borderRadius: '6px',
                       fontSize: '0.75rem',
                       fontWeight: 700,
-                      letterSpacing: '0.03em',
+                      letterSpacing: '0.02em',
                     }}
                   >
-                    {selectedTier.name} ({selectedTier.heightMeter}m)
+                    {selectedTier.name} ({selectedTier.heightCm} cm tall)
                   </span>
 
                   <span
@@ -438,7 +433,7 @@ export const ConfiguratorPilot2: React.FC<ConfiguratorPilot2Props> = ({
                             paddingLeft: '2.2rem',
                           }}
                         >
-                          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap', marginBottom: '0.4rem' }}>
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap', marginBottom: '0.45rem' }}>
                             <span
                               style={{
                                 background: '#EEF4EE',
@@ -449,11 +444,13 @@ export const ConfiguratorPilot2: React.FC<ConfiguratorPilot2Props> = ({
                                 fontWeight: 700,
                               }}
                             >
-                              {tier.heightMeter} m tall • {tier.growSites} grow sites
+                              {tier.heightCm} cm ({tier.heightMeter} m) tall • {tier.growSites} grow sites
                             </span>
-                            <span style={{ fontSize: '0.78rem', color: '#6B7C72', fontWeight: 600 }}>
-                              Footprint: 60 × 60 cm (0.22 m²) • 38L Reservoir Base
-                            </span>
+                          </div>
+
+                          <div style={{ fontSize: '0.8rem', color: '#495B50', marginBottom: '0.4rem', lineHeight: 1.45 }}>
+                            <strong>Base diameter:</strong> {tier.baseDiameterCm} cm (0.22 m² round 38L tub) ·{' '}
+                            <strong>Recommended clear floor space:</strong> {tier.clearFloorSpace}
                           </div>
 
                           <p style={{ fontSize: '0.88rem', color: '#37473E', margin: 0, lineHeight: 1.5 }}>
@@ -766,11 +763,11 @@ export const ConfiguratorPilot2: React.FC<ConfiguratorPilot2Props> = ({
           </div>
 
           {/* RIGHT COLUMN: ALWAYS-VISIBLE ORDER SUMMARY (Priority 5) */}
-          <div style={{ position: 'sticky', top: '95px' }} id="checkout-action">
+          <div className="configurator-summary-sticky" id="checkout-action" style={{ minWidth: 0 }}>
             <div
               className="pilot2-card"
               style={{
-                padding: '2rem',
+                padding: 'clamp(1.25rem, 3.5vw, 2rem)',
                 borderRadius: '20px',
                 border: '1.5px solid rgba(27, 67, 50, 0.15)',
                 boxShadow: '0 12px 36px -6px rgba(27, 67, 50, 0.12)',
@@ -786,16 +783,18 @@ export const ConfiguratorPilot2: React.FC<ConfiguratorPilot2Props> = ({
 
               {/* ITEM SPECIFICATION */}
               <div style={{ paddingBottom: '1.25rem', borderBottom: '1px solid rgba(27, 67, 50, 0.1)', marginBottom: '1.25rem' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '0.35rem' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '0.35rem', gap: '0.5rem' }}>
                   <span style={{ fontWeight: 700, color: '#142018', fontSize: '1rem' }}>
                     {selectedTier.name}
                   </span>
-                  <span style={{ fontWeight: 700, color: '#142018' }}>
+                  <span style={{ fontWeight: 700, color: '#142018', flexShrink: 0 }}>
                     ${selectedTier.basePrice} AUD
                   </span>
                 </div>
-                <div style={{ fontSize: '0.8rem', color: '#6B7C72' }}>
-                  {selectedTier.growSites} grow sites • {selectedTier.heightMeter}m tall • 60 × 60 cm footprint
+                <div style={{ fontSize: '0.8rem', color: '#495B50', lineHeight: 1.5 }}>
+                  <div>• {selectedTier.growSites} grow sites • {selectedTier.heightCm} cm ({selectedTier.heightMeter} m) assembled height</div>
+                  <div>• <strong>Base diameter:</strong> {selectedTier.baseDiameterCm} cm (0.22 m²)</div>
+                  <div>• <strong>Recommended clear floor space:</strong> {selectedTier.clearFloorSpace}</div>
                 </div>
 
                 {isCompleteKit && (

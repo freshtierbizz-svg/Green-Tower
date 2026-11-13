@@ -48,7 +48,7 @@ export const TechnologySciencePilot2: React.FC<TechnologySciencePilot2Props> = (
               }}
             >
               <Sparkles size={13} />
-              <span>THE SCIENCE OF AEROPONICS</span>
+              <span>HOW THE SYSTEM WORKS</span>
             </div>
 
             <h2
@@ -61,7 +61,7 @@ export const TechnologySciencePilot2: React.FC<TechnologySciencePilot2Props> = (
                 color: '#FFFFFF',
               }}
             >
-              From Space Research to Australian Balconies.
+              Top-Down Internal Water Cascade Over Suspended Roots.
             </h2>
 
             <p
@@ -73,7 +73,7 @@ export const TechnologySciencePilot2: React.FC<TechnologySciencePilot2Props> = (
                 fontWeight: 600,
               }}
             >
-              How roots suspended in mist grow faster, crisper, and use 95% less water than soil beds.
+              How suspended roots bathed in a timed internal water cascade grow crisper while using significantly less water than open soil beds.
             </p>
 
             <p
@@ -84,7 +84,7 @@ export const TechnologySciencePilot2: React.FC<TechnologySciencePilot2Props> = (
                 marginBottom: '1.75rem',
               }}
             >
-              AeroHarvest builds upon the core agricultural engineering investigated by NASA for space exploration: when astronauts faced severe constraints on space, water, and soil, aeroponics emerged as the definitive solution. By suspending plant roots in an enclosed chamber and bathing them in automated cycles of nutrient mist, oxygen delivery is maximised without soil compaction.
+              Inspired by closed-loop soilless growing systems, AeroHarvest suspends bare plant roots inside the dark central column. A quiet low-voltage DC pump in the 38L base reservoir lifts nutrient-rich water to the top distributor cap, where it cascades evenly down the inside of the tower over each tier of roots before draining back into the basin to be reused.
             </p>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem', marginBottom: '2.5rem' }}>
@@ -93,9 +93,9 @@ export const TechnologySciencePilot2: React.FC<TechnologySciencePilot2Props> = (
                   <Wind size={14} />
                 </div>
                 <div>
-                  <strong style={{ color: '#FFFFFF', fontSize: '0.95rem' }}>Direct Oxygen Root Delivery:</strong>
+                  <strong style={{ color: '#FFFFFF', fontSize: '0.95rem' }}>Oxygenated Root Chamber:</strong>
                   <span style={{ color: '#9CA3AF', fontSize: '0.9rem', display: 'block' }}>
-                    Suspended roots absorb dissolved oxygen far more rapidly than dense soil or standing water.
+                    Roots hang in humid air between watering cycles, absorbing oxygen directly without soil compaction.
                   </span>
                 </div>
               </div>
@@ -107,7 +107,7 @@ export const TechnologySciencePilot2: React.FC<TechnologySciencePilot2Props> = (
                 <div>
                   <strong style={{ color: '#FFFFFF', fontSize: '0.95rem' }}>Closed-Loop Water Recirculation:</strong>
                   <span style={{ color: '#9CA3AF', fontSize: '0.9rem', display: 'block' }}>
-                    Unused nutrient mist drips back into the 38L sealed base reservoir, recycling up to 95% of water.
+                    Water that cascades past the roots flows straight back into the covered 38L reservoir, avoiding ground runoff and soil evaporation.
                   </span>
                 </div>
               </div>
@@ -117,9 +117,9 @@ export const TechnologySciencePilot2: React.FC<TechnologySciencePilot2Props> = (
                   <Zap size={14} />
                 </div>
                 <div>
-                  <strong style={{ color: '#FFFFFF', fontSize: '0.95rem' }}>Ultra-Low Voltage DC Pump (~15W):</strong>
+                  <strong style={{ color: '#FFFFFF', fontSize: '0.95rem' }}>Low-Voltage DC Pump (~12–15W):</strong>
                   <span style={{ color: '#9CA3AF', fontSize: '0.9rem', display: 'block' }}>
-                    Automated timer pulses water for short intervals, drawing less power than a standard household LED light.
+                    Automated timer runs the top-down cascade in short intervals, drawing minimal household power.
                   </span>
                 </div>
               </div>
@@ -143,7 +143,7 @@ export const TechnologySciencePilot2: React.FC<TechnologySciencePilot2Props> = (
                 boxShadow: '0 4px 20px rgba(52, 211, 153, 0.3)',
               }}
             >
-              <span>Build Your Home System</span>
+              <span>Choose Your Tower</span>
               <ArrowRight size={16} />
             </button>
           </div>
@@ -162,7 +162,7 @@ export const TechnologySciencePilot2: React.FC<TechnologySciencePilot2Props> = (
             >
               <img
                 src="assets/misting-roots.jpg"
-                alt="Suspended plant roots bathed in automated aeroponic nutrient mist"
+                alt="Suspended plant roots inside the vertical water cascade chamber"
                 style={{
                   width: '100%',
                   height: '100%',
@@ -187,7 +187,7 @@ export const TechnologySciencePilot2: React.FC<TechnologySciencePilot2Props> = (
                   color: '#A7F3D0',
                 }}
               >
-                🔬 <strong>Oxygenated Root Chamber:</strong> Automated micro-droplets deliver moisture and A+B mineral ions directly to bare root tips.
+                🔬 <strong>Internal Root Chamber:</strong> Top-down cascading nutrient water bathes bare root tips while leaving air space for oxygen uptake.
               </div>
             </div>
           </div>

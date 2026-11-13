@@ -372,3 +372,77 @@ button {
   transform: translateY(-1px);
 }
 
+/* ==========================================================================
+   RESPONSIVE LAYOUT CLASSES (DESKTOP & 390PX MOBILE VIEWPORT)
+   ========================================================================== */
+.hero-pilot2-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.95fr);
+  gap: clamp(2rem, 4vw, 3.5rem);
+  align-items: center;
+}
+
+.configurator-main-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(320px, 0.95fr);
+  gap: 2.5rem;
+  align-items: start;
+}
+
+.configurator-summary-sticky {
+  position: sticky;
+  top: 95px;
+}
+
+.desktop-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1.4rem;
+}
+
+.mobile-hamburger-btn {
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 960px) {
+  .hero-pilot2-grid {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+
+  .configurator-main-grid {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+
+  .configurator-summary-sticky {
+    position: static;
+  }
+
+  .desktop-nav-links {
+    display: none !important;
+  }
+
+  .mobile-hamburger-btn {
+    display: inline-flex !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 1rem;
+  }
+
+  .navbar-cta-btn {
+    padding: 0.5rem 0.85rem !important;
+    font-size: 0.8rem !important;
+  }
+
+  .announcement-secondary-item {
+    display: none !important;
+  }
+}
+
+

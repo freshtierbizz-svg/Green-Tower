@@ -34,7 +34,6 @@ export interface ProductConfig {
     kitAmountAUD: number;
     currency: string;
     gstInclusive: boolean;
-    landedCostBenchmarkAUD: { min: number; max: number };
   };
   towerTiers: TowerTierOption[];
   addons: {
@@ -93,7 +92,6 @@ export const PRODUCT_CONFIG: ProductConfig = {
     kitAmountAUD: 449.00,
     currency: "AUD",
     gstInclusive: true,
-    landedCostBenchmarkAUD: { min: 159, max: 170 },
   },
   towerTiers: [
     {
@@ -102,7 +100,7 @@ export const PRODUCT_CONFIG: ProductConfig = {
       handle: 'aeroharvest-5-section-compact',
       sectionsCount: 5,
       growPotsCount: 20,
-      height: '1.25 meters',
+      height: '105 cm (1.05 m)',
       basePriceAUD: 299.00,
       kitPriceAUD: 399.00,
       baseVariantId: (env.VITE_SHOPIFY_VARIANT_5_BASE as string) || 'gid://shopify/ProductVariant/5-base-placeholder',
@@ -115,7 +113,7 @@ export const PRODUCT_CONFIG: ProductConfig = {
       handle: 'aeroharvest-7-section-standard',
       sectionsCount: 7,
       growPotsCount: 28,
-      height: '1.52 meters',
+      height: '135 cm (1.35 m)',
       basePriceAUD: 349.00,
       kitPriceAUD: 449.00,
       baseVariantId: (env.VITE_SHOPIFY_VARIANT_7_BASE as string) || 'gid://shopify/ProductVariant/7-base-placeholder',
@@ -128,7 +126,7 @@ export const PRODUCT_CONFIG: ProductConfig = {
       handle: 'aeroharvest-11-section-family',
       sectionsCount: 11,
       growPotsCount: 44,
-      height: '2.10 meters',
+      height: '195 cm (1.95 m)',
       basePriceAUD: 449.00,
       kitPriceAUD: 549.00,
       baseVariantId: (env.VITE_SHOPIFY_VARIANT_11_BASE as string) || 'gid://shopify/ProductVariant/11-base-placeholder',
@@ -162,20 +160,20 @@ export const PRODUCT_CONFIG: ProductConfig = {
     accountUrl: "https://aeroharvest.myshopify.com/account",
   },
   specifications: {
-    heightRange: "1.25m (5-Tier) / 1.52m (7-Tier) / 2.10m (11-Tier)",
-    footprint: "0.22 m² (60cm x 60cm base clearance)",
-    material: "UV-Stabilized Food-Grade White ABS Polymer & Heavy-Duty Reservoir",
-    reservoirVolume: "38 Liters (Light Sage Green Round Hydro-Basin Tub with White Top Cover Deck)",
+    heightRange: "105 cm (5-Section) / 135 cm (7-Section) / 195 cm (11-Section)",
+    footprint: "53 cm Base Diameter (0.22 m²) • 60 × 60 cm Recommended Clear Floor Space",
+    material: "Food-Contact Grade White ABS Polymer & Heavy-Duty Reservoir (Supplier Spec)",
+    reservoirVolume: "38 Liters (53 cm Round Sage Green Basin with White Top Cover Deck)",
     colorFinish: "Pure White ABS Tiers with 45° Funnel Pockets & Light Sage Green Hydro Basin",
-    waterSavings: "Up to 90–95% vs Traditional Soil Farming",
-    technology: "Automated Vertical Drip-Cascade Soilless Hydro-Tower",
+    waterSavings: "Closed-Loop Recirculation (Significantly Lower Water Use Than Open Soil Beds)",
+    technology: "Automated Top-Down Internal Water Cascade Over Suspended Roots",
   },
   placeholders: {
-    yield: "Est. 3–5 kg / Month Fresh Harvest",
-    powerConsumption: "Ultra-Low 12W DC (~$1.20 / Mo.)",
+    yield: "Seasonal Crop Yield Varies by Variety & Sun Exposure",
+    powerConsumption: "Low-Voltage DC Submersible Pump (~12–15W)",
     warrantyTerms: "2-Year Australian Replacement Warranty (Subject to ACL statutory guarantees)",
-    shippingTimeframe: "Ships within 24 hours (Free Express Metro AU)",
-    materialsCert: "BPA-Free Food-Grade ABS (AS/NZS 4020)",
+    shippingTimeframe: "Ships within 24–48 hours (Free Express Metro VIC)",
+    materialsCert: "Food-Contact Grade ABS Polymer (Supplier Specified)",
   },
   inclusions: {
     basePackage: [

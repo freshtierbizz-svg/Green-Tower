@@ -130,7 +130,16 @@ export const Footer: React.FC<FooterProps> = ({ onSelectView, onOpenCommercialTr
             <strong>Australian Consumer Law Notice:</strong> {COMPLIANCE_STATEMENT.aclNotice}
           </p>
           <p>
-            © {new Date().getFullYear()} AeroHarvest Australia. All rights reserved. Privacy Policy compliant with Australian Privacy Principles (APPs).
+            © {new Date().getFullYear()} AeroHarvest Australia. All rights reserved. ABN:{' '}
+            <a
+              href={STORE_META.abnUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: '#9CA3AF', textDecoration: 'underline' }}
+            >
+              {STORE_META.abn}
+            </a>
+            . Privacy Policy compliant with Australian Privacy Principles (APPs).
           </p>
         </div>
 

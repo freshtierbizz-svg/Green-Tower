@@ -219,7 +219,7 @@ export const LifestyleBenefitsPilot2: React.FC<LifestyleBenefitsPilot2Props> = (
                   marginBottom: '0.75rem',
                 }}
               >
-                A Full Garden in Just 60 × 60 cm.
+                A Full Garden in a 53 cm Base (60 × 60 cm Floor Space).
               </h3>
 
               <p
@@ -241,7 +241,7 @@ export const LifestyleBenefitsPilot2: React.FC<LifestyleBenefitsPilot2Props> = (
                   marginBottom: '1.5rem',
                 }}
               >
-                You don't need a suburban quarter-acre backyard. By building vertically instead of horizontally, AeroHarvest houses between 20 and 44 high-density plant sites inside a compact 0.22 m² footprint.
+                You don't need a suburban quarter-acre backyard. By building vertically instead of horizontally, AeroHarvest houses between 20 and 44 high-density plant sites on a 53 cm base diameter (0.22 m²), needing only 60 × 60 cm of recommended clear floor space.
               </p>
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', marginBottom: '2rem' }}>
@@ -256,14 +256,14 @@ export const LifestyleBenefitsPilot2: React.FC<LifestyleBenefitsPilot2Props> = (
                   <div style={{ width: '22px', height: '22px', borderRadius: '50%', background: '#D8F3DC', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                     <Check size={14} color="#1B4332" />
                   </div>
-                  <span>Closed-loop 38L reservoir continuously recirculates water mist without runoff</span>
+                  <span>Closed-loop 38L reservoir recirculates a top-down internal water cascade without runoff</span>
                 </div>
 
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', color: '#27382F', fontSize: '0.95rem' }}>
                   <div style={{ width: '22px', height: '22px', borderRadius: '50%', background: '#D8F3DC', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                     <Check size={14} color="#1B4332" />
                   </div>
-                  <span>Upright ergonomic height eliminates painful bending and kneeling</span>
+                  <span>Upright ergonomic height (105 cm to 195 cm) eliminates painful bending and kneeling</span>
                 </div>
               </div>
             </div>
@@ -306,7 +306,7 @@ export const LifestyleBenefitsPilot2: React.FC<LifestyleBenefitsPilot2Props> = (
                   color: '#1B4332',
                 }}
               >
-                ☀️ 60 × 60 cm Balcony Footprint
+                ☀️ 53 cm Base • 60 × 60 cm Clear Floor Space
               </div>
             </div>
           </div>
@@ -367,7 +367,7 @@ export const LifestyleBenefitsPilot2: React.FC<LifestyleBenefitsPilot2Props> = (
                   color: '#1B4332',
                 }}
               >
-                🍓 Safe, Food-Grade BPA-Free Materials
+                🍓 Food-Contact Grade ABS Polymer
               </div>
             </div>
 
@@ -418,7 +418,7 @@ export const LifestyleBenefitsPilot2: React.FC<LifestyleBenefitsPilot2Props> = (
                   marginBottom: '1.5rem',
                 }}
               >
-                In a world of cellophane wrapping and supermarket barcodes, vertical aeroponics gives kids an interactive, daily connection to natural biology. Children check the roots, see strawberries ripen in real time, and develop a genuine enthusiasm for eating fresh leafy greens.
+                In a world of cellophane wrapping and supermarket barcodes, vertical soilless growing gives kids an interactive, daily connection to natural biology. Children check the roots, see strawberries ripen in real time, and develop a genuine enthusiasm for eating fresh leafy greens.
               </p>
 
               {/* CLEAN PROGRESSION BADGE PILL (Replaces box cards) */}
@@ -443,7 +443,7 @@ export const LifestyleBenefitsPilot2: React.FC<LifestyleBenefitsPilot2Props> = (
                 <span style={{ color: '#2D6A4F' }}>→</span>
                 <span>ROOTS</span>
                 <span style={{ color: '#2D6A4F' }}>→</span>
-                <span>MIST</span>
+                <span>WATER CASCADE</span>
                 <span style={{ color: '#2D6A4F' }}>→</span>
                 <span>GROWTH</span>
                 <span style={{ color: '#2D6A4F' }}>→</span>

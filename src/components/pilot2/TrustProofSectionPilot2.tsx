@@ -217,15 +217,15 @@ export const TrustProofSectionPilot2: React.FC = () => {
             </div>
 
             <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: '#142018', marginBottom: '0.5rem' }}>
-              Food-Safe Tested Materials
+              Food-Contact ABS Polymer
             </h3>
 
             <p style={{ fontSize: '0.9rem', color: '#495B50', lineHeight: 1.6, flex: 1, marginBottom: '1rem' }}>
-              Constructed from UV-stabilised, BPA-free food-contact polymer engineered to withstand Australian sun exposure without degrading or leaching into recirculating water. 24V safe DC pump (~15W).
+              Moulded from supplier-specified food-contact grade ABS polymer for indoor and sheltered balcony growing, paired with a low-voltage DC circulation pump (~12–15W).
             </p>
 
             <div style={{ fontSize: '0.8rem', fontWeight: 700, color: '#1B4332' }}>
-              ✓ BPA-Free & UV-Stabilised Polymer
+              ✓ Food-Contact ABS & Low-Voltage DC Pump
             </div>
           </div>
         </div>

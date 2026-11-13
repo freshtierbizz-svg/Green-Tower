@@ -375,10 +375,10 @@ export const B2CStorefront: React.FC<B2CStorefrontProps> = ({ onSelectView }) =>
               <div>
                 <span className="badge-emerald" style={{ marginBottom: '0.5rem' }}>LIVE PRODUCT VISUALIZER</span>
                 <h3 style={{ fontSize: '1.4rem', fontWeight: 800, color: '#ffffff', marginBottom: '0.5rem' }}>
-                  {selectedTier.name} — {selectedTier.growSites} Grow Sites ({selectedTier.heightMeter} m)
+                  {selectedTier.name} — {selectedTier.growSites} Grow Sites ({selectedTier.heightCm} cm / {selectedTier.heightMeter} m)
                 </h3>
                 <p style={{ fontSize: '0.9rem', color: '#9CA3AF', marginBottom: '1rem' }}>
-                  Food-grade polymer modular sections, 38L sage green reservoir, low-voltage DC pump, and 60 × 60 cm compact footprint.
+                  Food-contact ABS polymer modular sections, 38L sage green reservoir, low-voltage DC pump, {selectedTier.baseDiameterCm} cm base diameter (0.22 m²), and {selectedTier.clearFloorSpace} recommended clear floor space.
                 </p>
 
                 {/* ACTIVE CONFIGURATION BADGES */}
@@ -557,12 +557,16 @@ export const B2CStorefront: React.FC<B2CStorefrontProps> = ({ onSelectView }) =>
                               <strong style={{ color: '#34D399' }}>{tier.growSites} Sites</strong>
                             </div>
                             <div>
-                              <span style={{ color: '#9CA3AF' }}>Height: </span>
-                              <strong style={{ color: '#ffffff' }}>{tier.heightMeter} m</strong>
+                              <span style={{ color: '#9CA3AF' }}>Assembled Height: </span>
+                              <strong style={{ color: '#ffffff' }}>{tier.heightCm} cm ({tier.heightMeter} m)</strong>
                             </div>
                             <div>
-                              <span style={{ color: '#9CA3AF' }}>Footprint: </span>
-                              <strong style={{ color: '#ffffff' }}>{tier.footprint}</strong>
+                              <span style={{ color: '#9CA3AF' }}>Base Diameter: </span>
+                              <strong style={{ color: '#ffffff' }}>{tier.baseDiameterCm} cm (0.22 m²)</strong>
+                            </div>
+                            <div>
+                              <span style={{ color: '#9CA3AF' }}>Recommended Clear Floor Space: </span>
+                              <strong style={{ color: '#ffffff' }}>{tier.clearFloorSpace}</strong>
                             </div>
                           </div>
                         </div>
@@ -912,14 +916,14 @@ export const B2CStorefront: React.FC<B2CStorefrontProps> = ({ onSelectView }) =>
           <div className="grid-4" style={{ gap: '1.25rem' }}>
             <div className="glass-panel" style={{ padding: '1.25rem' }}>
               <ShieldCheck size={24} color="#34D399" style={{ marginBottom: '0.75rem' }} />
-              <h4 style={{ fontSize: '1.05rem', fontWeight: 700, marginBottom: '0.35rem' }}>Food-Grade Polymer</h4>
-              <p style={{ fontSize: '0.85rem', color: '#9CA3AF' }}>Constructed with BPA-free, non-toxic food-grade polymer housing that will not leach chemicals under Australian sun.</p>
+              <h4 style={{ fontSize: '1.05rem', fontWeight: 700, marginBottom: '0.35rem' }}>Food-Contact ABS Polymer</h4>
+              <p style={{ fontSize: '0.85rem', color: '#9CA3AF' }}>Moulded from supplier-specified food-contact grade ABS polymer for indoor and sheltered balcony growing.</p>
             </div>
 
             <div className="glass-panel" style={{ padding: '1.25rem' }}>
               <RefreshCw size={24} color="#34D399" style={{ marginBottom: '0.75rem' }} />
-              <h4 style={{ fontSize: '1.05rem', fontWeight: 700, marginBottom: '0.35rem' }}>Closed-Loop Circulation</h4>
-              <p style={{ fontSize: '0.85rem', color: '#9CA3AF' }}>38-Litre heavy-duty reservoir continuously recirculates water mist straight to suspended roots without waste.</p>
+              <h4 style={{ fontSize: '1.05rem', fontWeight: 700, marginBottom: '0.35rem' }}>Top-Down Water Cascade</h4>
+              <p style={{ fontSize: '0.85rem', color: '#9CA3AF' }}>38-Litre reservoir lifts water to the top cap to cascade over suspended roots and drain back without ground runoff.</p>
             </div>
 
             <div className="glass-panel" style={{ padding: '1.25rem' }}>
@@ -959,7 +963,7 @@ export const B2CStorefront: React.FC<B2CStorefrontProps> = ({ onSelectView }) =>
                 </p>
 
                 <p style={{ fontSize: '1.05rem', color: '#D1D5DB', lineHeight: 1.7, marginBottom: '1.5rem' }}>
-                  AeroHarvest does not claim to be space station hardware. But the core engineering principle is identical: by misting nutrient-rich water directly onto plant roots suspended in air, aeroponics maximizes oxygen delivery and crop density while drastically reducing footprint.
+                  AeroHarvest does not claim to be space station hardware. Instead, it adapts closed-loop vertical growing for home use: a low-voltage pump lifts nutrient-rich water to the top cap so it cascades down the internal column over bare roots suspended in air, delivering water, minerals, and oxygen in a compact 53 cm base diameter.
                 </p>
 
                 <div style={{ padding: '1.25rem 1.5rem', background: 'rgba(0,0,0,0.4)', borderRadius: '12px', borderLeft: '4px solid #34D399', fontSize: '1.1rem', fontWeight: 600, color: '#A7F3D0' }}>

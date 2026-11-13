@@ -12,7 +12,10 @@ export interface B2CTierOption {
   name: string;
   subtitle: string;
   growSites: number;
+  heightCm: number;
   heightMeter: number;
+  baseDiameterCm: number;
+  clearFloorSpace: string;
   basePrice: number; // AUD GST inclusive
   completeKitPrice: number; // AUD GST inclusive
   popular?: boolean;

@@ -1,1 +1,0 @@
-{"code":200,"data":{"umid":"UGzDnscSWUtjSYxd3ozVMIpNlmMFeoGbSPlhE+UpbF3xj+LfgICvwAzN1GlyMD8mV"}}

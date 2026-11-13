@@ -103,8 +103,8 @@ export const PRODUCT_CONFIG: ProductConfig = {
       height: '105 cm (1.05 m)',
       basePriceAUD: 299.00,
       kitPriceAUD: 399.00,
-      baseVariantId: (env.VITE_SHOPIFY_VARIANT_5_BASE as string) || 'gid://shopify/ProductVariant/5-base-placeholder',
-      kitVariantId: (env.VITE_SHOPIFY_VARIANT_5_KIT as string) || 'gid://shopify/ProductVariant/5-kit-placeholder',
+      baseVariantId: (env.VITE_SHOPIFY_VARIANT_5_BASE as string) || '46662949371948',
+      kitVariantId: (env.VITE_SHOPIFY_VARIANT_5_KIT as string) || '46662949404716',
       recommendedFor: 'Compact urban balconies, patios, and apartment kitchens'
     },
     {
@@ -116,8 +116,8 @@ export const PRODUCT_CONFIG: ProductConfig = {
       height: '135 cm (1.35 m)',
       basePriceAUD: 349.00,
       kitPriceAUD: 449.00,
-      baseVariantId: (env.VITE_SHOPIFY_VARIANT_7_BASE as string) || 'gid://shopify/ProductVariant/7-base-placeholder',
-      kitVariantId: (env.VITE_SHOPIFY_VARIANT_7_KIT as string) || 'gid://shopify/ProductVariant/7-kit-placeholder',
+      baseVariantId: (env.VITE_SHOPIFY_VARIANT_7_BASE as string) || '46662949797932',
+      kitVariantId: (env.VITE_SHOPIFY_VARIANT_7_KIT as string) || '46662949830700',
       recommendedFor: 'Standard residential households growing daily salad greens & herbs'
     },
     {
@@ -129,8 +129,8 @@ export const PRODUCT_CONFIG: ProductConfig = {
       height: '195 cm (1.95 m)',
       basePriceAUD: 449.00,
       kitPriceAUD: 549.00,
-      baseVariantId: (env.VITE_SHOPIFY_VARIANT_11_BASE as string) || 'gid://shopify/ProductVariant/11-base-placeholder',
-      kitVariantId: (env.VITE_SHOPIFY_VARIANT_11_KIT as string) || 'gid://shopify/ProductVariant/11-kit-placeholder',
+      baseVariantId: (env.VITE_SHOPIFY_VARIANT_11_BASE as string) || '46662949863468',
+      kitVariantId: (env.VITE_SHOPIFY_VARIANT_11_KIT as string) || '46662949896236',
       recommendedFor: 'High-yield family produce self-sufficiency & urban micro-farming'
     }
   ],
@@ -140,24 +140,24 @@ export const PRODUCT_CONFIG: ProductConfig = {
       name: 'Full-Spectrum 360° LED Grow Light Kit',
       description: 'Integrated vertical LED light bars for 24/7 indoor growing in sun-restricted spaces.',
       priceAUD: 149.00,
-      variantId: (env.VITE_SHOPIFY_VARIANT_ADDON_LED as string) || 'gid://shopify/ProductVariant/addon-led-placeholder',
+      variantId: (env.VITE_SHOPIFY_VARIANT_ADDON_LED as string) || '46662950191148',
     },
     plantSupports: {
       id: 'addon-trellis',
       name: 'Heavy-Duty 360° Plant Growth Support Trellis Rings',
       description: 'Modular snap-on support cages for heavy fruiting crops like tomatoes, cucumbers, and peppers.',
       priceAUD: 49.00,
-      variantId: (env.VITE_SHOPIFY_VARIANT_ADDON_TRELLIS as string) || 'gid://shopify/ProductVariant/addon-trellis-placeholder',
+      variantId: (env.VITE_SHOPIFY_VARIANT_ADDON_TRELLIS as string) || '46662950551596',
     }
   },
   shopify: {
-    storeDomain: (env.VITE_SHOPIFY_STORE_DOMAIN as string) || "freshtier.myshopify.com",
+    storeDomain: (env.VITE_SHOPIFY_STORE_DOMAIN as string) || "nvz0jw-0g.myshopify.com",
     storefrontAccessToken: (env.VITE_SHOPIFY_STOREFRONT_TOKEN as string) || "",
     productId: (env.VITE_SHOPIFY_PRODUCT_ID as string) || "[SHOPIFY_PRODUCT_ID_TBD]",
     kitProductId: (env.VITE_SHOPIFY_KIT_PRODUCT_ID as string) || "[SHOPIFY_KIT_PRODUCT_ID_TBD]",
     buyButtonScriptUrl: "https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js",
     enabled: env.VITE_SHOPIFY_BUY_BUTTON_ENABLED === 'true' || false,
-    accountUrl: "https://freshtier.myshopify.com/account",
+    accountUrl: "https://nvz0jw-0g.myshopify.com/account",
   },
   specifications: {
     heightRange: "105 cm (5-Section) / 135 cm (7-Section) / 195 cm (11-Section)",

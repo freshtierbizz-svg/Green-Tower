@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { B2CTierOption, B2CPackageAddon } from '../../types/storefront';
-import { B2C_TIERS, B2C_ADDONS } from '../../config/storefrontConfig';
+import { B2C_TIERS, B2C_ADDONS, STORE_META } from '../../config/storefrontConfig';
+import { buildShopifyCheckoutUrl } from '../../config/product.config';
 import {
   Check,
   ShieldCheck,
@@ -12,7 +13,8 @@ import {
   Maximize2,
   HelpCircle,
   ShoppingBag,
-  Leaf
+  Leaf,
+  X
 } from 'lucide-react';
 
 interface ConfiguratorPilot2Props {
@@ -26,7 +28,14 @@ export const ConfiguratorPilot2: React.FC<ConfiguratorPilot2Props> = ({
   const [isCompleteKit, setIsCompleteKit] = useState<boolean>(true); // Default recommended complete kit
   const [selectedAddons, setSelectedAddons] = useState<string[]>([]);
   const [activeVisualizerImg, setActiveVisualizerImg] = useState<string>('assets/tier-7-studio.png');
-  const [showHeightScaleModal, setShowHeightScaleModal] = useState<boolean>(false);
+  const [isOrderModalOpen, setIsOrderModalOpen] = useState<boolean>(false);
+  const [orderSubmitted, setOrderSubmitted] = useState<boolean>(false);
+  const [orderReference, setOrderReference] = useState<string>('');
+  const [customerName, setCustomerName] = useState<string>('');
+  const [customerEmail, setCustomerEmail] = useState<string>('');
+  const [customerPhone, setCustomerPhone] = useState<string>('');
+  const [customerPostcode, setCustomerPostcode] = useState<string>('');
+  const [customerNotes, setCustomerNotes] = useState<string>('');
 
   // Consistent Product Photography Set (Priority 3: Consistent set showing tower, components, real home scale, and crops)
   const productGallery = [
@@ -108,6 +117,19 @@ export const ConfiguratorPilot2: React.FC<ConfiguratorPilot2Props> = ({
     }
   };
 
+  const tierIdMap: Record<string, 'tier-5' | 'tier-7' | 'tier-11'> = {
+    '5-tier': 'tier-5',
+    '7-tier': 'tier-7',
+    '11-tier': 'tier-11',
+  };
+
+  const checkoutLink = buildShopifyCheckoutUrl({
+    tierId: tierIdMap[selectedTier.id] || 'tier-7',
+    packageType: isCompleteKit ? 'kit' : 'base',
+    hasLedLights: selectedAddons.includes('led-lighting'),
+    hasPlantSupports: selectedAddons.includes('trellis-support'),
+  });
+
   const handleCheckoutClick = () => {
     if (onProceedToCheckout) {
       onProceedToCheckout({
@@ -116,13 +138,52 @@ export const ConfiguratorPilot2: React.FC<ConfiguratorPilot2Props> = ({
         selectedAddons,
         total: grandTotal,
       });
-    } else {
-      const summaryElem = document.getElementById('checkout-action');
-      if (summaryElem) {
-        summaryElem.scrollIntoView({ behavior: 'smooth' });
-      }
-      alert(`Order Configuration: ${selectedTier.name} (${isCompleteKit ? 'Complete Starter Kit' : 'Base Hardware'})\nTotal: $${grandTotal} AUD (GST Inc.)\nDispatch: 24–48h from Melbourne warehouse.\n\nProceeding to secure checkout...`);
+      return;
     }
+
+    if (checkoutLink.isLive) {
+      window.location.href = checkoutLink.url;
+      return;
+    }
+
+    setOrderSubmitted(false);
+    setIsOrderModalOpen(true);
+  };
+
+  const handleOrderEnquirySubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const refId = `FT-${Date.now().toString().slice(-6)}`;
+    setOrderReference(refId);
+
+    const selectedAddonNames = selectedAddons
+      .map((id) => {
+        const a = B2C_ADDONS.find((item) => item.id === id);
+        return a ? `${a.name} (+A$${a.price})` : id;
+      })
+      .join(', ');
+
+    const orderRecord = {
+      referenceId: refId,
+      createdAt: new Date().toISOString(),
+      tier: selectedTier.name,
+      package: isCompleteKit ? 'Complete Growing Kit' : 'Standard Base Hardware',
+      addons: selectedAddonNames || 'None',
+      totalAUD: grandTotal,
+      customerName,
+      customerEmail,
+      customerPhone,
+      customerPostcode,
+      customerNotes,
+    };
+
+    try {
+      const existing = JSON.parse(localStorage.getItem('freshtier_b2c_orders') || '[]');
+      localStorage.setItem('freshtier_b2c_orders', JSON.stringify([orderRecord, ...existing]));
+    } catch {
+      // Ignore storage errors in restricted environments
+    }
+
+    setOrderSubmitted(true);
   };
 
   return (
@@ -159,7 +220,7 @@ export const ConfiguratorPilot2: React.FC<ConfiguratorPilot2Props> = ({
           </h2>
 
           <p style={{ fontSize: '1.1rem', color: '#495B50', lineHeight: 1.6 }}>
-            Select your tower height, choose your package inclusion level, and add optional accessories. All prices include 10% Australian GST and free Victoria express shipping.
+            Select your tower height, choose your package inclusion level, and add optional accessories. All prices include 10% Australian GST and free Melbourne metro delivery (24–48h dispatch).
           </p>
         </div>
 
@@ -338,8 +399,8 @@ export const ConfiguratorPilot2: React.FC<ConfiguratorPilot2Props> = ({
                 </button>
               </div>
 
-              {/* 3 TIER OPTIONS — COMPACT UNSELECTED, EXPANDS WHEN SELECTED */}
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+              {/* 3 TIER OPTIONS — NATIVE RADIO CONTROLS FOR KEYBOARD & MOBILE ACCESSIBILITY */}
+              <div role="radiogroup" aria-label="Select Tower Height and Plant Capacity" style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
                 {B2C_TIERS.map((tier) => {
                   const isSelected = selectedTier.id === tier.id;
                   const priceToDisplay = isCompleteKit ? tier.completeKitPrice : tier.basePrice;
@@ -352,11 +413,12 @@ export const ConfiguratorPilot2: React.FC<ConfiguratorPilot2Props> = ({
                       : 'Best for 4+ people, high-yield salad production & serious home harvesting.';
 
                   return (
-                    <div
+                    <label
                       key={tier.id}
-                      onClick={() => handleSelectTier(tier)}
+                      htmlFor={`radio-tier-${tier.id}`}
                       className="pilot2-card"
                       style={{
+                        display: 'block',
                         padding: isSelected ? '1.15rem 1.35rem' : '0.9rem 1.25rem',
                         cursor: 'pointer',
                         borderRadius: '12px',
@@ -366,7 +428,7 @@ export const ConfiguratorPilot2: React.FC<ConfiguratorPilot2Props> = ({
                         transition: 'all 0.2s ease',
                       }}
                     >
-                      {/* COMPACT HEADER ROW: CHECKBOX + NAME + PRICE */}
+                      {/* COMPACT HEADER ROW: NATIVE RADIO + NAME + PRICE */}
                       <div
                         style={{
                           display: 'flex',
@@ -375,27 +437,27 @@ export const ConfiguratorPilot2: React.FC<ConfiguratorPilot2Props> = ({
                           gap: '1rem',
                         }}
                       >
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem', flexWrap: 'wrap' }}>
-                          <div
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap' }}>
+                          <input
+                            id={`radio-tier-${tier.id}`}
+                            type="radio"
+                            name="tower-size"
+                            value={tier.id}
+                            checked={isSelected}
+                            onChange={() => handleSelectTier(tier)}
                             style={{
-                              width: '22px',
-                              height: '22px',
-                              borderRadius: '6px',
-                              border: isSelected ? 'none' : '2px solid #9CA3AF',
-                              background: isSelected ? '#1B4332' : '#FFFFFF',
-                              display: 'flex',
-                              alignItems: 'center',
-                              justifyContent: 'center',
+                              width: '20px',
+                              height: '20px',
+                              accentColor: '#1B4332',
+                              cursor: 'pointer',
                               flexShrink: 0,
-                              transition: 'all 0.15s ease',
+                              margin: 0,
                             }}
-                          >
-                            {isSelected && <Check size={15} color="#FFFFFF" />}
-                          </div>
+                          />
 
-                          <h4 style={{ fontSize: '1.05rem', fontWeight: 800, color: '#142018', margin: 0 }}>
+                          <span style={{ fontSize: '1.05rem', fontWeight: 800, color: '#142018', margin: 0 }}>
                             {tier.name}
-                          </h4>
+                          </span>
 
                           {tier.popular && (
                             <span
@@ -417,9 +479,8 @@ export const ConfiguratorPilot2: React.FC<ConfiguratorPilot2Props> = ({
 
                         <div style={{ textAlign: 'right', flexShrink: 0 }}>
                           <span style={{ fontSize: '1.2rem', fontWeight: 800, color: '#142018' }}>
-                            ${priceToDisplay}
-                          </span>{' '}
-                          <span style={{ fontSize: '0.75rem', color: '#6B7C72', fontWeight: 600 }}>AUD</span>
+                            A${priceToDisplay}
+                          </span>
                         </div>
                       </div>
 
@@ -430,7 +491,7 @@ export const ConfiguratorPilot2: React.FC<ConfiguratorPilot2Props> = ({
                             marginTop: '0.85rem',
                             paddingTop: '0.85rem',
                             borderTop: '1px solid rgba(27, 67, 50, 0.12)',
-                            paddingLeft: '2.2rem',
+                            paddingLeft: '2rem',
                           }}
                         >
                           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap', marginBottom: '0.45rem' }}>
@@ -444,13 +505,13 @@ export const ConfiguratorPilot2: React.FC<ConfiguratorPilot2Props> = ({
                                 fontWeight: 700,
                               }}
                             >
-                              {tier.heightCm} cm ({tier.heightMeter} m) tall • {tier.growSites} grow sites
+                              {tier.heightCm} cm ({tier.heightMeter} m) assembled height • {tier.growSites} grow sites
                             </span>
                           </div>
 
                           <div style={{ fontSize: '0.8rem', color: '#495B50', marginBottom: '0.4rem', lineHeight: 1.45 }}>
                             <strong>Base diameter:</strong> {tier.baseDiameterCm} cm (0.22 m² round 38L tub) ·{' '}
-                            <strong>Recommended clear floor space:</strong> {tier.clearFloorSpace}
+                            <strong>Recommended clear floor space:</strong> {tier.clearFloorSpace} (0.36 m²)
                           </div>
 
                           <p style={{ fontSize: '0.88rem', color: '#37473E', margin: 0, lineHeight: 1.5 }}>
@@ -458,13 +519,13 @@ export const ConfiguratorPilot2: React.FC<ConfiguratorPilot2Props> = ({
                           </p>
                         </div>
                       )}
-                    </div>
+                    </label>
                   );
                 })}
               </div>
             </div>
 
-            {/* STEP 2: PACKAGE INCLUSION LEVEL — COMPACT UNSELECTED, EXPANDS WHEN SELECTED */}
+            {/* STEP 2: PACKAGE INCLUSION LEVEL — NATIVE RADIO CONTROLS */}
             <div style={{ marginBottom: '2.5rem' }}>
               <div style={{ marginBottom: '1rem' }}>
                 <span style={{ fontSize: '0.8rem', fontWeight: 800, color: '#2D6A4F', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
@@ -475,12 +536,13 @@ export const ConfiguratorPilot2: React.FC<ConfiguratorPilot2Props> = ({
                 </h3>
               </div>
 
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+              <div role="radiogroup" aria-label="Choose Your Package Inclusion Level" style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
                 {/* 1. STANDARD BASE TOWER */}
-                <div
-                  onClick={() => handleSelectPackageType(false)}
+                <label
+                  htmlFor="radio-package-base"
                   className="pilot2-card"
                   style={{
+                    display: 'block',
                     padding: !isCompleteKit ? '1.15rem 1.35rem' : '0.9rem 1.25rem',
                     cursor: 'pointer',
                     borderRadius: '12px',
@@ -491,32 +553,32 @@ export const ConfiguratorPilot2: React.FC<ConfiguratorPilot2Props> = ({
                   }}
                 >
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '1rem' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
-                      <div
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                      <input
+                        id="radio-package-base"
+                        type="radio"
+                        name="package-type"
+                        value="base"
+                        checked={!isCompleteKit}
+                        onChange={() => handleSelectPackageType(false)}
                         style={{
-                          width: '22px',
-                          height: '22px',
-                          borderRadius: '6px',
-                          border: !isCompleteKit ? 'none' : '2px solid #9CA3AF',
-                          background: !isCompleteKit ? '#1B4332' : '#FFFFFF',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
+                          width: '20px',
+                          height: '20px',
+                          accentColor: '#1B4332',
+                          cursor: 'pointer',
                           flexShrink: 0,
+                          margin: 0,
                         }}
-                      >
-                        {!isCompleteKit && <Check size={15} color="#FFFFFF" />}
-                      </div>
-                      <h4 style={{ fontSize: '1.05rem', fontWeight: 800, color: '#142018', margin: 0 }}>
+                      />
+                      <span style={{ fontSize: '1.05rem', fontWeight: 800, color: '#142018', margin: 0 }}>
                         Standard Base Tower (Hardware Only)
-                      </h4>
+                      </span>
                     </div>
 
                     <div style={{ textAlign: 'right', flexShrink: 0 }}>
                       <span style={{ fontSize: '1.2rem', fontWeight: 800, color: '#142018' }}>
-                        ${selectedTier.basePrice}
-                      </span>{' '}
-                      <span style={{ fontSize: '0.75rem', color: '#6B7C72', fontWeight: 600 }}>AUD</span>
+                        A${selectedTier.basePrice}
+                      </span>
                     </div>
                   </div>
 
@@ -526,25 +588,25 @@ export const ConfiguratorPilot2: React.FC<ConfiguratorPilot2Props> = ({
                         marginTop: '0.85rem',
                         paddingTop: '0.85rem',
                         borderTop: '1px solid rgba(27, 67, 50, 0.12)',
-                        paddingLeft: '2.2rem',
+                        paddingLeft: '2rem',
                       }}
                     >
                       <p style={{ fontSize: '0.85rem', color: '#495B50', lineHeight: 1.5, marginBottom: '0.75rem' }}>
-                        <strong>The complete mechanical hardware.</strong> Best if you already own your own hydroponic nutrients, seedlings, and testing meters.
+                        <strong>The complete mechanical hardware.</strong> Best if you already own your own hydroponic nutrients, seedling plugs, and pH test kit. (Seeds and live plants are not included.)
                       </p>
 
                       <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem', fontSize: '0.825rem', color: '#27382F' }}>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
                           <Check size={14} color="#1B4332" />
-                          <span>Modular food-grade white tiers ({selectedTier.growSites} grow sites)</span>
+                          <span>Modular food-contact white ABS tiers ({selectedTier.growSites} grow sites)</span>
                         </div>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
                           <Check size={14} color="#1B4332" />
-                          <span>38L heavy-duty sealed sage green water reservoir</span>
+                          <span>38L heavy-duty sealed sage green water reservoir (53 cm diameter)</span>
                         </div>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
                           <Check size={14} color="#1B4332" />
-                          <span>Submerged low-voltage DC water circulation pump</span>
+                          <span>Submerged low-voltage DC water circulation pump (~12–15W)</span>
                         </div>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
                           <Check size={14} color="#1B4332" />
@@ -552,18 +614,19 @@ export const ConfiguratorPilot2: React.FC<ConfiguratorPilot2Props> = ({
                         </div>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
                           <Check size={14} color="#1B4332" />
-                          <span>{selectedTier.growSites} reusable food-grade net grow cups</span>
+                          <span>{selectedTier.growSites} reusable food-contact net grow cups</span>
                         </div>
                       </div>
                     </div>
                   )}
-                </div>
+                </label>
 
                 {/* 2. COMPLETE GROWING KIT (RECOMMENDED) */}
-                <div
-                  onClick={() => handleSelectPackageType(true)}
+                <label
+                  htmlFor="radio-package-kit"
                   className="pilot2-card"
                   style={{
+                    display: 'block',
                     padding: isCompleteKit ? '1.15rem 1.35rem' : '0.9rem 1.25rem',
                     cursor: 'pointer',
                     borderRadius: '12px',
@@ -574,25 +637,26 @@ export const ConfiguratorPilot2: React.FC<ConfiguratorPilot2Props> = ({
                   }}
                 >
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '1rem' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem', flexWrap: 'wrap' }}>
-                      <div
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap' }}>
+                      <input
+                        id="radio-package-kit"
+                        type="radio"
+                        name="package-type"
+                        value="kit"
+                        checked={isCompleteKit}
+                        onChange={() => handleSelectPackageType(true)}
                         style={{
-                          width: '22px',
-                          height: '22px',
-                          borderRadius: '6px',
-                          border: isCompleteKit ? 'none' : '2px solid #9CA3AF',
-                          background: isCompleteKit ? '#1B4332' : '#FFFFFF',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
+                          width: '20px',
+                          height: '20px',
+                          accentColor: '#1B4332',
+                          cursor: 'pointer',
                           flexShrink: 0,
+                          margin: 0,
                         }}
-                      >
-                        {isCompleteKit && <Check size={15} color="#FFFFFF" />}
-                      </div>
-                      <h4 style={{ fontSize: '1.05rem', fontWeight: 800, color: '#142018', margin: 0 }}>
+                      />
+                      <span style={{ fontSize: '1.05rem', fontWeight: 800, color: '#142018', margin: 0 }}>
                         Complete Growing Kit
-                      </h4>
+                      </span>
                       <span
                         style={{
                           background: '#1B4332',
@@ -605,15 +669,14 @@ export const ConfiguratorPilot2: React.FC<ConfiguratorPilot2Props> = ({
                           textTransform: 'uppercase',
                         }}
                       >
-                        Recommended (+$100)
+                        Recommended (+A$100)
                       </span>
                     </div>
 
                     <div style={{ textAlign: 'right', flexShrink: 0 }}>
                       <span style={{ fontSize: '1.2rem', fontWeight: 800, color: '#1B4332' }}>
-                        ${selectedTier.completeKitPrice}
-                      </span>{' '}
-                      <span style={{ fontSize: '0.75rem', color: '#6B7C72', fontWeight: 600 }}>AUD</span>
+                        A${selectedTier.completeKitPrice}
+                      </span>
                     </div>
                   </div>
 
@@ -623,11 +686,11 @@ export const ConfiguratorPilot2: React.FC<ConfiguratorPilot2Props> = ({
                         marginTop: '0.85rem',
                         paddingTop: '0.85rem',
                         borderTop: '1px solid rgba(27, 67, 50, 0.12)',
-                        paddingLeft: '2.2rem',
+                        paddingLeft: '2rem',
                       }}
                     >
                       <p style={{ fontSize: '0.85rem', color: '#495B50', lineHeight: 1.5, marginBottom: '0.75rem' }}>
-                        <strong>Everything in Base PLUS all living consumables.</strong> Recommended for 95% of first-time growers to begin harvesting Day 1.
+                        <strong>Everything in Base PLUS starter nutrients & propagation kit.</strong> Seeds and live plants are not packed inside the hardware box—sow your own seeds in the included coco plugs (<strong>first harvest in 4–6 weeks</strong>) or plant pre-rooted nursery seedlings (<strong>first harvest in 2–3 weeks</strong>).
                       </p>
 
                       <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem', fontSize: '0.825rem', color: '#27382F' }}>
@@ -641,7 +704,7 @@ export const ConfiguratorPilot2: React.FC<ConfiguratorPilot2Props> = ({
                         </div>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', color: '#1B4332', fontWeight: 600 }}>
                           <Check size={14} color="#1B4332" />
-                          <span>50x organic coco-coir seedling propagation plugs</span>
+                          <span>50x organic coco-coir seedling propagation plugs (ready for your seeds)</span>
                         </div>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', color: '#1B4332', fontWeight: 600 }}>
                           <Check size={14} color="#1B4332" />
@@ -654,11 +717,11 @@ export const ConfiguratorPilot2: React.FC<ConfiguratorPilot2Props> = ({
                       </div>
                     </div>
                   )}
-                </div>
+                </label>
               </div>
             </div>
 
-            {/* STEP 3: OPTIONAL ADD-ONS — COMPACT UNSELECTED, EXPANDS WHEN SELECTED */}
+            {/* STEP 3: OPTIONAL ADD-ONS — NATIVE CHECKBOX CONTROLS */}
             <div>
               <div style={{ marginBottom: '1rem' }}>
                 <span style={{ fontSize: '0.8rem', fontWeight: 800, color: '#2D6A4F', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
@@ -673,11 +736,12 @@ export const ConfiguratorPilot2: React.FC<ConfiguratorPilot2Props> = ({
                 {B2C_ADDONS.map((addon) => {
                   const isChecked = selectedAddons.includes(addon.id);
                   return (
-                    <div
+                    <label
                       key={addon.id}
-                      onClick={() => handleToggleAddon(addon.id)}
+                      htmlFor={`checkbox-addon-${addon.id}`}
                       className="pilot2-card"
                       style={{
+                        display: 'block',
                         padding: isChecked ? '1.15rem 1.35rem' : '0.9rem 1.25rem',
                         cursor: 'pointer',
                         borderRadius: '12px',
@@ -695,30 +759,29 @@ export const ConfiguratorPilot2: React.FC<ConfiguratorPilot2Props> = ({
                           gap: '1rem',
                         }}
                       >
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
-                          <div
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                          <input
+                            id={`checkbox-addon-${addon.id}`}
+                            type="checkbox"
+                            checked={isChecked}
+                            onChange={() => handleToggleAddon(addon.id)}
                             style={{
-                              width: '22px',
-                              height: '22px',
-                              borderRadius: '6px',
-                              border: isChecked ? 'none' : '2px solid #9CA3AF',
-                              background: isChecked ? '#1B4332' : '#FFFFFF',
-                              display: 'flex',
-                              alignItems: 'center',
-                              justifyContent: 'center',
+                              width: '20px',
+                              height: '20px',
+                              accentColor: '#1B4332',
+                              cursor: 'pointer',
                               flexShrink: 0,
+                              margin: 0,
                             }}
-                          >
-                            {isChecked && <Check size={15} color="#FFFFFF" />}
-                          </div>
+                          />
 
-                          <h4 style={{ fontSize: '1rem', fontWeight: 800, color: '#142018', margin: 0 }}>
+                          <span style={{ fontSize: '1rem', fontWeight: 800, color: '#142018', margin: 0 }}>
                             {addon.name}
-                          </h4>
+                          </span>
                         </div>
 
                         <span style={{ fontWeight: 800, color: '#1B4332', fontSize: '1rem', flexShrink: 0 }}>
-                          +${addon.price} AUD
+                          +A${addon.price}
                         </span>
                       </div>
 
@@ -728,7 +791,7 @@ export const ConfiguratorPilot2: React.FC<ConfiguratorPilot2Props> = ({
                             marginTop: '0.75rem',
                             paddingTop: '0.75rem',
                             borderTop: '1px solid rgba(27, 67, 50, 0.12)',
-                            paddingLeft: '2.2rem',
+                            paddingLeft: '2rem',
                             display: 'flex',
                             alignItems: 'center',
                             gap: '1rem',
@@ -755,7 +818,7 @@ export const ConfiguratorPilot2: React.FC<ConfiguratorPilot2Props> = ({
                           </p>
                         </div>
                       )}
-                    </div>
+                    </label>
                   );
                 })}
               </div>
@@ -788,27 +851,27 @@ export const ConfiguratorPilot2: React.FC<ConfiguratorPilot2Props> = ({
                     {selectedTier.name}
                   </span>
                   <span style={{ fontWeight: 700, color: '#142018', flexShrink: 0 }}>
-                    ${selectedTier.basePrice} AUD
+                    A${selectedTier.basePrice}
                   </span>
                 </div>
                 <div style={{ fontSize: '0.8rem', color: '#495B50', lineHeight: 1.5 }}>
                   <div>• {selectedTier.growSites} grow sites • {selectedTier.heightCm} cm ({selectedTier.heightMeter} m) assembled height</div>
                   <div>• <strong>Base diameter:</strong> {selectedTier.baseDiameterCm} cm (0.22 m²)</div>
-                  <div>• <strong>Recommended clear floor space:</strong> {selectedTier.clearFloorSpace}</div>
+                  <div>• <strong>Recommended clear floor space:</strong> {selectedTier.clearFloorSpace} (0.36 m²)</div>
                 </div>
 
                 {isCompleteKit && (
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginTop: '0.75rem', paddingTop: '0.75rem', borderTop: '1px dashed rgba(27, 67, 50, 0.1)' }}>
                     <div>
                       <span style={{ fontWeight: 700, color: '#1B4332', fontSize: '0.9rem', display: 'block' }}>
-                        + Complete Starter Kit Upgrade
+                        + Complete Growing Kit Upgrade
                       </span>
                       <span style={{ fontSize: '0.75rem', color: '#6B7C72' }}>
-                        1L nutrients, 50 plugs, humidity dome, pH tester
+                        1L A+B nutrients, 50 coco plugs, nursery dome tray, pH test kit
                       </span>
                     </div>
-                    <span style={{ fontWeight: 700, color: '#1B4332', fontSize: '0.9rem' }}>
-                      +$100 AUD
+                    <span style={{ fontWeight: 700, color: '#1B4332', fontSize: '0.9rem', flexShrink: 0 }}>
+                      +A$100
                     </span>
                   </div>
                 )}
@@ -825,10 +888,11 @@ export const ConfiguratorPilot2: React.FC<ConfiguratorPilot2Props> = ({
                         alignItems: 'baseline',
                         marginTop: '0.5rem',
                         fontSize: '0.85rem',
+                        gap: '0.5rem',
                       }}
                     >
                       <span style={{ color: '#37473E' }}>+ {addon.name}</span>
-                      <span style={{ fontWeight: 700, color: '#142018' }}>+${addon.price} AUD</span>
+                      <span style={{ fontWeight: 700, color: '#142018', flexShrink: 0 }}>+A${addon.price}</span>
                     </div>
                   );
                 })}
@@ -850,7 +914,7 @@ export const ConfiguratorPilot2: React.FC<ConfiguratorPilot2Props> = ({
               >
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', fontWeight: 700 }}>
                   <Truck size={14} color="#2D6A4F" />
-                  <span>Free Victoria Metro Express Shipping</span>
+                  <span>Free Melbourne Metro Delivery (24–48h Dispatch)</span>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
                   <ShieldCheck size={14} color="#2D6A4F" />
@@ -862,16 +926,16 @@ export const ConfiguratorPilot2: React.FC<ConfiguratorPilot2Props> = ({
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '1.5rem' }}>
                 <div>
                   <span style={{ fontSize: '0.8rem', color: '#6B7C72', display: 'block', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                    Total Investment (GST Inc.)
+                    Total Before Regional Delivery (GST Inc.)
                   </span>
-                  <div style={{ fontSize: '2.3rem', fontWeight: 800, color: '#142018', lineHeight: 1 }}>
-                    ${grandTotal}{' '}
+                  <div style={{ fontSize: '2.3rem', fontWeight: 800, color: '#142018', lineHeight: 1 }} data-testid="configurator-total">
+                    A${grandTotal}{' '}
                     <span style={{ fontSize: '0.9rem', fontWeight: 600, color: '#6B7C72' }}>AUD</span>
                   </div>
                 </div>
               </div>
 
-              {/* CHECKOUT ACTION BUTTON */}
+              {/* CHECKOUT / ORDER ENQUIRY ACTION BUTTON */}
               <button
                 type="button"
                 onClick={handleCheckoutClick}
@@ -884,7 +948,9 @@ export const ConfiguratorPilot2: React.FC<ConfiguratorPilot2Props> = ({
                   marginBottom: '1rem',
                 }}
               >
-                <span>Proceed to Secure Checkout</span>
+                <span>
+                  {checkoutLink.isLive ? 'Proceed to Secure Checkout' : `Order / Reserve System (A$${grandTotal})`}
+                </span>
                 <ArrowRight size={17} />
               </button>
 
@@ -895,6 +961,246 @@ export const ConfiguratorPilot2: React.FC<ConfiguratorPilot2Props> = ({
           </div>
         </div>
       </div>
+
+      {/* ORDER / RESERVATION ENQUIRY MODAL (Matches Selected Items & Total) */}
+      {isOrderModalOpen && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="order-modal-title"
+          style={{
+            position: 'fixed',
+            inset: 0,
+            zIndex: 9999,
+            background: 'rgba(11, 27, 19, 0.72)',
+            backdropFilter: 'blur(6px)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '1rem',
+            overflowY: 'auto',
+          }}
+        >
+          <div
+            style={{
+              background: '#FFFFFF',
+              borderRadius: '20px',
+              maxWidth: '540px',
+              width: '100%',
+              padding: 'clamp(1.25rem, 4vw, 2rem)',
+              boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.35)',
+              border: '1px solid rgba(27, 67, 50, 0.15)',
+              color: '#142018',
+              position: 'relative',
+              maxHeight: '92vh',
+              overflowY: 'auto',
+            }}
+          >
+            <button
+              type="button"
+              onClick={() => setIsOrderModalOpen(false)}
+              aria-label="Close Order Window"
+              style={{
+                position: 'absolute',
+                top: '1rem',
+                right: '1rem',
+                background: '#EEF4EE',
+                border: 'none',
+                borderRadius: '50%',
+                width: '34px',
+                height: '34px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                cursor: 'pointer',
+                color: '#142018',
+              }}
+            >
+              <X size={18} />
+            </button>
+
+            <span
+              className="pilot2-badge"
+              style={{ marginBottom: '0.75rem', background: '#EEF4EE', border: '1px solid #D4E3D6' }}
+            >
+              <ShoppingBag size={13} color="#2D6A4F" />
+              <span>FRESHTIER ORDER & DISPATCH</span>
+            </span>
+
+            <h3 id="order-modal-title" style={{ fontSize: '1.5rem', fontWeight: 800, marginBottom: '0.5rem', color: '#142018' }}>
+              {orderSubmitted ? 'Order Request Received' : 'Complete Your Order Request'}
+            </h3>
+
+            {/* ITEMISED ORDER VERIFICATION BOX */}
+            <div
+              style={{
+                background: '#F4F8F4',
+                border: '1px solid #D4E3D6',
+                borderRadius: '12px',
+                padding: '1rem',
+                marginBottom: '1.25rem',
+                fontSize: '0.88rem',
+              }}
+            >
+              <div style={{ display: 'flex', justifyContent: 'space-between', fontWeight: 700, marginBottom: '0.35rem' }}>
+                <span>{selectedTier.name} ({selectedTier.heightCm} cm · {selectedTier.growSites} sites)</span>
+                <span>A${selectedTier.basePrice}</span>
+              </div>
+              {isCompleteKit && (
+                <div style={{ display: 'flex', justifyContent: 'space-between', color: '#1B4332', fontWeight: 600, marginBottom: '0.35rem' }}>
+                  <span>+ Complete Growing Kit Upgrade</span>
+                  <span>+A$100</span>
+                </div>
+              )}
+              {selectedAddons.map((addonId) => {
+                const addon = B2C_ADDONS.find((a) => a.id === addonId);
+                if (!addon) return null;
+                return (
+                  <div key={addon.id} style={{ display: 'flex', justifyContent: 'space-between', color: '#37473E', marginBottom: '0.35rem' }}>
+                    <span>+ {addon.name}</span>
+                    <span style={{ fontWeight: 700 }}>+A${addon.price}</span>
+                  </div>
+                );
+              })}
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  borderTop: '1px solid rgba(27, 67, 50, 0.15)',
+                  paddingTop: '0.6rem',
+                  marginTop: '0.5rem',
+                  fontWeight: 800,
+                  fontSize: '1.05rem',
+                  color: '#142018',
+                }}
+              >
+                <span>Total (GST Inclusive, Before Any Regional Freight)</span>
+                <span>A${grandTotal} AUD</span>
+              </div>
+            </div>
+
+            {!orderSubmitted ? (
+              <form onSubmit={handleOrderEnquirySubmit} style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
+                <p style={{ fontSize: '0.85rem', color: '#495B50', margin: 0, lineHeight: 1.5 }}>
+                  Enter your delivery details below. Our Melbourne warehouse team will send your tax invoice and payment link (with free Melbourne metro delivery or exact regional courier rate) within 1 business day.
+                </p>
+
+                <div>
+                  <label htmlFor="order-name" style={{ display: 'block', fontSize: '0.82rem', fontWeight: 700, marginBottom: '0.3rem', color: '#142018' }}>
+                    Full Name *
+                  </label>
+                  <input
+                    id="order-name"
+                    type="text"
+                    required
+                    value={customerName}
+                    onChange={(e) => setCustomerName(e.target.value)}
+                    placeholder="e.g. Alex Taylor"
+                    style={{ width: '100%', padding: '0.65rem 0.85rem', borderRadius: '8px', border: '1px solid #CBD5E1', fontSize: '0.92rem' }}
+                  />
+                </div>
+
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '0.75rem' }}>
+                  <div>
+                    <label htmlFor="order-email" style={{ display: 'block', fontSize: '0.82rem', fontWeight: 700, marginBottom: '0.3rem', color: '#142018' }}>
+                      Email Address *
+                    </label>
+                    <input
+                      id="order-email"
+                      type="email"
+                      required
+                      value={customerEmail}
+                      onChange={(e) => setCustomerEmail(e.target.value)}
+                      placeholder="you@example.com.au"
+                      style={{ width: '100%', padding: '0.65rem 0.85rem', borderRadius: '8px', border: '1px solid #CBD5E1', fontSize: '0.92rem' }}
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="order-phone" style={{ display: 'block', fontSize: '0.82rem', fontWeight: 700, marginBottom: '0.3rem', color: '#142018' }}>
+                      Mobile Phone *
+                    </label>
+                    <input
+                      id="order-phone"
+                      type="tel"
+                      required
+                      value={customerPhone}
+                      onChange={(e) => setCustomerPhone(e.target.value)}
+                      placeholder="04XX XXX XXX"
+                      style={{ width: '100%', padding: '0.65rem 0.85rem', borderRadius: '8px', border: '1px solid #CBD5E1', fontSize: '0.92rem' }}
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label htmlFor="order-postcode" style={{ display: 'block', fontSize: '0.82rem', fontWeight: 700, marginBottom: '0.3rem', color: '#142018' }}>
+                    Delivery Suburb & Postcode *
+                  </label>
+                  <input
+                    id="order-postcode"
+                    type="text"
+                    required
+                    value={customerPostcode}
+                    onChange={(e) => setCustomerPostcode(e.target.value)}
+                    placeholder="e.g. Richmond VIC 3121"
+                    style={{ width: '100%', padding: '0.65rem 0.85rem', borderRadius: '8px', border: '1px solid #CBD5E1', fontSize: '0.92rem' }}
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="order-notes" style={{ display: 'block', fontSize: '0.82rem', fontWeight: 700, marginBottom: '0.3rem', color: '#142018' }}>
+                    Delivery Notes or Questions (Optional)
+                  </label>
+                  <textarea
+                    id="order-notes"
+                    rows={2}
+                    value={customerNotes}
+                    onChange={(e) => setCustomerNotes(e.target.value)}
+                    placeholder="Balcony access notes or seedling nursery questions..."
+                    style={{ width: '100%', padding: '0.65rem 0.85rem', borderRadius: '8px', border: '1px solid #CBD5E1', fontSize: '0.9rem' }}
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  className="pilot2-btn-primary"
+                  style={{ width: '100%', padding: '0.95rem', fontSize: '1rem', borderRadius: '12px', marginTop: '0.25rem' }}
+                >
+                  <span>Submit Order Request (A${grandTotal} AUD)</span>
+                  <ArrowRight size={16} />
+                </button>
+              </form>
+            ) : (
+              <div style={{ fontSize: '0.92rem', color: '#27382F', lineHeight: 1.6 }}>
+                <p style={{ marginBottom: '0.75rem' }}>
+                  Thank you, <strong>{customerName}</strong>! Your order reference is <strong>{orderReference}</strong> for <strong>A${grandTotal} AUD</strong> ({customerPostcode}).
+                </p>
+                <p style={{ marginBottom: '1rem' }}>
+                  We have recorded your configuration and will email your invoice and courier dispatch confirmation to <strong>{customerEmail}</strong>. You can also send a copy directly via your email client below or call our Melbourne team on <strong>{STORE_META.phone}</strong>.
+                </p>
+                <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
+                  <a
+                    href={`mailto:${STORE_META.contactEmail}?subject=${encodeURIComponent(`FreshTier Order ${orderReference} — ${selectedTier.name} (A$${grandTotal})`)}&body=${encodeURIComponent(
+                      `Order Reference: ${orderReference}\nCustomer: ${customerName}\nPhone: ${customerPhone}\nEmail: ${customerEmail}\nSuburb/Postcode: ${customerPostcode}\n\nSelected System: ${selectedTier.name} (${isCompleteKit ? 'Complete Growing Kit' : 'Standard Base'})\nAdd-ons: ${selectedAddons.join(', ') || 'None'}\nTotal (GST Inc.): A$${grandTotal} AUD\nNotes: ${customerNotes}`
+                    )}`}
+                    className="pilot2-btn-primary"
+                    style={{ textDecoration: 'none', flex: 1, textAlign: 'center' }}
+                  >
+                    Email Copy to {STORE_META.contactEmail}
+                  </a>
+                  <button
+                    type="button"
+                    onClick={() => setIsOrderModalOpen(false)}
+                    className="pilot2-btn-secondary"
+                  >
+                    Close
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
     </section>
   );
 };

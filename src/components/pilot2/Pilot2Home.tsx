@@ -5,6 +5,7 @@ import { LifestyleBenefitsPilot2 } from './LifestyleBenefitsPilot2';
 import { ConfiguratorPilot2 } from './ConfiguratorPilot2';
 import { TrustProofSectionPilot2 } from './TrustProofSectionPilot2';
 import { TechnologySciencePilot2 } from './TechnologySciencePilot2';
+import { B2C_ROICalculator } from '../B2C_ROICalculator';
 
 interface Pilot2HomeProps {
   onSelectView: (view: ActiveView) => void;
@@ -57,7 +58,14 @@ export const Pilot2Home: React.FC<Pilot2HomeProps> = ({
         onScrollToConfigurator={scrollToConfigurator}
       />
 
-      {/* 5. QUALITY PROOF & AUSTRALIAN TRUST (Priority 6: Dispatch, warranty, Melbourne phone, verified reviews, tempered claims) */}
+      {/* 5. HOUSEHOLD SAVINGS & PAYBACK CALCULATOR ON HOMEPAGE */}
+      <section style={{ padding: 'clamp(3.5rem, 6vw, 5.5rem) 0', background: '#EEF4EE', borderBottom: '1px solid rgba(27, 67, 50, 0.08)' }}>
+        <div className="container">
+          <B2C_ROICalculator />
+        </div>
+      </section>
+
+      {/* 6. QUALITY PROOF & AUSTRALIAN TRUST (Priority 6: Dispatch, warranty, Melbourne phone, supported harvest timeframes, tempered claims) */}
       <TrustProofSectionPilot2 />
     </div>
   );

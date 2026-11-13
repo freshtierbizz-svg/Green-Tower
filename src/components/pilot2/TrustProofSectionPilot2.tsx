@@ -13,36 +13,30 @@ import {
 } from 'lucide-react';
 
 export const TrustProofSectionPilot2: React.FC = () => {
-  const reviews = [
+  const growStages = [
     {
       id: 1,
-      author: 'Sarah M.',
-      location: 'South Yarra, VIC',
-      tower: '7-Section Standard (28 Sites)',
-      quote:
-        'Living in an apartment with a 2-metre balcony, I assumed fresh gardening was out of the question. The 7-tier tower fits perfectly in the corner. We snip butterhead lettuce and mint for lunch almost every day now.',
-      verified: 'Verified Home Grower',
-      date: 'October 2026',
+      stage: 'Weeks 1–2: Seed Germination or Seedling Transfer',
+      cropExample: 'Included in Complete Kit: 50× Coco Plugs & Humidity Dome',
+      detail:
+        'Sow your own seeds into the moistened coco-coir starter plugs inside the propagation dome (germinates in 5–10 days), or insert pre-rooted starter seedlings directly into the net cups.',
+      timeframe: 'Days 1–14',
     },
     {
       id: 2,
-      author: 'David & Chloe T.',
-      location: 'Richmond, VIC',
-      tower: '11-Section Family Powerhouse',
-      quote:
-        'The unboxing and setup took about 25 minutes. Our two primary school kids treat checking the roots and strawberries like their morning ritual. Having living greens ready to pick without soil mess is fantastic.',
-      verified: 'Verified Home Grower',
-      date: 'September 2026',
+      stage: 'Weeks 2–4: Root Suspension & Water Cascade',
+      cropExample: '38L Reservoir + 1L A+B Liquid Nutrients',
+      detail:
+        'Transfer rooted plugs into the tower ports. The timed 15W DC pump lifts nutrient solution to the top cap so water cascades down the internal column over bare roots.',
+      timeframe: 'First pick: Wk 2–3 (from seedlings)',
     },
     {
       id: 3,
-      author: 'Marcus B.',
-      location: 'Fitzroy, VIC',
-      tower: '5-Section Compact + LED Lights',
-      quote:
-        'Super quiet pump, draws hardly any power, and the Melbourne customer service team answered my pH balance question over the phone right away. Genuine peace of mind.',
-      verified: 'Verified Home Grower',
-      date: 'October 2026',
+      stage: 'Weeks 4–8+: Continuous Cut-and-Come-Again Harvest',
+      cropExample: 'Lettuce, Basil, Mint, Bok Choy & Compact Greens',
+      detail:
+        'Snip outer leaves as needed while the central crown keeps growing. Our Aug–Oct 2026 7-section trial harvested ~3.4 kg of greens & herbs over 8 weeks at ~A$24 total running cost.',
+      timeframe: 'First pick: Wk 4–6 (from seed)',
     },
   ];
 
@@ -123,7 +117,7 @@ export const TrustProofSectionPilot2: React.FC = () => {
             </p>
 
             <div style={{ fontSize: '0.8rem', fontWeight: 700, color: '#1B4332' }}>
-              ✓ Free Victoria Metro Delivery Included
+              ✓ Free Melbourne Metro Delivery Included
             </div>
           </div>
 
@@ -230,32 +224,27 @@ export const TrustProofSectionPilot2: React.FC = () => {
           </div>
         </div>
 
-        {/* VERIFIED CUSTOMER EXPERIENCES (Priority 6) */}
+        {/* SUPPORTED HARVEST TIMEFRAMES & GROW PROGRESSION */}
         <div>
           <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
-            <div style={{ display: 'flex', justifyContent: 'center', gap: '0.25rem', marginBottom: '0.5rem' }}>
-              {[1, 2, 3, 4, 5].map((i) => (
-                <Star key={i} size={18} fill="#D97706" color="#D97706" />
-              ))}
-            </div>
-            <h3 style={{ fontSize: '1.8rem', fontWeight: 800, color: '#142018' }}>
-              Real Australian Home Harvests
+            <h3 style={{ fontSize: '1.8rem', fontWeight: 800, color: '#142018', marginBottom: '0.35rem' }}>
+              Supported Harvest Timeframe: Seed to Plate
             </h3>
-            <p style={{ fontSize: '0.95rem', color: '#6B7C72' }}>
-              Verified feedback from Australian townhouse, apartment, and courtyard growers.
+            <p style={{ fontSize: '0.95rem', color: '#6B7C72', maxWidth: '640px', margin: '0 auto' }}>
+              What comes in the box, what you add (your choice of seeds or nursery seedlings), and realistic harvest milestones.
             </p>
           </div>
 
           <div
             style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(290px, 1fr))',
               gap: '1.5rem',
             }}
           >
-            {reviews.map((r) => (
+            {growStages.map((item) => (
               <div
-                key={r.id}
+                key={item.id}
                 className="pilot2-card"
                 style={{
                   padding: '1.75rem',
@@ -266,26 +255,33 @@ export const TrustProofSectionPilot2: React.FC = () => {
                 }}
               >
                 <div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
-                    <div style={{ display: 'flex', gap: '2px' }}>
-                      {[1, 2, 3, 4, 5].map((i) => (
-                        <Star key={i} size={14} fill="#D97706" color="#D97706" />
-                      ))}
-                    </div>
-                    <span style={{ fontSize: '0.75rem', color: '#6B7C72' }}>{r.date}</span>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.85rem', gap: '0.5rem', flexWrap: 'wrap' }}>
+                    <span
+                      style={{
+                        fontSize: '0.75rem',
+                        fontWeight: 800,
+                        color: '#1B4332',
+                        background: '#EEF4EE',
+                        padding: '3px 9px',
+                        borderRadius: '6px',
+                      }}
+                    >
+                      {item.timeframe}
+                    </span>
                   </div>
 
-                  <p style={{ fontSize: '0.925rem', color: '#37473E', lineHeight: 1.6, fontStyle: 'italic', marginBottom: '1.25rem' }}>
-                    "{r.quote}"
+                  <h4 style={{ fontSize: '1.1rem', fontWeight: 800, color: '#142018', marginBottom: '0.5rem' }}>
+                    {item.stage}
+                  </h4>
+
+                  <p style={{ fontSize: '0.9rem', color: '#37473E', lineHeight: 1.6, marginBottom: '1.25rem' }}>
+                    {item.detail}
                   </p>
                 </div>
 
-                <div style={{ borderTop: '1px solid rgba(27, 67, 50, 0.08)', paddingTop: '1rem' }}>
-                  <div style={{ fontWeight: 800, color: '#142018', fontSize: '0.95rem' }}>
-                    {r.author}
-                  </div>
-                  <div style={{ fontSize: '0.8rem', color: '#2D6A4F', fontWeight: 600 }}>
-                    {r.location} • {r.tower}
+                <div style={{ borderTop: '1px solid rgba(27, 67, 50, 0.08)', paddingTop: '0.85rem' }}>
+                  <div style={{ fontSize: '0.8rem', color: '#2D6A4F', fontWeight: 700 }}>
+                    {item.cropExample}
                   </div>
                 </div>
               </div>

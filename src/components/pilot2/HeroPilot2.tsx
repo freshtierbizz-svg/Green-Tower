@@ -63,7 +63,7 @@ export const HeroPilot2: React.FC<HeroPilot2Props> = ({
                 lineHeight: 1.35,
               }}
             >
-              "Fresh food doesn't need a huge backyard."
+              Grow herbs and salad greens on your balcony with a vertical garden tower.
             </p>
 
             <p
@@ -75,7 +75,7 @@ export const HeroPilot2: React.FC<HeroPilot2Props> = ({
                 maxWidth: '560px',
               }}
             >
-              Harvest crisp salad greens, herbs, and strawberries straight from your balcony, patio, or courtyard. The round 38L base measures <strong>53 cm in diameter (0.22 m²)</strong> and fits comfortably in a <strong>60 × 60 cm clear floor space</strong>.
+              Harvest crisp leafy greens, culinary herbs, and compact strawberries at home. The round 38L reservoir base measures <strong>53 cm in diameter (0.22 m²)</strong> and fits comfortably in a <strong>60 × 60 cm (0.36 m²) clear floor space</strong>.
             </p>
 
             {/* PRIMARY CTA BESIDE PRICING SUMMARY */}
@@ -248,6 +248,33 @@ export const HeroPilot2: React.FC<HeroPilot2Props> = ({
                 >
                   Balcony Harvest View
                 </button>
+              </div>
+
+              {/* DATED RECORD OF ONE REAL GROW NEXT TO THE PRODUCT PHOTO */}
+              <div
+                style={{
+                  marginTop: '0.85rem',
+                  padding: '0.85rem 1rem',
+                  borderRadius: '12px',
+                  background: '#F4F8F4',
+                  border: '1px solid #D4E3D6',
+                  fontSize: '0.8rem',
+                  color: '#27382F',
+                  lineHeight: 1.5,
+                }}
+              >
+                <div style={{ fontWeight: 800, color: '#1B4332', marginBottom: '0.25rem' }}>
+                  📋 Melbourne 7-Section Trial Log (12 Aug – 7 Oct 2026 · 8 Weeks)
+                </div>
+                <div>
+                  <strong>Planted:</strong> 12× Oakleaf & Butterhead lettuce, 8× Sweet Basil & Mint, 8× Bok Choy & Baby Spinach (from nursery starter plugs).
+                </div>
+                <div>
+                  <strong>Picked:</strong> First leaf harvest Day 18 (30 Aug); picked 3–4 times weekly through 7 Oct (~3.4 kg total fresh greens & herbs harvested).
+                </div>
+                <div>
+                  <strong>Running cost:</strong> ~A$24 total over 8 weeks (A$18 A+B nutrients & coco plugs + ~A$6 water & timed 15W DC pump electricity).
+                </div>
               </div>
             </div>
           </div>

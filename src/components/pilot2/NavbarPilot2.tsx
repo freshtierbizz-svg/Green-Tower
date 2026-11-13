@@ -47,7 +47,7 @@ export const NavbarPilot2: React.FC<NavbarPilot2Props> = ({
           <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem', flexWrap: 'wrap' }}>
             <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', color: '#A7F3D0', fontWeight: 600 }}>
               <Truck size={13} color="#34D399" />
-              Free Victoria Express Dispatch (24–48h)
+              Free Melbourne Metro Delivery (24–48h Dispatch)
             </span>
             <span className="announcement-secondary-item" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', color: '#D1D5DB' }}>
               <ShieldCheck size={13} color="#34D399" />

@@ -31,7 +31,7 @@ export const Footer: React.FC<FooterProps> = ({ onSelectView, onOpenCommercialTr
                 Ready to transform how you grow food?
               </h2>
               <p style={{ color: '#9CA3AF', fontSize: '0.95rem', lineHeight: 1.6 }}>
-                Whether you need a compact balcony tower for home or a full concierge pilot for your venue, AeroHarvest brings vertical soilless productivity directly to you.
+                Whether you need a compact balcony tower for home or a full concierge pilot for your venue, FreshTier brings vertical soilless productivity directly to you.
               </p>
             </div>
 
@@ -68,7 +68,7 @@ export const Footer: React.FC<FooterProps> = ({ onSelectView, onOpenCommercialTr
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem' }}>
               <Leaf size={20} color="#34D399" />
               <span style={{ fontSize: '1.2rem', fontWeight: '800', color: '#ffffff' }}>
-                AeroHarvest <span style={{ fontSize: '0.7rem', color: '#9CA3AF' }}>AUSTRALIA</span>
+                FreshTier <span style={{ fontSize: '0.7rem', color: '#9CA3AF' }}>AUSTRALIA</span>
               </span>
             </div>
             <p style={{ color: '#9CA3AF', fontSize: '0.85rem', lineHeight: '1.5', marginBottom: '0.75rem' }}>
@@ -130,7 +130,7 @@ export const Footer: React.FC<FooterProps> = ({ onSelectView, onOpenCommercialTr
             <strong>Australian Consumer Law Notice:</strong> {COMPLIANCE_STATEMENT.aclNotice}
           </p>
           <p>
-            © {new Date().getFullYear()} AeroHarvest Australia. All rights reserved. ABN:{' '}
+            © {new Date().getFullYear()} FreshTier Australia. All rights reserved. ABN:{' '}
             <a
               href={STORE_META.abnUrl}
               target="_blank"

@@ -136,7 +136,7 @@ export const FooterPilot2: React.FC<FooterPilot2Props> = ({
               </div>
               <div>
                 <span style={{ fontSize: '1.25rem', fontWeight: 800, color: '#FFFFFF', display: 'block', lineHeight: 1 }}>
-                  AeroHarvest
+                  FreshTier
                 </span>
                 <span style={{ fontSize: '0.65rem', fontWeight: 700, color: '#34D399', letterSpacing: '0.12em' }}>
                   AUSTRALIA
@@ -145,7 +145,7 @@ export const FooterPilot2: React.FC<FooterPilot2Props> = ({
             </div>
 
             <p style={{ fontSize: '0.875rem', color: '#9CA3AF', lineHeight: 1.6, marginBottom: '1.25rem' }}>
-              Vertical aeroponic systems engineered for Australian balconies, courtyards, and homes. Soilless, mud-free, and living food grown closer.
+              Vertical home growing systems engineered for Australian balconies, courtyards, and homes. Soilless, mud-free, and living food grown closer.
             </p>
 
             <div style={{ fontSize: '0.8rem', color: '#D1D5DB' }}>
@@ -156,7 +156,7 @@ export const FooterPilot2: React.FC<FooterPilot2Props> = ({
           {/* COL 2: STOREFRONT NAVIGATION */}
           <div>
             <h4 style={{ fontSize: '0.9rem', fontWeight: 800, color: '#FFFFFF', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '1.25rem' }}>
-              Explore AeroHarvest
+              Explore FreshTier
             </h4>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.65rem', fontSize: '0.9rem' }}>
               <a
@@ -248,11 +248,11 @@ export const FooterPilot2: React.FC<FooterPilot2Props> = ({
               </a>
 
               <a
-                href="mailto:hello@aeroharvest.com.au"
+                href="mailto:hello@freshtier.com.au"
                 style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#D1D5DB', textDecoration: 'none' }}
               >
                 <Mail size={15} color="#9CA3AF" />
-                <span>hello@aeroharvest.com.au</span>
+                <span>hello@freshtier.com.au</span>
               </a>
 
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#9CA3AF' }}>
@@ -279,10 +279,10 @@ export const FooterPilot2: React.FC<FooterPilot2Props> = ({
           }}
         >
           <p style={{ marginBottom: '0.75rem' }}>
-            <strong>Australian Consumer Law Notice:</strong> All AeroHarvest systems come with guarantees that cannot be excluded under the Australian Consumer Law (ACL). You are entitled to a replacement or refund for a major failure and compensation for any other reasonably foreseeable loss or damage. Covered by a 2-Year Australian Hardware Replacement Warranty.
+            <strong>Australian Consumer Law Notice:</strong> All FreshTier systems come with guarantees that cannot be excluded under the Australian Consumer Law (ACL). You are entitled to a replacement or refund for a major failure and compensation for any other reasonably foreseeable loss or damage. Covered by a 2-Year Australian Hardware Replacement Warranty.
           </p>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.5rem' }}>
-            <span>© 2026 AeroHarvest Australia. All rights reserved. Australian Owned & Operated.</span>
+            <span>© 2026 FreshTier Australia. All rights reserved. Australian Owned & Operated.</span>
             <span>
               Australian Business Number (ABN):{' '}
               <a

@@ -4,7 +4,7 @@ import { B2CTierOption, B2CPackageAddon, B2BOffer, NurseryItem } from '../types/
 export const ENABLE_B2B_SECTION = false;
 
 export const STORE_META = {
-  brandName: 'AeroHarvest',
+  brandName: 'FreshTier',
   countryTag: 'AUSTRALIA',
   headline: 'GROW UP. NOT OUT.',
   subheadline: 'Fresh food does not need a huge backyard.',
@@ -13,7 +13,7 @@ export const STORE_META = {
   b2cHeroCopy: 'Grow herbs, greens, microgreens, strawberries and other compact crops in just 0.22 m² of space. Harvest what you need, when you need it — from your balcony, patio, courtyard or backyard.',
   b2bHeroTitle: 'Your garnish shouldn\'t arrive in a plastic box.',
   b2bHeroCopy: 'Grow living herbs, microgreens and edible flowers directly in your venue and harvest them when your kitchen or bar actually needs them.',
-  contactEmail: 'hello@aeroharvest.com.au',
+  contactEmail: 'hello@freshtier.com.au',
   phone: '0432 777 813',
   abn: '30 783 236 188',
   abnUrl: 'https://abr.business.gov.au/ABN/View?abn=30783236188',
@@ -195,8 +195,8 @@ export const NURSERY_CATALOG: NurseryItem[] = [
 ];
 
 export const COMPLIANCE_STATEMENT = {
-  aclNotice: 'All AeroHarvest products come with guarantees that cannot be excluded under the Australian Consumer Law (ACL). You are entitled to a replacement or refund for a major failure and compensation for any other reasonably foreseeable loss or damage.',
-  electricalNotice: 'AeroHarvest growing systems utilize a certified low-voltage DC power architecture powered by an Australian-standard 240V AC to 24V/12V DC safety isolated adapter.',
+  aclNotice: 'All FreshTier products come with guarantees that cannot be excluded under the Australian Consumer Law (ACL). You are entitled to a replacement or refund for a major failure and compensation for any other reasonably foreseeable loss or damage.',
+  electricalNotice: 'FreshTier growing systems utilize a certified low-voltage DC power architecture powered by an Australian-standard 240V AC to 24V/12V DC safety isolated adapter.',
   disclaimerNotice: 'Yield, savings, and payback figures presented on this website are illustrative estimates based on typical home and hospitality usage patterns, proper plant care, and crop selection. Actual individual performance may vary.',
 };
 
@@ -204,7 +204,7 @@ export const B2B_INTEGRATION_CONFIG = {
   // Webhook endpoint (e.g. Zapier, Make, HubSpot, Klaviyo, Slack, or custom API)
   webhookUrl: (import.meta.env.VITE_B2B_WEBHOOK_URL as string) || '',
   // Direct notification email for commercial pilot applications
-  leadNotificationEmail: (import.meta.env.VITE_B2B_LEAD_EMAIL as string) || 'commercial@aeroharvest.com.au',
+  leadNotificationEmail: (import.meta.env.VITE_B2B_LEAD_EMAIL as string) || 'commercial@freshtier.com.au',
   // Enable browser local persistence so zero venue applications are lost
   enableLocalLeadBackup: true,
   // Simulated processing delay in ms for realistic loading UX

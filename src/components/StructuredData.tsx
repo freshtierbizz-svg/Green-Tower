@@ -7,7 +7,7 @@ export const StructuredData: React.FC = () => {
     "@type": "Product",
     "name": PRODUCT_CONFIG.name,
     "image": [
-      "https://aeroharvest.com.au/assets/aeroharvest-tower-hero.jpg"
+      "assets/real-tower-studio.png"
     ],
     "description": PRODUCT_CONFIG.tagline,
     "sku": PRODUCT_CONFIG.sku,
@@ -18,8 +18,8 @@ export const StructuredData: React.FC = () => {
     "offers": [
       {
         "@type": "Offer",
-        "name": "AeroHarvest Base Aeroponic System",
-        "url": "https://aeroharvest.com.au/#hardware",
+        "name": "FreshTier Base Vertical System",
+        "url": "https://freshtier.com.au/#hardware",
         "priceCurrency": PRODUCT_CONFIG.pricing.currency,
         "price": PRODUCT_CONFIG.pricing.baseAmountAUD.toFixed(2),
         "priceValidUntil": "2027-12-31",
@@ -27,13 +27,13 @@ export const StructuredData: React.FC = () => {
         "availability": "https://schema.org/InStock",
         "seller": {
           "@type": "Organization",
-          "name": "AeroHarvest Australia"
+          "name": "FreshTier Australia"
         }
       },
       {
         "@type": "Offer",
-        "name": "AeroHarvest Complete Growing Kit",
-        "url": "https://aeroharvest.com.au/#hardware",
+        "name": "FreshTier Complete Growing Kit",
+        "url": "https://freshtier.com.au/#hardware",
         "priceCurrency": PRODUCT_CONFIG.pricing.currency,
         "price": PRODUCT_CONFIG.pricing.kitAmountAUD.toFixed(2),
         "priceValidUntil": "2027-12-31",
@@ -41,7 +41,7 @@ export const StructuredData: React.FC = () => {
         "availability": "https://schema.org/InStock",
         "seller": {
           "@type": "Organization",
-          "name": "AeroHarvest Australia"
+          "name": "FreshTier Australia"
         }
       }
     ]

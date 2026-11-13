@@ -155,7 +155,7 @@ export const ConfiguratorPilot2: React.FC<ConfiguratorPilot2Props> = ({
               lineHeight: 1.15,
             }}
           >
-            Choose Your AeroHarvest Home System
+            Choose Your FreshTier Home System
           </h2>
 
           <p style={{ fontSize: '1.1rem', color: '#495B50', lineHeight: 1.6 }}>
@@ -637,7 +637,7 @@ export const ConfiguratorPilot2: React.FC<ConfiguratorPilot2Props> = ({
                         </div>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', color: '#1B4332', fontWeight: 600 }}>
                           <Check size={14} color="#1B4332" />
-                          <span>1L AeroHarvest Premium A+B Liquid Nutrients</span>
+                          <span>1L FreshTier Premium A+B Liquid Nutrients</span>
                         </div>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', color: '#1B4332', fontWeight: 600 }}>
                           <Check size={14} color="#1B4332" />

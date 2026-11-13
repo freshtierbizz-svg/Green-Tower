@@ -84,7 +84,7 @@ export const TechnologySciencePilot2: React.FC<TechnologySciencePilot2Props> = (
                 marginBottom: '1.75rem',
               }}
             >
-              Inspired by closed-loop soilless growing systems, AeroHarvest suspends bare plant roots inside the dark central column. A quiet low-voltage DC pump in the 38L base reservoir lifts nutrient-rich water to the top distributor cap, where it cascades evenly down the inside of the tower over each tier of roots before draining back into the basin to be reused.
+              Inspired by closed-loop soilless growing systems, FreshTier suspends bare plant roots inside the dark central column. A quiet low-voltage DC pump in the 38L base reservoir lifts nutrient-rich water to the top distributor cap, where it cascades evenly down the inside of the tower over each tier of roots before draining back into the basin to be reused.
             </p>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem', marginBottom: '2.5rem' }}>

@@ -14,8 +14,8 @@ export const FAQ: React.FC = () => {
   const faqItems: FAQItem[] = [
     {
       category: 'B2C Home Systems',
-      question: 'How much balcony space do I need for an AeroHarvest Home Tower?',
-      answer: 'The AeroHarvest tower has a compact 60 × 60 cm (0.22 m²) base footprint. It is engineered specifically for Australian apartment balconies, patios, townhouses, and small courtyards.'
+      question: 'How much balcony space do I need for a FreshTier Home Tower?',
+      answer: 'The FreshTier tower has a 53 cm base diameter (0.22 m²), and we recommend 60 × 60 cm of clear floor space around the unit. It is engineered specifically for Australian apartment balconies, patios, townhouses, and small courtyards.'
     },
     {
       category: 'B2C Home Systems',
@@ -45,7 +45,7 @@ export const FAQ: React.FC = () => {
     {
       category: 'Compliance & ACL Warranty',
       question: 'Is the electrical system safe for outdoor balcony & restaurant wet environments?',
-      answer: 'Yes. AeroHarvest utilizes a certified low-voltage 24V/12V DC power architecture. The submerged circulation pump operates on low-voltage DC power step-down isolated from Australian 240V mains.'
+      answer: 'Yes. FreshTier utilizes a certified low-voltage 24V/12V DC power architecture. The submerged circulation pump operates on low-voltage DC power step-down isolated from Australian 240V mains.'
     }
   ];
 
@@ -66,7 +66,7 @@ export const FAQ: React.FC = () => {
             Frequently Asked Questions
           </h2>
           <p style={{ color: '#9CA3AF', fontSize: '1.05rem' }}>
-            Everything you need to know about AeroHarvest home towers, commercial venue pilots, nursery subscriptions, and Australian Consumer Law guarantees.
+            Everything you need to know about FreshTier home towers, commercial venue pilots, nursery subscriptions, and Australian Consumer Law guarantees.
           </p>
         </div>
 
@@ -184,7 +184,7 @@ export const FAQ: React.FC = () => {
             </div>
           </div>
           <a
-            href="mailto:hello@aeroharvest.com.au"
+            href="mailto:hello@freshtier.com.au"
             style={{
               padding: '0.65rem 1.25rem',
               borderRadius: '10px',

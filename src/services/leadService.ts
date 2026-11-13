@@ -1,4 +1,4 @@
-// AeroHarvest Commercial Lead Ingestion Service
+// FreshTier Commercial Lead Ingestion Service
 // Governed by Master Project Governance Prompt v004 & Blueprint v002
 
 import { B2BIntakeFormData } from '../types/storefront';
@@ -21,7 +21,7 @@ export interface StoredB2BApplication {
   dispatchedToWebhook: boolean;
 }
 
-const STORAGE_KEY = 'aeroharvest_b2b_applications';
+const STORAGE_KEY = 'freshtier_b2b_applications';
 
 /**
  * Generates an authoritative commercial pilot application reference ID
@@ -42,11 +42,11 @@ export const buildApplicationMailtoUrl = (
 ): string => {
   const recipient = B2B_INTEGRATION_CONFIG.leadNotificationEmail;
   const subject = encodeURIComponent(
-    `[AeroHarvest Commercial Pilot] New Application: ${formData.businessName} (Ref: ${referenceId})`
+    `[FreshTier Commercial Pilot] New Application: ${formData.businessName} (Ref: ${referenceId})`
   );
 
   const bodyText = `
-AEROHARVEST AUSTRALIA — COMMERCIAL HOSPITALITY PILOT APPLICATION
+FRESHTIER AUSTRALIA — COMMERCIAL HOSPITALITY PILOT APPLICATION
 Reference ID: ${referenceId}
 Date: ${new Date().toLocaleString('en-AU', { timeZone: 'Australia/Melbourne' })}
 
@@ -73,7 +73,7 @@ Special Notes: ${formData.notes || 'None provided'}
 
 --- PILOT INCLUSIONS ---
 • 6-Week Concierge Pilot at $49.99/week AUD (GST inclusive)
-• 11-Tier Commercial AeroHarvest Tower (44 Grow Sites)
+• 11-Tier Commercial FreshTier Tower (44 Grow Sites)
 • Full-Spectrum LED 360° Light Kit & Automated Submersible Pump
 • Weekly Technician Maintenance & Plant Replenishment
 • Week 5 Decision: $799 Buyout or $49.99 Packdown
@@ -95,7 +95,7 @@ export const submitB2BApplication = async (
 
   // Structured payload suitable for Zapier, Make, HubSpot, Klaviyo, or Shopify Customer API
   const payload = {
-    source: 'AeroHarvest.com.au Commercial Onboarding',
+    source: 'FreshTier.com.au Commercial Onboarding',
     reference_id: referenceId,
     timestamp,
     business: {
@@ -123,7 +123,7 @@ export const submitB2BApplication = async (
       program: '6-Week Hospitality Concierge Pilot',
       weekly_rate_aud: 49.99,
       graduate_buyout_aud: 799.0,
-      tower_hardware: '11-Tier Commercial AeroHarvest Tower (44 Sites)',
+      tower_hardware: '11-Tier Commercial FreshTier Tower (44 Sites)',
     },
   };
 

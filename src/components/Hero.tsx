@@ -282,7 +282,7 @@ export const Hero: React.FC = () => {
             }}>
               <img
                 src={activeImage}
-                alt="AeroHarvest Vertical Aeroponic Garden Tower Photoshoot"
+                alt="FreshTier Vertical Aeroponic Garden Tower Photoshoot"
                 style={{
                   width: '100%',
                   height: '100%',

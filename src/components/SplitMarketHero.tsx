@@ -51,7 +51,7 @@ export const SplitMarketHero: React.FC<SplitMarketHeroProps> = ({
           </h1>
 
           <p style={{ fontSize: '1.2rem', color: '#9CA3AF', lineHeight: 1.6 }}>
-            AeroHarvest brings compact, vertical, soilless growing into Australian homes, balconies, patios, cafes, cocktail bars, and restaurants.
+            FreshTier brings compact, vertical, soilless growing into Australian homes, balconies, patios, cafes, cocktail bars, and restaurants.
           </p>
         </div>
 
@@ -202,7 +202,7 @@ export const SplitMarketHero: React.FC<SplitMarketHeroProps> = ({
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.25rem', flexWrap: 'wrap', gap: '1rem' }}>
             <div>
               <span className="badge-emerald" style={{ marginBottom: '0.35rem' }}>AUTHENTIC PRODUCT PHOTOGRAPHY</span>
-              <h3 style={{ fontSize: '1.5rem', fontWeight: 800, color: '#ffffff' }}>Real AeroHarvest Hardware & Harvest Views</h3>
+              <h3 style={{ fontSize: '1.5rem', fontWeight: 800, color: '#ffffff' }}>Real FreshTier Hardware & Harvest Views</h3>
             </div>
             <span style={{ fontSize: '0.85rem', color: '#9CA3AF' }}>Click thumbnails to inspect hardware details</span>
           </div>
@@ -211,7 +211,7 @@ export const SplitMarketHero: React.FC<SplitMarketHeroProps> = ({
             <div style={{ borderRadius: '16px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.15)', background: '#070d09' }}>
               <img
                 src={activeGalleryImg}
-                alt="AeroHarvest Tower View"
+                alt="FreshTier Tower View"
                 style={{ width: '100%', height: '360px', objectFit: 'cover' }}
               />
             </div>

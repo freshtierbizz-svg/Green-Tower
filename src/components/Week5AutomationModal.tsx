@@ -74,7 +74,7 @@ export const Week5AutomationModal: React.FC<Week5AutomationModalProps> = ({ isOp
         {/* EMAIL BODY MOCKUP */}
         <div style={{ background: '#121f17', padding: '2rem', borderRadius: '16px', border: '1px solid rgba(255,255,255,0.1)' }}>
           <span style={{ fontSize: '0.75rem', color: '#34D399', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-            AEROHARVEST HOSPITALITY PILOT JOURNEY
+            FRESHTIER HOSPITALITY PILOT JOURNEY
           </span>
           <h3 style={{ fontSize: '1.8rem', fontWeight: 800, color: '#ffffff', marginTop: '0.25rem', marginBottom: '0.75rem' }}>
             Your Hospitality Pilot Is Nearly Complete

@@ -176,8 +176,8 @@ export const HeroPilot2: React.FC<HeroPilot2Props> = ({
                   src={heroPhoto === 'tower' ? 'assets/real-tower-studio.png' : 'assets/balcony-person.jpg'}
                   alt={
                     heroPhoto === 'tower'
-                      ? 'Full AeroHarvest 7-Section Vertical Tower (135 cm tall, 53 cm base diameter)'
-                      : 'AeroHarvest Vertical Tower on an Apartment Balcony'
+                      ? 'Full FreshTier 7-Section Vertical Tower (135 cm tall, 53 cm base diameter)'
+                      : 'FreshTier Vertical Tower on an Apartment Balcony'
                   }
                   style={{
                     width: '100%',

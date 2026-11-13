@@ -55,7 +55,7 @@ export const LifestyleBenefitsPilot2: React.FC<LifestyleBenefitsPilot2Props> = (
                 lineHeight: 1.6,
               }}
             >
-              Traditional vegetable gardening requires acreage, time, and weeding soil. AeroHarvest turns vertical space into your daily living produce section.
+              Traditional vegetable gardening requires acreage, time, and weeding soil. FreshTier turns vertical space into your daily living produce section.
             </p>
           </div>
 
@@ -157,7 +157,7 @@ export const LifestyleBenefitsPilot2: React.FC<LifestyleBenefitsPilot2Props> = (
                   marginBottom: '1.5rem',
                 }}
               >
-                Supermarket herbs travel through commercial packing, cold freight, and distribution centers before sitting in plastic containers on store shelves. With AeroHarvest, your produce stays alive on the tower until the exact minute you snip it for lunch or dinner.
+                Supermarket herbs travel through commercial packing, cold freight, and distribution centers before sitting in plastic containers on store shelves. With FreshTier, your produce stays alive on the tower until the exact minute you snip it for lunch or dinner.
               </p>
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', marginBottom: '2rem' }}>
@@ -241,7 +241,7 @@ export const LifestyleBenefitsPilot2: React.FC<LifestyleBenefitsPilot2Props> = (
                   marginBottom: '1.5rem',
                 }}
               >
-                You don't need a suburban quarter-acre backyard. By building vertically instead of horizontally, AeroHarvest houses between 20 and 44 high-density plant sites on a 53 cm base diameter (0.22 m²), needing only 60 × 60 cm of recommended clear floor space.
+                You don't need a suburban quarter-acre backyard. By building vertically instead of horizontally, FreshTier houses between 20 and 44 high-density plant sites on a 53 cm base diameter (0.22 m²), needing only 60 × 60 cm of recommended clear floor space.
               </p>
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', marginBottom: '2rem' }}>
@@ -282,7 +282,7 @@ export const LifestyleBenefitsPilot2: React.FC<LifestyleBenefitsPilot2Props> = (
             >
               <img
                 src="assets/balcony-accurate.jpg"
-                alt="AeroHarvest vertical aeroponic tower on sunny Australian balcony timber deck"
+                alt="FreshTier vertical growing tower on sunny Australian balcony timber deck"
                 style={{
                   width: '100%',
                   height: '100%',

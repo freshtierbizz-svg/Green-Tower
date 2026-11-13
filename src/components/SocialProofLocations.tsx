@@ -162,7 +162,7 @@ export const SocialProofLocations: React.FC = () => {
             <div style={{ height: '100%', minHeight: '340px' }}>
               <img
                 src="assets/balcony-accurate.jpg"
-                alt="Happy Homeowner Harvesting Produce from AeroHarvest Tower on City Balcony"
+                alt="Happy Homeowner Harvesting Produce from FreshTier Tower on City Balcony"
                 style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
               />
             </div>
@@ -174,7 +174,7 @@ export const SocialProofLocations: React.FC = () => {
                 Engineered for Smaller Australian Backyards & Balconies
               </h3>
               <p style={{ color: '#9CA3AF', fontSize: '1.05rem', lineHeight: '1.65' }}>
-                As Australian block sizes shrink and grocery store prices soar, AeroHarvest transforms any <strong>0.22 m² corner</strong> (60cm x 60cm base) into a high-yielding organic produce hub. Enjoy fresh basil, strawberries, and salad greens harvested seconds before eating — with zero soil dirt, zero weeding, and zero supermarket plastic waste.
+                As Australian block sizes shrink and grocery store prices soar, FreshTier transforms any <strong>0.22 m² corner</strong> (60cm x 60cm base) into a high-yielding organic produce hub. Enjoy fresh basil, strawberries, and salad greens harvested seconds before eating — with zero soil dirt, zero weeding, and zero supermarket plastic waste.
               </p>
             </div>
           </div>

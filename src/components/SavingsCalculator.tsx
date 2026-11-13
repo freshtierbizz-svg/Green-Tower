@@ -34,7 +34,7 @@ export const SavingsCalculator: React.FC = () => {
             Calculate Your Annual Savings & ROI
           </h2>
           <p style={{ color: '#9CA3AF', fontSize: '1.1rem', lineHeight: '1.6' }}>
-            As supermarket produce prices continue to climb, growing your own organic herbs and leafy greens is the most effective way to beat food inflation. See how quickly an AeroHarvest tower pays for itself.
+            As supermarket produce prices continue to climb, growing your own organic herbs and leafy greens is the most effective way to beat food inflation. See how quickly an FreshTier tower pays for itself.
           </p>
         </div>
 
@@ -97,7 +97,7 @@ export const SavingsCalculator: React.FC = () => {
               <div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem' }}>
                   <label htmlFor="tower-count-slider" style={{ color: '#E2E8F0', fontWeight: 600, fontSize: '1rem' }}>
-                    AeroHarvest Towers Installed
+                    FreshTier Towers Installed
                   </label>
                   <span style={{ 
                     fontSize: '1.25rem', 
@@ -255,7 +255,7 @@ export const SavingsCalculator: React.FC = () => {
                     transition: 'transform 0.2s ease'
                   }}
                 >
-                  <ShieldCheck size={18} /> Reserve Your AeroHarvest Tower (From $299 AUD)
+                  <ShieldCheck size={18} /> Reserve Your FreshTier Tower (From $299 AUD)
                 </a>
               </div>
 

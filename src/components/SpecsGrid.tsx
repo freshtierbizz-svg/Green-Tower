@@ -21,7 +21,7 @@ export const SpecsGrid: React.FC = () => {
             What's Included vs. What You Provide
           </h2>
           <p style={{ color: '#9CA3AF', fontSize: '1.1rem' }}>
-            No hidden extras or unexpected surprises. Know exactly what comes inside your AeroHarvest shipment and what standard household items you need before starting.
+            No hidden extras or unexpected surprises. Know exactly what comes inside your FreshTier shipment and what standard household items you need before starting.
           </p>
         </div>
 
@@ -39,7 +39,7 @@ export const SpecsGrid: React.FC = () => {
                 <PackageCheck size={24} />
               </div>
               <div>
-                <h3 style={{ fontSize: '1.4rem' }}>What's In The AeroHarvest Box</h3>
+                <h3 style={{ fontSize: '1.4rem' }}>What's In The FreshTier Box</h3>
                 <span style={{ fontSize: '0.85rem', color: '#34D399' }}>Standard Base & Kit Shipments</span>
               </div>
             </div>
@@ -75,7 +75,7 @@ export const SpecsGrid: React.FC = () => {
               <div style={{ borderRadius: '8px', overflow: 'hidden', marginBottom: '1rem', border: '1px solid rgba(16, 185, 129, 0.3)' }}>
                 <img
                   src="assets/complete-kit.jpg"
-                  alt="AeroHarvest Complete Kit Studio Photoshoot Inclusions"
+                  alt="FreshTier Complete Kit Studio Photoshoot Inclusions"
                   style={{ width: '100%', height: '180px', objectFit: 'cover', display: 'block' }}
                 />
               </div>
@@ -141,7 +141,7 @@ export const SpecsGrid: React.FC = () => {
                 <HelpCircle size={16} /> Non-Negotiable Claim Truth Note
               </h4>
               <p style={{ fontSize: '0.8rem', color: '#9CA3AF', lineHeight: '1.5' }}>
-                Per AeroHarvest Claim Control governance: Monthly harvest yields and specific kWh energy draw are undergoing rigorous independent Australian climate testing. All unverified figures are tagged as <span className="badge-warning">{PRODUCT_CONFIG.placeholders.yield}</span> and <span className="badge-warning">{PRODUCT_CONFIG.placeholders.powerConsumption}</span> to ensure zero fabricated claims.
+                Per FreshTier Claim Control governance: Monthly harvest yields and specific kWh energy draw are undergoing rigorous independent Australian climate testing. All unverified figures are tagged as <span className="badge-warning">{PRODUCT_CONFIG.placeholders.yield}</span> and <span className="badge-warning">{PRODUCT_CONFIG.placeholders.powerConsumption}</span> to ensure zero fabricated claims.
               </p>
             </div>
           </div>

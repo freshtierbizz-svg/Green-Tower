@@ -134,7 +134,7 @@ export const NavbarPilot2: React.FC<NavbarPilot2Props> = ({
                   display: 'block',
                 }}
               >
-                AeroHarvest
+                FreshTier
               </span>
               <span
                 style={{

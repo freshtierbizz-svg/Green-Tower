@@ -1,4 +1,4 @@
-// AeroHarvest Single Source of Truth Product Configuration
+// FreshTier Single Source of Truth Product Configuration
 // Governed by Master Project Governance Prompt v004 & PRODUCT_TRUTH.md
 
 export interface TowerTierOption {
@@ -82,11 +82,11 @@ export interface ProductConfig {
 const env = typeof import.meta !== 'undefined' && import.meta.env ? import.meta.env : ({} as Record<string, string>);
 
 export const PRODUCT_CONFIG: ProductConfig = {
-  brand: "AeroHarvest",
-  sku: "AH-TOWER-V1-AU",
-  name: "AeroHarvest Modular Vertical Aeroponic System",
-  tagline: "Precision Controlled-Environment Aeroponic Hardware for Soilless Home Farming",
-  domain: "AeroHarvest.com.au",
+  brand: "FreshTier",
+  sku: "FT-TOWER-V1-AU",
+  name: "FreshTier Modular Vertical Growing System",
+  tagline: "Precision Controlled-Environment Vertical Hardware for Soilless Home Farming",
+  domain: "FreshTier.com.au",
   pricing: {
     baseAmountAUD: 349.00,
     kitAmountAUD: 449.00,
@@ -97,7 +97,7 @@ export const PRODUCT_CONFIG: ProductConfig = {
     {
       id: 'tier-5',
       name: '5-Section Compact Tower',
-      handle: 'aeroharvest-5-section-compact',
+      handle: 'freshtier-5-section-compact',
       sectionsCount: 5,
       growPotsCount: 20,
       height: '105 cm (1.05 m)',
@@ -110,7 +110,7 @@ export const PRODUCT_CONFIG: ProductConfig = {
     {
       id: 'tier-7',
       name: '7-Section Standard Tower (Most Popular)',
-      handle: 'aeroharvest-7-section-standard',
+      handle: 'freshtier-7-section-standard',
       sectionsCount: 7,
       growPotsCount: 28,
       height: '135 cm (1.35 m)',
@@ -123,7 +123,7 @@ export const PRODUCT_CONFIG: ProductConfig = {
     {
       id: 'tier-11',
       name: '11-Section Family Powerhouse Tower',
-      handle: 'aeroharvest-11-section-family',
+      handle: 'freshtier-11-section-family',
       sectionsCount: 11,
       growPotsCount: 44,
       height: '195 cm (1.95 m)',
@@ -151,13 +151,13 @@ export const PRODUCT_CONFIG: ProductConfig = {
     }
   },
   shopify: {
-    storeDomain: (env.VITE_SHOPIFY_STORE_DOMAIN as string) || "aeroharvest.myshopify.com",
+    storeDomain: (env.VITE_SHOPIFY_STORE_DOMAIN as string) || "freshtier.myshopify.com",
     storefrontAccessToken: (env.VITE_SHOPIFY_STOREFRONT_TOKEN as string) || "",
     productId: (env.VITE_SHOPIFY_PRODUCT_ID as string) || "[SHOPIFY_PRODUCT_ID_TBD]",
     kitProductId: (env.VITE_SHOPIFY_KIT_PRODUCT_ID as string) || "[SHOPIFY_KIT_PRODUCT_ID_TBD]",
     buyButtonScriptUrl: "https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js",
     enabled: env.VITE_SHOPIFY_BUY_BUTTON_ENABLED === 'true' || false,
-    accountUrl: "https://aeroharvest.myshopify.com/account",
+    accountUrl: "https://freshtier.myshopify.com/account",
   },
   specifications: {
     heightRange: "105 cm (5-Section) / 135 cm (7-Section) / 195 cm (11-Section)",
@@ -177,14 +177,14 @@ export const PRODUCT_CONFIG: ProductConfig = {
   },
   inclusions: {
     basePackage: [
-      "Modular Pure White ABS Aeroponic Tower Body (Choose 5, 7, or 11 Tier)",
+      "Modular Pure White ABS Vertical Tower Body (Choose 5, 7, or 11 Tier)",
       "38L Sealed Light Green Hydro-Reservoir Base with Clear Water Gauge",
       "Low-Voltage Energy-Efficient Submersible DC Water Pump",
       "Programmable Digital Automated Timer Switch",
       "20 to 44 Reusable Food-Grade Net Grow Cups",
     ],
     completeKitAddons: [
-      "AeroHarvest Premium A/B Organic Liquid Nutrients (1L Pack)",
+      "FreshTier Premium A/B Organic Liquid Nutrients (1L Pack)",
       "50x Coco-Coir Organic Seedling Plugs",
       "Seedling Propagation Nursery Tray + Humidity Dome",
       "Precision Water pH Testing Kit + Adjuster Solution",

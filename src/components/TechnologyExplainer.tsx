@@ -132,7 +132,7 @@ export const TechnologyExplainer: React.FC = () => {
             borderTop: '1px solid rgba(148, 163, 184, 0.15)',
             paddingTop: '0.85rem'
           }}>
-            *Compliance Disclosure: NASA pioneered and published foundational research on aeroponic plant growth physics for space missions (Spinoff Report CLM-013). AeroHarvest utilizes these verified aeroponic engineering principles for residential consumer gardens.
+            *Compliance Disclosure: NASA pioneered and published foundational research on aeroponic plant growth physics for space missions (Spinoff Report CLM-013). FreshTier utilizes these verified aeroponic engineering principles for residential consumer gardens.
           </div>
         </div>
 

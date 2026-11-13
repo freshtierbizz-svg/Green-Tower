@@ -17,10 +17,10 @@ export const CompetitorComparison: React.FC = () => {
             Competitive Hardware Benchmarking
           </span>
           <h2 style={{ fontSize: '2.5rem', marginBottom: '1.25rem' }}>
-            Why Choose AeroHarvest?
+            Why Choose FreshTier?
           </h2>
           <p style={{ color: '#9CA3AF', fontSize: '1.1rem' }}>
-            Compare AeroHarvest aeroponic technology against traditional soil gardening and budget PVC drip kits.
+            Compare FreshTier aeroponic technology against traditional soil gardening and budget PVC drip kits.
           </p>
         </div>
 
@@ -30,7 +30,7 @@ export const CompetitorComparison: React.FC = () => {
               <tr>
                 <th style={{ width: '28%' }}>Feature / Capability</th>
                 <th style={{ width: '24%', background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.25) 0%, rgba(5, 150, 105, 0.12) 100%)', color: '#34D399' }}>
-                  AeroHarvest ($349 AUD)
+                  FreshTier ($349 AUD)
                 </th>
                 <th style={{ width: '24%' }}>Airgarden ($799 AUD)</th>
                 <th style={{ width: '24%' }}>Cheap PVC Imports ($150 AUD)</th>

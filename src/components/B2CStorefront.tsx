@@ -106,7 +106,7 @@ export const B2CStorefront: React.FC<B2CStorefrontProps> = ({ onSelectView }) =>
               Why Grow Food At Home?
             </h2>
             <p style={{ color: '#9CA3AF' }}>
-              Traditional vegetable gardening requires land, time, and weeding. AeroHarvest turns vertical space into your daily living produce section.
+              Traditional vegetable gardening requires land, time, and weeding. FreshTier turns vertical space into your daily living produce section.
             </p>
           </div>
 
@@ -123,7 +123,7 @@ export const B2CStorefront: React.FC<B2CStorefrontProps> = ({ onSelectView }) =>
                 "Your balcony counts."
               </p>
               <p style={{ fontSize: '0.925rem', color: '#9CA3AF', lineHeight: 1.6 }}>
-                You don't need a quarter-acre backyard to grow fresh food. AeroHarvest turns a compact 60 × 60 cm footprint into a vertical growing tower for balconies, patios, townhouses, and courtyards.
+                You don't need a quarter-acre backyard to grow fresh food. FreshTier turns a compact 60 × 60 cm footprint into a vertical growing tower for balconies, patios, townhouses, and courtyards.
               </p>
             </div>
 
@@ -155,7 +155,7 @@ export const B2CStorefront: React.FC<B2CStorefrontProps> = ({ onSelectView }) =>
                 "Harvest what you're actually going to eat."
               </p>
               <p style={{ fontSize: '0.925rem', color: '#9CA3AF', lineHeight: 1.6 }}>
-                You buy a plastic container of spinach, use a little, and throw the slimy rest away 4 days later. With AeroHarvest, your produce stays alive in the tower until the minute you cook.
+                You buy a plastic container of spinach, use a little, and throw the slimy rest away 4 days later. With FreshTier, your produce stays alive in the tower until the minute you cook.
               </p>
             </div>
 
@@ -171,7 +171,7 @@ export const B2CStorefront: React.FC<B2CStorefrontProps> = ({ onSelectView }) =>
                 "From plant to plate in minutes."
               </p>
               <p style={{ fontSize: '0.925rem', color: '#9CA3AF', lineHeight: 1.6 }}>
-                Supermarket produce travels: Farm → Processing → Cold Freight → Distribution → Store → Fridge → Plate. AeroHarvest is simply: Grow → Harvest → Eat. Peak aroma and crisp texture.
+                Supermarket produce travels: Farm → Processing → Cold Freight → Distribution → Store → Fridge → Plate. FreshTier is simply: Grow → Harvest → Eat. Peak aroma and crisp texture.
               </p>
             </div>
 
@@ -321,7 +321,7 @@ export const B2CStorefront: React.FC<B2CStorefrontProps> = ({ onSelectView }) =>
           <div style={{ textAlign: 'center', maxWidth: '750px', margin: '0 auto 3rem auto' }}>
             <span className="badge-emerald" style={{ marginBottom: '0.75rem' }}>CONFIGURE YOUR SYSTEM</span>
             <h2 style={{ fontSize: '2.5rem', fontWeight: 800, marginBottom: '0.5rem' }}>
-              Choose Your AeroHarvest Home System
+              Choose Your FreshTier Home System
             </h2>
             <p style={{ color: '#9CA3AF' }}>
               Select your tower height, active plant capacity, and package inclusion level. All prices GST inclusive with Australian Consumer Law guarantee.
@@ -344,7 +344,7 @@ export const B2CStorefront: React.FC<B2CStorefrontProps> = ({ onSelectView }) =>
               }}>
                 <img
                   src={activeConfigImg}
-                  alt="AeroHarvest Tower View"
+                  alt="FreshTier Tower View"
                   style={{ width: '100%', height: '340px', objectFit: 'contain', padding: '0.75rem' }}
                 />
                 <div style={{
@@ -909,7 +909,7 @@ export const B2CStorefront: React.FC<B2CStorefrontProps> = ({ onSelectView }) =>
               Engineered For Lifelong Home Growing
             </h2>
             <p style={{ color: '#9CA3AF' }}>
-              No flimsy plastic pots or dangerous wiring. AeroHarvest hardware is built with food-grade UV-stabilized polymer materials designed for Australian weather conditions.
+              No flimsy plastic pots or dangerous wiring. FreshTier hardware is built with food-grade UV-stabilized polymer materials designed for Australian weather conditions.
             </p>
           </div>
 
@@ -963,7 +963,7 @@ export const B2CStorefront: React.FC<B2CStorefrontProps> = ({ onSelectView }) =>
                 </p>
 
                 <p style={{ fontSize: '1.05rem', color: '#D1D5DB', lineHeight: 1.7, marginBottom: '1.5rem' }}>
-                  AeroHarvest does not claim to be space station hardware. Instead, it adapts closed-loop vertical growing for home use: a low-voltage pump lifts nutrient-rich water to the top cap so it cascades down the internal column over bare roots suspended in air, delivering water, minerals, and oxygen in a compact 53 cm base diameter.
+                  FreshTier does not claim to be space station hardware. Instead, it adapts closed-loop vertical growing for home use: a low-voltage pump lifts nutrient-rich water to the top cap so it cascades down the internal column over bare roots suspended in air, delivering water, minerals, and oxygen in a compact 53 cm base diameter.
                 </p>
 
                 <div style={{ padding: '1.25rem 1.5rem', background: 'rgba(0,0,0,0.4)', borderRadius: '12px', borderLeft: '4px solid #34D399', fontSize: '1.1rem', fontWeight: 600, color: '#A7F3D0' }}>

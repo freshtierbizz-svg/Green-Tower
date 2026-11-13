@@ -40,7 +40,7 @@ export const SeedlingNursery: React.FC = () => {
         <div style={{ textAlign: 'center', maxWidth: '800px', margin: '0 auto 3rem auto' }}>
           <div className="badge-emerald" style={{ marginBottom: '1rem' }}>
             <Leaf size={14} />
-            <span>AEROHARVEST NURSERY REPLENISHMENT</span>
+            <span>FRESHTIER NURSERY REPLENISHMENT</span>
           </div>
 
           <h1 style={{ fontSize: '3rem', fontWeight: 800, lineHeight: 1.15, marginBottom: '0.75rem' }}>

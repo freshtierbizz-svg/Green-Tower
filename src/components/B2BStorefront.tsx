@@ -34,7 +34,7 @@ export const B2BStorefront: React.FC<B2BStorefrontProps> = ({
           </p>
 
           <p style={{ fontSize: '1.05rem', color: '#9CA3AF', lineHeight: 1.6, marginBottom: '2rem' }}>
-            Turn part of your venue into a living ingredient inventory. AeroHarvest brings living herbs, microgreens, and edible flowers directly into cafes, cocktail bars, restaurants, and hotels across Australia.
+            Turn part of your venue into a living ingredient inventory. FreshTier brings living herbs, microgreens, and edible flowers directly into cafes, cocktail bars, restaurants, and hotels across Australia.
           </p>
 
           <div style={{ display: 'flex', justifyContent: 'center', gap: '1.5rem', flexWrap: 'wrap' }}>
@@ -112,11 +112,11 @@ export const B2BStorefront: React.FC<B2BStorefrontProps> = ({
             </div>
           </div>
 
-          {/* AEROHARVEST SOLUTION */}
+          {/* FRESHTIER SOLUTION */}
           <div className="glass-panel" style={{ padding: '2rem', borderRadius: '20px', background: 'linear-gradient(135deg, rgba(26, 46, 34, 0.95) 0%, rgba(15, 25, 18, 0.9) 100%)', border: '1px solid rgba(52, 211, 153, 0.4)' }}>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1.5rem' }}>
               <div>
-                <span className="badge-emerald" style={{ marginBottom: '0.5rem' }}>THE AEROHARVEST SOLUTION</span>
+                <span className="badge-emerald" style={{ marginBottom: '0.5rem' }}>THE FRESHTIER SOLUTION</span>
                 <h3 style={{ fontSize: '1.8rem', fontWeight: 800, color: '#ffffff' }}>Your Living Ingredient Inventory</h3>
                 <p style={{ color: '#D1D5DB', fontSize: '0.95rem', marginTop: '0.35rem' }}>
                   Keep plants alive inside your bar or kitchen. Bartenders & chefs harvest exact leaves required on demand.
@@ -145,7 +145,7 @@ export const B2BStorefront: React.FC<B2BStorefrontProps> = ({
             <div>
               <span className="badge-emerald" style={{ marginBottom: '1rem', color: '#FBBF24', borderColor: 'rgba(251, 191, 36, 0.4)' }}>COMMERCIAL TOWER SPECIFICATIONS</span>
               <h2 style={{ fontSize: '2.5rem', fontWeight: 800, marginBottom: '1rem' }}>
-                11-Tier Commercial AeroHarvest Tower
+                11-Tier Commercial FreshTier Tower
               </h2>
               <p style={{ fontSize: '1rem', color: '#9CA3AF', lineHeight: 1.6, marginBottom: '1.5rem' }}>
                 Specifically designed for high-turnover venue environments. Compact 60 × 60 cm footprint with 44 active growing sites and heavy-duty mobility casters.
@@ -189,7 +189,7 @@ export const B2BStorefront: React.FC<B2BStorefrontProps> = ({
               <div className="glass-panel" style={{ padding: '0.75rem', borderRadius: '20px' }}>
                 <img
                   src="assets/real-tower-farm.jpg"
-                  alt="AeroHarvest Commercial Farm Harvest"
+                  alt="FreshTier Commercial Farm Harvest"
                   style={{ width: '100%', height: '380px', objectFit: 'cover', borderRadius: '16px', border: '1px solid rgba(251, 191, 36, 0.3)' }}
                 />
               </div>

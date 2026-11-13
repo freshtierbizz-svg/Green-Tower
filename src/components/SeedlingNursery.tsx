@@ -1,13 +1,19 @@
 import React, { useState } from 'react';
-import { NURSERY_CATALOG } from '../config/storefrontConfig';
+import { NURSERY_CATALOG, STORE_META } from '../config/storefrontConfig';
 import { NurseryItem } from '../types/storefront';
 import { buildNurseryCheckoutUrl } from '../config/product.config';
-import { Leaf, RefreshCw, ShoppingCart, CheckCircle2, ExternalLink, X } from 'lucide-react';
+import { Leaf, RefreshCw, ShoppingCart, CheckCircle2, ArrowRight, X } from 'lucide-react';
 
 export const SeedlingNursery: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [subscriptionMode, setSubscriptionMode] = useState<boolean>(true);
-  const [addedItem, setAddedItem] = useState<{ name: string; price: number; isSub: boolean; checkoutUrl: string } | null>(null);
+  const [addedItem, setAddedItem] = useState<{ name: string; price: number; isSub: boolean; checkoutUrl: string; isLive: boolean } | null>(null);
+  const [orderSubmitted, setOrderSubmitted] = useState<boolean>(false);
+  const [orderRef, setOrderRef] = useState<string>('');
+  const [customerName, setCustomerName] = useState<string>('');
+  const [customerEmail, setCustomerEmail] = useState<string>('');
+  const [customerPhone, setCustomerPhone] = useState<string>('');
+  const [customerPostcode, setCustomerPostcode] = useState<string>('');
 
   const categories = [
     'All',
@@ -182,18 +188,24 @@ export const SeedlingNursery: React.FC = () => {
                         itemId: item.id,
                         isSubscription: subscriptionMode,
                       });
+                      if (checkout.isLive) {
+                        window.location.href = checkout.url;
+                        return;
+                      }
+                      setOrderSubmitted(false);
                       setAddedItem({
                         name: item.name,
                         price: finalPrice,
                         isSub: subscriptionMode,
                         checkoutUrl: checkout.url,
+                        isLive: checkout.isLive,
                       });
                     }}
                     className="btn-primary"
                     style={{ padding: '0.55rem 1.15rem', fontSize: '0.85rem' }}
                   >
                     <ShoppingCart size={15} />
-                    Add Pod Bundle
+                    Order Pod Bundle
                   </button>
                 </div>
               </div>
@@ -229,58 +241,146 @@ export const SeedlingNursery: React.FC = () => {
           </button>
         </div>
 
-        {/* FLOATING CART NOTIFICATION TOAST */}
+        {/* NURSERY ORDER / RESERVATION MODAL */}
         {addedItem && (
-          <div style={{
-            position: 'fixed',
-            bottom: '2rem',
-            right: '2rem',
-            zIndex: 1000,
-            background: '#15241b',
-            border: '1px solid #34D399',
-            borderRadius: '16px',
-            padding: '1.25rem 1.5rem',
-            boxShadow: '0 20px 40px rgba(0,0,0,0.8)',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '1.25rem',
-            maxWidth: '440px'
-          }}>
-            <div style={{ color: '#34D399' }}>
-              <CheckCircle2 size={28} />
-            </div>
-            <div style={{ flex: 1 }}>
-              <strong style={{ display: 'block', fontSize: '0.95rem', color: '#ffffff' }}>
-                Added To Cart
-              </strong>
-              <p style={{ fontSize: '0.85rem', color: '#9CA3AF', margin: '0.2rem 0 0.5rem 0' }}>
-                {addedItem.name} — ${addedItem.price.toFixed(2)} AUD {addedItem.isSub ? '(15% Subscription)' : '(One-off)'}
-              </p>
-              <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center' }}>
-                <a
-                  href={addedItem.checkoutUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="btn-primary"
-                  style={{ padding: '0.4rem 0.9rem', fontSize: '0.8rem', display: 'inline-flex', alignItems: 'center', gap: '0.35rem' }}
-                >
-                  Checkout in Shopify
-                  <ExternalLink size={12} />
-                </a>
-                <button
-                  onClick={() => setAddedItem(null)}
-                  style={{ background: 'transparent', border: 'none', color: '#9CA3AF', fontSize: '0.8rem', cursor: 'pointer' }}
-                >
-                  Continue Browsing
-                </button>
+          <div
+            role="dialog"
+            aria-modal="true"
+            style={{
+              position: 'fixed',
+              inset: 0,
+              zIndex: 9999,
+              background: 'rgba(11, 27, 19, 0.78)',
+              backdropFilter: 'blur(6px)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              padding: '1rem',
+            }}
+          >
+            <div style={{
+              background: '#FFFFFF',
+              color: '#142018',
+              borderRadius: '20px',
+              padding: '1.75rem',
+              maxWidth: '480px',
+              width: '100%',
+              position: 'relative',
+              boxShadow: '0 25px 50px rgba(0,0,0,0.5)',
+            }}>
+              <button
+                type="button"
+                onClick={() => setAddedItem(null)}
+                style={{ position: 'absolute', top: '1rem', right: '1rem', background: '#EEF4EE', border: 'none', borderRadius: '50%', width: '32px', height: '32px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+              >
+                <X size={16} />
+              </button>
+
+              <h3 style={{ fontSize: '1.35rem', fontWeight: 800, marginBottom: '0.5rem', color: '#142018' }}>
+                {orderSubmitted ? 'Nursery Order Received' : 'Order Pre-Rooted Seedling Pods'}
+              </h3>
+
+              <div style={{ background: '#F4F8F4', border: '1px solid #D4E3D6', borderRadius: '10px', padding: '0.85rem 1rem', marginBottom: '1rem', fontSize: '0.88rem' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', fontWeight: 700 }}>
+                  <span>{addedItem.name}</span>
+                  <span>A${addedItem.price.toFixed(2)} AUD</span>
+                </div>
+                <div style={{ fontSize: '0.78rem', color: '#2D6A4F', marginTop: '0.2rem' }}>
+                  {addedItem.isSub ? 'Monthly Subscription (15% Auto-Refill Discount Applied)' : 'One-Off Nursery Dispatch'}
+                </div>
               </div>
+
+              {!orderSubmitted ? (
+                <form
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    const ref = `FT-NUR-${Date.now().toString().slice(-6)}`;
+                    setOrderRef(ref);
+                    try {
+                      const existing = JSON.parse(localStorage.getItem('freshtier_nursery_orders') || '[]');
+                      localStorage.setItem(
+                        'freshtier_nursery_orders',
+                        JSON.stringify([
+                          {
+                            referenceId: ref,
+                            createdAt: new Date().toISOString(),
+                            bundle: addedItem.name,
+                            priceAUD: addedItem.price,
+                            subscription: addedItem.isSub,
+                            customerName,
+                            customerEmail,
+                            customerPhone,
+                            customerPostcode,
+                          },
+                          ...existing,
+                        ])
+                      );
+                    } catch {
+                      // ignore storage error
+                    }
+                    setOrderSubmitted(true);
+                  }}
+                  style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}
+                >
+                  <input
+                    type="text"
+                    required
+                    placeholder="Full Name *"
+                    value={customerName}
+                    onChange={(e) => setCustomerName(e.target.value)}
+                    style={{ width: '100%', padding: '0.65rem 0.85rem', borderRadius: '8px', border: '1px solid #CBD5E1', fontSize: '0.9rem' }}
+                  />
+                  <input
+                    type="email"
+                    required
+                    placeholder="Email Address *"
+                    value={customerEmail}
+                    onChange={(e) => setCustomerEmail(e.target.value)}
+                    style={{ width: '100%', padding: '0.65rem 0.85rem', borderRadius: '8px', border: '1px solid #CBD5E1', fontSize: '0.9rem' }}
+                  />
+                  <input
+                    type="tel"
+                    required
+                    placeholder="Mobile Phone *"
+                    value={customerPhone}
+                    onChange={(e) => setCustomerPhone(e.target.value)}
+                    style={{ width: '100%', padding: '0.65rem 0.85rem', borderRadius: '8px', border: '1px solid #CBD5E1', fontSize: '0.9rem' }}
+                  />
+                  <input
+                    type="text"
+                    required
+                    placeholder="Delivery Suburb & Postcode *"
+                    value={customerPostcode}
+                    onChange={(e) => setCustomerPostcode(e.target.value)}
+                    style={{ width: '100%', padding: '0.65rem 0.85rem', borderRadius: '8px', border: '1px solid #CBD5E1', fontSize: '0.9rem' }}
+                  />
+                  <button type="submit" className="pilot2-btn-primary" style={{ width: '100%', padding: '0.85rem', borderRadius: '10px', fontSize: '0.95rem' }}>
+                    <span>Submit Seedling Order (A${addedItem.price.toFixed(2)})</span>
+                    <ArrowRight size={15} />
+                  </button>
+                </form>
+              ) : (
+                <div style={{ fontSize: '0.9rem', color: '#27382F', lineHeight: 1.55 }}>
+                  <p style={{ marginBottom: '0.75rem' }}>
+                    Thank you, <strong>{customerName}</strong>! Your nursery order reference is <strong>{orderRef}</strong>. Our Melbourne nursery team will confirm your dispatch window to <strong>{customerEmail}</strong>.
+                  </p>
+                  <div style={{ display: 'flex', gap: '0.6rem' }}>
+                    <a
+                      href={`mailto:${STORE_META.contactEmail}?subject=${encodeURIComponent(`FreshTier Nursery Order ${orderRef} — ${addedItem.name}`)}&body=${encodeURIComponent(
+                        `Reference: ${orderRef}\nBundle: ${addedItem.name} (A$${addedItem.price.toFixed(2)})\nPlan: ${addedItem.isSub ? 'Monthly Subscription (15% Off)' : 'One-off'}\nName: ${customerName}\nPhone: ${customerPhone}\nEmail: ${customerEmail}\nPostcode: ${customerPostcode}`
+                      )}`}
+                      className="pilot2-btn-primary"
+                      style={{ textDecoration: 'none', flex: 1, textAlign: 'center', fontSize: '0.85rem' }}
+                    >
+                      Email Copy to {STORE_META.contactEmail}
+                    </a>
+                    <button type="button" onClick={() => setAddedItem(null)} className="pilot2-btn-secondary">
+                      Close
+                    </button>
+                  </div>
+                </div>
+              )}
             </div>
-            <button
-              onClick={() => setAddedItem(null)}
-              style={{ background: 'transparent', border: 'none', color: '#9CA3AF', cursor: 'pointer', padding: '0.25rem' }}
-            >
-              <X size={18} />
-            </button>
           </div>
         )}
       </div>

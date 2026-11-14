@@ -2,7 +2,7 @@ import React from 'react';
 import {
   ShieldCheck,
   Truck,
-  PhoneCall,
+  Mail,
   CheckCircle2,
   Clock,
   Sparkles,
@@ -173,7 +173,7 @@ export const TrustProofSectionPilot2: React.FC = () => {
                 marginBottom: '1.25rem',
               }}
             >
-              <PhoneCall size={24} />
+              <Mail size={24} />
             </div>
 
             <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: '#142018', marginBottom: '0.5rem' }}>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { ActiveView } from '../../types/storefront';
 import { ENABLE_B2B_SECTION } from '../../config/storefrontConfig';
-import { Sprout, Phone, Mail, Clock, MapPin, ShieldCheck, Building2, ArrowRight } from 'lucide-react';
+import { Sprout, Mail, Clock, MapPin, Building2, ArrowRight } from 'lucide-react';
 
 interface FooterPilot2Props {
   onSelectView: (view: ActiveView) => void;
@@ -233,12 +233,12 @@ export const FooterPilot2: React.FC<FooterPilot2Props> = ({
             </div>
           )}
 
-          {/* COL 4: CONTACT & STORE POLICIES */}
+          {/* COL 4: SUPPORT & DISPATCH */}
           <div>
             <h4 style={{ fontSize: '0.9rem', fontWeight: 800, color: '#FFFFFF', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '1.25rem' }}>
-              Support & Legal Policies
+              Australian Support
             </h4>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', fontSize: '0.875rem', marginBottom: '1.25rem' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', fontSize: '0.875rem' }}>
               <a
                 href="mailto:hello@freshtier.com.au"
                 style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#34D399', fontWeight: 700, textDecoration: 'none' }}
@@ -257,33 +257,39 @@ export const FooterPilot2: React.FC<FooterPilot2Props> = ({
                 <span>Melbourne Warehouse Distribution</span>
               </div>
             </div>
+          </div>
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', fontSize: '0.84rem', borderTop: '1px solid rgba(255, 255, 255, 0.08)', paddingTop: '1rem' }}>
+          {/* COL 5: LEGAL & STORE POLICIES */}
+          <div>
+            <h4 style={{ fontSize: '0.9rem', fontWeight: 800, color: '#FFFFFF', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '1.25rem' }}>
+              Legal & Store Policies
+            </h4>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.65rem', fontSize: '0.9rem' }}>
               <button
                 type="button"
                 onClick={() => onSelectView('terms')}
-                style={{ textAlign: 'left', color: '#D1D5DB', background: 'none', border: 'none', padding: 0, cursor: 'pointer', fontSize: '0.84rem' }}
+                style={{ textAlign: 'left', color: '#D1D5DB', background: 'none', border: 'none', padding: 0, cursor: 'pointer', fontSize: '0.9rem' }}
               >
-                Terms of Service
+                Terms & Conditions (T&Cs)
               </button>
               <button
                 type="button"
                 onClick={() => onSelectView('privacy')}
-                style={{ textAlign: 'left', color: '#D1D5DB', background: 'none', border: 'none', padding: 0, cursor: 'pointer', fontSize: '0.84rem' }}
+                style={{ textAlign: 'left', color: '#D1D5DB', background: 'none', border: 'none', padding: 0, cursor: 'pointer', fontSize: '0.9rem' }}
               >
-                Privacy Policy (APPs)
+                Privacy Policy
               </button>
               <button
                 type="button"
                 onClick={() => onSelectView('refunds')}
-                style={{ textAlign: 'left', color: '#D1D5DB', background: 'none', border: 'none', padding: 0, cursor: 'pointer', fontSize: '0.84rem' }}
+                style={{ textAlign: 'left', color: '#D1D5DB', background: 'none', border: 'none', padding: 0, cursor: 'pointer', fontSize: '0.9rem' }}
               >
                 Refund & 2-Year Warranty Policy
               </button>
               <button
                 type="button"
                 onClick={() => onSelectView('shipping')}
-                style={{ textAlign: 'left', color: '#D1D5DB', background: 'none', border: 'none', padding: 0, cursor: 'pointer', fontSize: '0.84rem' }}
+                style={{ textAlign: 'left', color: '#D1D5DB', background: 'none', border: 'none', padding: 0, cursor: 'pointer', fontSize: '0.9rem' }}
               >
                 Shipping & Dispatch Policy
               </button>

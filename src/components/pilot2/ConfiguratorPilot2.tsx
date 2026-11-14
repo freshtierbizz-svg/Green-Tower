@@ -1176,7 +1176,7 @@ export const ConfiguratorPilot2: React.FC<ConfiguratorPilot2Props> = ({
                   Thank you, <strong>{customerName}</strong>! Your order reference is <strong>{orderReference}</strong> for <strong>A${grandTotal} AUD</strong> ({customerPostcode}).
                 </p>
                 <p style={{ marginBottom: '1rem' }}>
-                  We have recorded your configuration and will email your invoice and courier dispatch confirmation to <strong>{customerEmail}</strong>. You can also send a copy directly via your email client below or call our Melbourne team on <strong>{STORE_META.phone}</strong>.
+                  We have recorded your configuration and will email your invoice and courier dispatch confirmation to <strong>{customerEmail}</strong>. You can also send a copy directly via your email client below.
                 </p>
                 <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
                   <a

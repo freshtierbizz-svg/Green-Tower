@@ -9,7 +9,7 @@ interface HeroPilot2Props {
 export const HeroPilot2: React.FC<HeroPilot2Props> = ({
   onScrollToConfigurator,
 }) => {
-  const [heroPhoto, setHeroPhoto] = useState<'tower' | 'balcony'>('tower');
+  const [heroPhoto, setHeroPhoto] = useState<'tower' | 'balcony'>('balcony');
 
   return (
     <section
@@ -207,7 +207,7 @@ export const HeroPilot2: React.FC<HeroPilot2Props> = ({
                 </div>
               </div>
 
-              {/* VIEW SWITCHER PILLS SO BOTH FULL TOWER & BALCONY SCENE ARE CLEAR */}
+              {/* VIEW SWITCHER PILLS SO BOTH BALCONY SCENE & FULL TOWER ARE CLEAR */}
               <div
                 style={{
                   display: 'grid',
@@ -216,22 +216,6 @@ export const HeroPilot2: React.FC<HeroPilot2Props> = ({
                   marginTop: '0.75rem',
                 }}
               >
-                <button
-                  type="button"
-                  onClick={() => setHeroPhoto('tower')}
-                  style={{
-                    padding: '0.55rem 0.75rem',
-                    borderRadius: '10px',
-                    fontSize: '0.82rem',
-                    fontWeight: 700,
-                    border: heroPhoto === 'tower' ? '2px solid #1B4332' : '1px solid rgba(27, 67, 50, 0.15)',
-                    background: heroPhoto === 'tower' ? '#EEF4EE' : '#FFFFFF',
-                    color: '#142018',
-                    cursor: 'pointer',
-                  }}
-                >
-                  Full Tower View (135 cm)
-                </button>
                 <button
                   type="button"
                   onClick={() => setHeroPhoto('balcony')}
@@ -247,6 +231,22 @@ export const HeroPilot2: React.FC<HeroPilot2Props> = ({
                   }}
                 >
                   Balcony Harvest View
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setHeroPhoto('tower')}
+                  style={{
+                    padding: '0.55rem 0.75rem',
+                    borderRadius: '10px',
+                    fontSize: '0.82rem',
+                    fontWeight: 700,
+                    border: heroPhoto === 'tower' ? '2px solid #1B4332' : '1px solid rgba(27, 67, 50, 0.15)',
+                    background: heroPhoto === 'tower' ? '#EEF4EE' : '#FFFFFF',
+                    color: '#142018',
+                    cursor: 'pointer',
+                  }}
+                >
+                  Full Tower View (135 cm)
                 </button>
               </div>
 

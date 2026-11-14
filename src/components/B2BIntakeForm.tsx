@@ -249,7 +249,7 @@ export const B2BIntakeForm: React.FC<B2BIntakeFormProps> = ({ isOpen, onClose })
                         name="phone"
                         value={formData.phone}
                         onChange={handleChange}
-                        placeholder="0432 777 813"
+                        placeholder="0400 000 000"
                         style={{
                           width: '100%',
                           padding: '0.75rem 1rem',

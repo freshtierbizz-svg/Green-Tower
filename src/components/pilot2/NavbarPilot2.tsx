@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { ActiveView } from '../../types/storefront';
 import { ENABLE_B2B_SECTION } from '../../config/storefrontConfig';
-import { Sprout, Menu, X, ArrowRight, ShieldCheck, Truck, MapPin, Building2, Phone } from 'lucide-react';
+import { Sprout, Menu, X, ArrowRight, ShieldCheck, Truck, MapPin, Building2, Mail } from 'lucide-react';
 
 interface NavbarPilot2Props {
   activeView: ActiveView;
@@ -59,20 +59,20 @@ export const NavbarPilot2: React.FC<NavbarPilot2Props> = ({
             </span>
           </div>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+          <div className="announcement-secondary-item" style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
             <a
-              href="tel:0432777813"
+              href="mailto:hello@freshtier.com.au"
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: '0.35rem',
-                color: '#34D399',
-                fontWeight: 700,
+                color: '#A7F3D0',
+                fontWeight: 600,
                 textDecoration: 'none',
               }}
             >
-              <Phone size={12} />
-              <span>0432 777 813</span>
+              <Mail size={12} color="#34D399" />
+              <span>hello@freshtier.com.au</span>
             </a>
           </div>
         </div>

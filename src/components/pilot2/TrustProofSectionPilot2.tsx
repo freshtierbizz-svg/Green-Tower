@@ -177,15 +177,15 @@ export const TrustProofSectionPilot2: React.FC = () => {
             </div>
 
             <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: '#142018', marginBottom: '0.5rem' }}>
-              Melbourne Phone & Video
+              Melbourne Local Support
             </h3>
 
             <p style={{ fontSize: '0.9rem', color: '#495B50', lineHeight: 1.6, flex: 1, marginBottom: '1rem' }}>
-              Direct access to our local Australian growing team. Call us on <strong>0432 777 813</strong> (Mon–Fri 9am–5pm AEST) or book a complimentary 15-minute 1-on-1 video onboarding call.
+              Direct access to our local Australian growing team at <strong>hello@freshtier.com.au</strong> (Mon–Fri 9am–5pm AEST) or book a complimentary 15-minute 1-on-1 video onboarding session.
             </p>
 
             <div style={{ fontSize: '0.8rem', fontWeight: 700, color: '#1B4332' }}>
-              ✓ Local Phone & Video Onboarding
+              ✓ Local Support & Video Onboarding
             </div>
           </div>
 

@@ -233,25 +233,17 @@ export const FooterPilot2: React.FC<FooterPilot2Props> = ({
             </div>
           )}
 
-          {/* COL 4: CONTACT & AUSTRALIAN PROOF */}
+          {/* COL 4: CONTACT & STORE POLICIES */}
           <div>
             <h4 style={{ fontSize: '0.9rem', fontWeight: 800, color: '#FFFFFF', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '1.25rem' }}>
-              Direct Australian Support
+              Support & Legal Policies
             </h4>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', fontSize: '0.875rem' }}>
-              <a
-                href="tel:0432777813"
-                style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#34D399', fontWeight: 700, textDecoration: 'none' }}
-              >
-                <Phone size={15} />
-                <span>Phone: 0432 777 813</span>
-              </a>
-
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', fontSize: '0.875rem', marginBottom: '1.25rem' }}>
               <a
                 href="mailto:hello@freshtier.com.au"
-                style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#D1D5DB', textDecoration: 'none' }}
+                style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#34D399', fontWeight: 700, textDecoration: 'none' }}
               >
-                <Mail size={15} color="#9CA3AF" />
+                <Mail size={15} color="#34D399" />
                 <span>hello@freshtier.com.au</span>
               </a>
 
@@ -264,6 +256,37 @@ export const FooterPilot2: React.FC<FooterPilot2Props> = ({
                 <MapPin size={15} />
                 <span>Melbourne Warehouse Distribution</span>
               </div>
+            </div>
+
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', fontSize: '0.84rem', borderTop: '1px solid rgba(255, 255, 255, 0.08)', paddingTop: '1rem' }}>
+              <button
+                type="button"
+                onClick={() => onSelectView('terms')}
+                style={{ textAlign: 'left', color: '#D1D5DB', background: 'none', border: 'none', padding: 0, cursor: 'pointer', fontSize: '0.84rem' }}
+              >
+                Terms of Service
+              </button>
+              <button
+                type="button"
+                onClick={() => onSelectView('privacy')}
+                style={{ textAlign: 'left', color: '#D1D5DB', background: 'none', border: 'none', padding: 0, cursor: 'pointer', fontSize: '0.84rem' }}
+              >
+                Privacy Policy (APPs)
+              </button>
+              <button
+                type="button"
+                onClick={() => onSelectView('refunds')}
+                style={{ textAlign: 'left', color: '#D1D5DB', background: 'none', border: 'none', padding: 0, cursor: 'pointer', fontSize: '0.84rem' }}
+              >
+                Refund & 2-Year Warranty Policy
+              </button>
+              <button
+                type="button"
+                onClick={() => onSelectView('shipping')}
+                style={{ textAlign: 'left', color: '#D1D5DB', background: 'none', border: 'none', padding: 0, cursor: 'pointer', fontSize: '0.84rem' }}
+              >
+                Shipping & Dispatch Policy
+              </button>
             </div>
           </div>
         </div>
@@ -293,7 +316,30 @@ export const FooterPilot2: React.FC<FooterPilot2Props> = ({
               >
                 30 783 236 188
               </a>{' '}
-              • Melbourne, Victoria
+              •{' '}
+              <button
+                type="button"
+                onClick={() => onSelectView('terms')}
+                style={{ background: 'none', border: 'none', padding: 0, color: '#9CA3AF', textDecoration: 'underline', cursor: 'pointer', fontSize: '0.8rem' }}
+              >
+                Terms
+              </button>{' '}
+              •{' '}
+              <button
+                type="button"
+                onClick={() => onSelectView('privacy')}
+                style={{ background: 'none', border: 'none', padding: 0, color: '#9CA3AF', textDecoration: 'underline', cursor: 'pointer', fontSize: '0.8rem' }}
+              >
+                Privacy
+              </button>{' '}
+              •{' '}
+              <button
+                type="button"
+                onClick={() => onSelectView('refunds')}
+                style={{ background: 'none', border: 'none', padding: 0, color: '#9CA3AF', textDecoration: 'underline', cursor: 'pointer', fontSize: '0.8rem' }}
+              >
+                Refunds
+              </button>
             </span>
           </div>
         </div>

@@ -94,12 +94,14 @@ export const Footer: React.FC<FooterProps> = ({ onSelectView, onOpenCommercialTr
           </div>
 
           <div>
-            <h4 style={{ color: '#ffffff', marginBottom: '1rem', fontSize: '0.95rem' }}>Customer Support</h4>
+            <h4 style={{ color: '#ffffff', marginBottom: '1rem', fontSize: '0.95rem' }}>Customer Support & Policies</h4>
             <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.55rem', color: '#9CA3AF', fontSize: '0.85rem' }}>
-              <li>📞 <strong>Phone:</strong> <a href={`tel:${STORE_META.phone.replace(/\s+/g, '')}`} style={{ color: '#E2E8F0', textDecoration: 'none' }}>{STORE_META.phone}</a></li>
               <li>✉️ <strong>Email:</strong> <a href={`mailto:${STORE_META.contactEmail}`} style={{ color: '#E2E8F0', textDecoration: 'none' }}>{STORE_META.contactEmail}</a></li>
               <li>🕒 <strong>Support Hours:</strong> Mon–Fri 9:00am–5:00pm AEST</li>
               <li>🚚 <strong>Warehouse:</strong> Victoria Metro Fast Dispatch</li>
+              <li><button onClick={() => handleNav('terms')} style={{ color: '#9CA3AF', background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}>Terms of Service</button></li>
+              <li><button onClick={() => handleNav('privacy')} style={{ color: '#9CA3AF', background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}>Privacy Policy</button></li>
+              <li><button onClick={() => handleNav('refunds')} style={{ color: '#9CA3AF', background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}>Refund & Warranty Policy</button></li>
             </ul>
           </div>
 

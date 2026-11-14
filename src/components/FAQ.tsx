@@ -180,7 +180,7 @@ export const FAQ: React.FC = () => {
               Have questions about your home balcony setup or venue trial?
             </div>
             <div style={{ fontSize: '0.875rem', color: '#94A3B8', marginTop: '0.2rem' }}>
-              Talk with our Australian support team in Victoria: <a href="tel:0432777813" style={{ color: '#34D399', textDecoration: 'none' }}><strong>0432 777 813</strong></a> (Mon–Fri 9am–5pm AEST)
+              Message our Australian support team in Victoria: <a href="mailto:hello@freshtier.com.au" style={{ color: '#34D399', textDecoration: 'none' }}><strong>hello@freshtier.com.au</strong></a> (Mon–Fri 9am–5pm AEST)
             </div>
           </div>
           <a

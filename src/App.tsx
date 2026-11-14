@@ -15,6 +15,7 @@ import { StructuredData } from './components/StructuredData';
 import { TrustBadges } from './components/TrustBadges';
 import { B2BIntakeForm } from './components/B2BIntakeForm';
 import { Week5AutomationModal } from './components/Week5AutomationModal';
+import { LegalPolicies } from './components/LegalPolicies';
 
 // Pilot 2 Imports
 import { PilotVersionSwitcher } from './components/pilot2/PilotVersionSwitcher';
@@ -266,6 +267,15 @@ export const App: React.FC = () => {
           <div style={{ background: pilotVersion === 'pilot2' ? '#FAF9F5' : 'transparent' }}>
             <FAQ />
           </div>
+        )}
+
+        {/* LEGAL & STORE POLICIES VIEW */}
+        {(activeView === 'terms' || activeView === 'privacy' || activeView === 'refunds' || activeView === 'shipping') && (
+          <LegalPolicies
+            activePolicy={activeView}
+            onSelectPolicy={(policy) => handleSelectView(policy)}
+            onBackToStore={() => handleSelectView('home')}
+          />
         )}
       </main>
 

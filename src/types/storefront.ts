@@ -5,7 +5,11 @@ export type ActiveView =
   | 'nursery'
   | 'how-it-works'
   | 'calculators'
-  | 'faq';
+  | 'faq'
+  | 'terms'
+  | 'privacy'
+  | 'refunds'
+  | 'shipping';
 
 export interface B2CTierOption {
   id: '5-tier' | '7-tier' | '11-tier';
